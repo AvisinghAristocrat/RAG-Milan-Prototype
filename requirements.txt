@@ -1,0 +1,35 @@
+# Minimal Python dependencies for the Milan retrieval API + Streamlit UI
+# Edit versions if you need stricter pins for your environment.
+
+# Web/API/UI
+fastapi>=0.95.0
+uvicorn[standard]>=0.21.1
+streamlit>=1.20.0
+
+# Postgres / vector DB
+psycopg[binary]>=3.1.0
+pgvector==0.4.1
+
+# Embeddings / models
+huggingface-hub>=0.17.0
+transformers>=4.33.0
+sentence-transformers>=2.2.2
+
+# Torch (CPU default). If you need GPU follow PyTorch install guide instead.
+torch>=2.0.0
+
+# Utilities
+numpy>=1.24.0
+python-dotenv>=1.0.0
+requests>=2.28.0
+tqdm>=4.65.0
+pandas>=1.5.0
+aiohttp>=3.8.0
+
+# Optional / heavy but useful local retrieval engines
+# If you want FAISS for nearest neighbour retrieval, install this (CPU build).
+# If it fails to install via pip, use conda or your platform-specific wheel.
+faiss-cpu>=1.7.3
+
+# Optional: if you plan to use ONNX runtime for model inference
+onnxruntime>=1.15.0
