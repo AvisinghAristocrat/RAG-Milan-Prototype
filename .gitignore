@@ -1,0 +1,86 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtualenvs
+.venv/
+venv/
+env/
+ENV/
+.pyenv/
+
+# Byte-compiled / distribution
+build/
+dist/
+*.egg-info/
+
+# ===== Environment & secrets =====
+.env
+.env.*.local
+*.secret
+secrets/
+keys/
+*.pem
+*.key
+*.jwk
+
+# ===== IDEs & OS =====
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# ===== Logs & runtime files =====
+*.log
+logs/
+mcp_logs.jsonl
+tasks.json
+collected_pages.json
+*.sqlite3
+coverage.xml
+.pytest_cache/
+
+# ===== Models, caches, heavy artifacts =====
+# local model snapshots, weights, embedding caches
+models/
+model/
+EMBED_MODEL_PATH/
+embeddings/
+embeddings_cache/
+hf_cache/
+cache/
+*.pt
+*.bin
+*.ckpt
+*.onnx
+*.safetensors
+*.h5
+
+# ===== Docker / local DB data =====
+docker-compose.override.yml
+docker-compose.*.yml
+pgdata/
+postgres-data/
+*.bak
+
+# ===== Generated / temp =====
+*.swp
+*.swo
+*.tmp
+*.bak
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ===== Logs & large exports =====
+exports/
+*.ndjson
+*.jsonl
+
+# ===== Misc =====
+.vagrant/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
