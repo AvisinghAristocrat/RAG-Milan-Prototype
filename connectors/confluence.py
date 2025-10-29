@@ -1,4 +1,4 @@
-# connectors/confluence.py
+# connectors/confluence.py (replace existing fetch_pages)
 import requests
 from typing import List, Dict, Tuple, Optional
 
@@ -13,12 +13,12 @@ def test_connection(base_url: str, username: str, token: str) -> Tuple[bool, str
 
 def fetch_pages(base_url: str, username: str, token: str,
                 space_key: Optional[str] = None, page_id: Optional[str] = None,
-                limit: int = 100) -> List[Dict]:
+                limit: int = 100, max_docs: Optional[int] = None) -> List[Dict]:
     """
     Paginated fetch of Confluence pages.
-    If space_key is provided: fetch all pages in the space using paging.
-    If page_id is provided: fetch the single page (and optionally subtree if you want to extend).
-    Returns list of dicts: {id, title, url, content, meta}
+    If space_key is provided: fetch all pages in the space using paging (limit per request).
+    If page_id is provided: fetch the single page (or use CQL for descendants).
+    max_docs: if set, stop after collecting up to max_docs pages (useful for tests).
     """
     sess = requests.Session()
     sess.auth = (username, token)
@@ -45,6 +45,9 @@ def fetch_pages(base_url: str, username: str, token: str,
                     "content": content,
                     "meta": {"version": item.get("version"), "space": space_key}
                 })
+                # stop early if max_docs requested
+                if max_docs is not None and len(pages) >= max_docs:
+                    return pages
             # paging: if fewer items than limit, we are done
             if len(results) < limit:
                 break

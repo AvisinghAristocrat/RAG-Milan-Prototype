@@ -1,4 +1,3 @@
-# retrieval_api.py
 """
 Retrieval API - complete
 Endpoints:
@@ -7,12 +6,15 @@ Endpoints:
  - POST /confluence/page_ids
  - POST /ingest/confluence
  - POST /ingest/github
+ - GET/POST /query
+ - GET /diagnostics
 """
 from __future__ import annotations
 import os
 import time
 from typing import Optional, List, Dict, Any
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Body, Query
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import uvicorn
 from dotenv import load_dotenv
@@ -26,7 +28,11 @@ from connectors import github as gh_conn
 from ingesters import confluence_ingest, github_ingest
 from storage.postgres import PostgresStorage
 from embeddings.embed_adapter import EmbedAdapter
-from mcp.mcp import assemble_mcp_context, log_mcp 
+from mcp.mcp import assemble_mcp_context, log_mcp
+
+import hashlib
+import psycopg
+from psycopg.rows import dict_row
 
 app = FastAPI(title="Milan RAG - Retrieval API")
 
@@ -36,7 +42,6 @@ EMBED_DIM = int(os.getenv("EMBED_DIM", "384"))
 
 # globals populated at startup
 storage: Optional[PostgresStorage] = None
-embedder: Optional[Embedder] = None
 embed_adapter: Optional[EmbedAdapter] = None
 
 # -----------------------
@@ -73,6 +78,7 @@ class IngestByPageIdsRequest(BaseModel):
     page_id: Optional[str] = None
     page_ids: Optional[List[str]] = None
     erase_existing: bool = False
+    max_docs: Optional[int] = None   # None = full ingest (no artificial cap)
 
 
 class IngestGithubRequest(BaseModel):
@@ -80,25 +86,11 @@ class IngestGithubRequest(BaseModel):
     token: Optional[str] = None
     branch: str = "main"
 
-@app.on_event("startup")
-def startup():
-    global storage, embed_adapter
-    # wait for DB to be reachable
-    wait_for_db(DB_URL, timeout=60)
-    storage = PostgresStorage(DB_URL)
-    storage.create_tables()
-    # Instantiate embed adapter - route sources to appropriate models
-    # Optionally set model names via env: DOC_EMBED_MODEL, CODE_EMBED_MODEL
-    embed_adapter = EmbedAdapter(doc_model=os.getenv("DOC_EMBED_MODEL", "all-MiniLM-L6-v2"),
-                                 code_model=os.getenv("CODE_EMBED_MODEL", None))
-
-
 # -----------------------
 # utilities
 # -----------------------
 def wait_for_db(url: str, timeout: int = 60):
     """Poll until Postgres accepts connection or raise."""
-    import psycopg
     start = time.time()
     while True:
         try:
@@ -110,19 +102,38 @@ def wait_for_db(url: str, timeout: int = 60):
                 raise RuntimeError(f"Timed out waiting for DB at {url}")
             time.sleep(1)
 
+def _vec_to_literal(vec: List[float]) -> str:
+    """Turn python list of floats into Postgres vector literal text like [0.1,0.2,...]."""
+    return "[" + ",".join(str(float(x)) for x in vec) + "]"
+
+def _extract_last_modified_from_meta(meta: Optional[Dict[str, Any]]) -> Optional[str]:
+    """
+    Given Confluence meta (possibly containing a 'version' dict), extract a scalar
+    last_modified value. Prefer 'when' timestamp, else 'number', else None.
+    """
+    if not meta or not isinstance(meta, dict):
+        return None
+    version_obj = meta.get("version") or meta.get("lastModified") or None
+    if isinstance(version_obj, dict):
+        return version_obj.get("when") or version_obj.get("number")
+    # if version_obj is a scalar, return as-is
+    return version_obj
 
 # -----------------------
 # startup
 # -----------------------
 @app.on_event("startup")
 def startup():
-    global storage, embedder
+    global storage, embed_adapter
     # wait for DB to be reachable
     wait_for_db(DB_URL, timeout=60)
     storage = PostgresStorage(DB_URL)
     storage.create_tables()
-    embedder = Embedder()
-
+    # Initialize multi-model embed adapter
+    embed_adapter = EmbedAdapter(
+        doc_model=os.getenv("DOC_EMBED_MODEL", "all-MiniLM-L6-v2"),
+        code_model=os.getenv("CODE_EMBED_MODEL", None)
+    )
 
 # -----------------------
 # endpoints
@@ -168,7 +179,8 @@ def confluence_page_ids(req: PageIdsRequest):
         raise HTTPException(status_code=400, detail="Provide space_key or page_id")
 
     try:
-        pages = conf_conn.fetch_pages(base, user, token, space_key=req.space_key, page_id=req.page_id, limit=req.limit)
+        default_limit = req.limit or 100
+        pages = conf_conn.fetch_pages(base, user, token, space_key=req.space_key, page_id=req.page_id, limit=default_limit, max_docs=None)
         simplified = [{"id": p["id"], "title": p.get("title"), "url": p.get("url")} for p in pages]
         return {"pages": simplified}
     except Exception as e:
@@ -178,21 +190,20 @@ def confluence_page_ids(req: PageIdsRequest):
 @app.post("/ingest/confluence")
 def ingest_confluence(req: IngestByPageIdsRequest):
     """
-    Ingest Confluence pages. Accepts:
-      - page_ids list  OR
-      - space_key / page_id
-    Optionally erase_existing (by space) if provided.
+    Idempotent ingest for Confluence pages.
+    Accepts: page_ids list OR space_key/page_id.
+    If page content unchanged (by content_hash), skip; otherwise delete previous chunks and insert new ones.
     """
     base = req.base_url or os.getenv("CONFLUENCE_BASE_URL")
     user = req.username or os.getenv("CONFLUENCE_USERNAME")
     token = req.token or os.getenv("CONFLUENCE_TOKEN")
+
     if not (base and user and token):
         raise HTTPException(status_code=400, detail="Confluence credentials missing (base/username/token)")
 
-    pages = []
+    pages: List[dict] = []
     try:
         if req.page_ids:
-            # fetch each page individually (preserves content)
             for pid in req.page_ids:
                 p = conf_conn.fetch_pages(base, user, token, page_id=pid)
                 if p:
@@ -200,34 +211,60 @@ def ingest_confluence(req: IngestByPageIdsRequest):
         else:
             if not (req.space_key or req.page_id):
                 raise HTTPException(status_code=400, detail="Provide page_ids or space_key/page_id")
-            pages = conf_conn.fetch_pages(base, user, token, space_key=req.space_key, page_id=req.page_id, limit=100)
+            default_limit = 100
+            pages = conf_conn.fetch_pages(base, user, token, space_key=req.space_key, page_id=req.page_id, limit=default_limit, max_docs=req.max_docs)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed fetching pages: {e}")
 
-    # Optional: erase existing for this space if requested
-    if req.erase_existing and req.space_key:
-        try:
-            with storage.conn.cursor() as cur:
-                cur.execute("DELETE FROM chunks WHERE (meta->>'space') = %s", (req.space_key,))
-                cur.execute("DELETE FROM documents WHERE id NOT IN (SELECT DISTINCT document_id FROM chunks)")
-                storage.conn.commit()
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Failed to erase existing data for space {req.space_key}: {e}")
-
-    # ingest pages
     doc_count = 0
     chunk_count = 0
+
     for p in pages:
+        page_id = p.get("id")
         title = p.get("title", "untitled")
         url = p.get("url")
-        meta = p.get("meta", {})
-        doc_id = storage.insert_document(title, url, meta)
+        meta = p.get("meta", {}) or {}
+        if req.space_key:
+            meta.setdefault("space", req.space_key)
+
+        # canonicalize page text using the ingester's stripper
+        canonical_text = confluence_ingest._strip_html(p.get("content", "")) if hasattr(confluence_ingest, "_strip_html") else p.get("content", "")
+        content_hash = hashlib.sha256((canonical_text or "").encode("utf-8")).hexdigest()
+
+        existing = storage.get_document_by_source_external("confluence", page_id)
+
+        if existing and existing.get("content_hash") == content_hash:
+            # no change -> skip
+            continue
+
+        # If existing and changed, delete old chunks first
+        if existing:
+            storage.delete_chunks_for_document(existing["id"])
+
+        # Compute last_modified scalar safely
+        last_modified_val = _extract_last_modified_from_meta(p.get("meta", {}) or {})
+
+        # Insert or update document idempotently
+        doc_id = storage.insert_document(
+            source="confluence",
+            external_id=page_id,
+            title=title,
+            url=url,
+            content_hash=content_hash,
+            canonical_text=canonical_text,
+            meta=meta,
+            last_modified=last_modified_val
+        )
+
+        # Chunk page and embed
         chunks = confluence_ingest.chunk_page(p.get("content", ""))
         texts = [c["text"] for c in chunks]
-        embeddings = embedder.embed_many(texts)
-        for c, emb in zip(chunks, embeddings):
-            storage.insert_chunk(doc_id, c["text"], emb, {"page_id": p.get("id"), "title": title, "space": meta.get("space")})
-            chunk_count += 1
+        if texts:
+            embeddings = embed_adapter.embed_many(texts, source="confluence")
+            for c, emb in zip(chunks, embeddings):
+                storage.insert_chunk(doc_id, c["text"], emb, {"page_id": page_id, "title": title, **meta})
+                chunk_count += 1
+
         doc_count += 1
 
     return {"status": "ingested", "documents": doc_count, "chunks": chunk_count}
@@ -249,16 +286,220 @@ def ingest_github(req: IngestGithubRequest):
     doc_count = 0
     chunk_count = 0
     for f in files:
-        doc_id = storage.insert_document(f.get("path", "file"), f.get("url"), {"repo": req.repo})
+        # use repo + path as external_id to uniquely identify a file
+        path = f.get("path", "file")
+        external_id = f"{req.repo}:{path}"
+        title = path
+        url = f.get("url")
+        meta = {"repo": req.repo}
+
+        canonical_text = github_ingest._strip_html(f.get("content", "")) if hasattr(github_ingest, "_strip_html") else f.get("content", "")
+        content_hash = hashlib.sha256((canonical_text or "").encode("utf-8")).hexdigest()
+
+        existing = storage.get_document_by_source_external("github", external_id)
+        if existing and existing.get("content_hash") == content_hash:
+            continue
+
+        if existing:
+            storage.delete_chunks_for_document(existing["id"])
+
+        doc_id = storage.insert_document(
+            source="github",
+            external_id=external_id,
+            title=title,
+            url=url,
+            content_hash=content_hash,
+            canonical_text=canonical_text,
+            meta=meta,
+            last_modified=None
+        )
+
         chunks = github_ingest.chunk_file(f.get("content", ""))
         texts = [c["text"] for c in chunks]
-        embeddings = embedder.embed_many(texts)
-        for c, emb in zip(chunks, embeddings):
-            storage.insert_chunk(doc_id, c["text"], emb, {"path": f.get("path")})
-            chunk_count += 1
+        if texts:
+            embeddings = embed_adapter.embed_many(texts, source="github")
+            for c, emb in zip(chunks, embeddings):
+                storage.insert_chunk(doc_id, c["text"], emb, {"path": path, "repo": req.repo})
+                chunk_count += 1
+
         doc_count += 1
 
-    return {"status": "ingested", "documents": doc_count, "chunks": chunk_count}
+@app.api_route("/query", methods=["GET", "POST"])
+def query_endpoint(
+    q: Optional[str] = Query(None, description="Query string (as query param)"),
+    body: Optional[Dict[str, Any]] = Body(None, description="Optional JSON body with {'q': '...'}"),
+    k_dense: int = 100,
+    k_fts: int = 100,
+    alpha: float = 0.7,
+    top_k: int = 5,
+):
+    """
+    Hybrid retrieval endpoint.
+    - q: query string
+    - k_dense: number of dense ANN candidates to retrieve
+    - k_fts: number of FTS candidates to retrieve
+    - alpha: weight for dense (beta = 1-alpha)
+    - top_k: how many top candidates to return
+    Returns: JSON with candidates and an MCP context (for testing)
+    """
+    # allow q from either query param or JSON body
+    if not q:
+        if body and isinstance(body, dict) and "q" in body:
+            q = body.get("q")
+    if not q:
+        raise HTTPException(status_code=400, detail="Missing required parameter 'q' (either query param or JSON body).")
+
+    if storage is None or embed_adapter is None:
+        raise HTTPException(status_code=500, detail="service not initialized")
+
+    # 1) embed the query (use doc model)
+    qe = embed_adapter.embed_many([q], source="confluence", batch_size=int(os.getenv("EMBED_BATCH","64")))
+    if not qe:
+        raise HTTPException(status_code=500, detail="failed to embed query")
+    qvec = qe[0]
+    qvec_text = _vec_to_literal(qvec)
+
+    # 2) Dense ANN: use pgvector operator "<->" (L2 distance) - lower is better
+    dense_sql = f"""
+        SELECT id, document_id, chunk_text, meta, (embedding_vector <-> %s::vector) AS dist
+        FROM chunks
+        WHERE embedding_vector IS NOT NULL
+        ORDER BY dist
+        LIMIT %s;
+    """
+    with storage.conn.cursor(row_factory=dict_row) as cur:
+        cur.execute(dense_sql, (qvec_text, k_dense))
+        dense_rows = cur.fetchall()
+
+    # convert dense distance -> similarity
+    dense_candidates = {}
+    max_dense_sim = 0.0
+    for r in dense_rows:
+        dist = float(r["dist"]) if r["dist"] is not None else 1e9
+        sim = 1.0 / (1.0 + dist)  # simple transform, -> (0,1]
+        dense_candidates[r["id"]] = {"id": r["id"], "document_id": r["document_id"],
+                                     "chunk_text": r["chunk_text"], "meta": r["meta"],
+                                     "dense_sim": sim, "fts_score": 0.0}
+
+        if sim > max_dense_sim:
+            max_dense_sim = sim
+
+    # 3) FTS candidates: get ts_rank for the query
+    fts_sql = """
+        SELECT id, document_id, chunk_text, meta,
+               ts_rank(chunk_tsv, plainto_tsquery('english', %s)) AS fts_rank
+        FROM chunks
+        WHERE chunk_tsv @@ plainto_tsquery('english', %s)
+        ORDER BY fts_rank DESC
+        LIMIT %s;
+    """
+    with storage.conn.cursor(row_factory=dict_row) as cur:
+        cur.execute(fts_sql, (q, q, k_fts))
+        fts_rows = cur.fetchall()
+
+    max_fts = 0.0
+    for r in fts_rows:
+        fts_score = float(r["fts_rank"] or 0.0)
+        if fts_score > max_fts:
+            max_fts = fts_score
+        cid = r["id"]
+        if cid in dense_candidates:
+            dense_candidates[cid]["fts_score"] = fts_score
+        else:
+            dense_candidates[cid] = {"id": cid, "document_id": r["document_id"],
+                                     "chunk_text": r["chunk_text"], "meta": r["meta"],
+                                     "dense_sim": 0.0, "fts_score": fts_score}
+
+    # 4) Normalize scores and compute fusion
+    # Normalize dense_sim by max_dense_sim (if zero, leave as is), fts by max_fts
+    fused_list = []
+    for cid, info in dense_candidates.items():
+        dense_sim = info.get("dense_sim", 0.0)
+        fts_score = info.get("fts_score", 0.0)
+        dense_norm = (dense_sim / max_dense_sim) if max_dense_sim > 0 else dense_sim
+        fts_norm = (fts_score / max_fts) if max_fts > 0 else fts_score
+        fused = alpha * dense_norm + (1.0 - alpha) * fts_norm
+        info["dense_norm"] = dense_norm
+        info["fts_norm"] = fts_norm
+        info["fused_score"] = fused
+        fused_list.append(info)
+
+    # 5) Sort by fused_score desc and pick top_k
+    fused_list.sort(key=lambda x: x["fused_score"], reverse=True)
+    top_candidates = fused_list[:top_k]
+
+    # 6) Assemble MCP context (for debugging / actual LLM call)
+    chunks_for_mcp = []
+    for c in top_candidates:
+        chunks_for_mcp.append({
+            "chunk_text": c["chunk_text"],
+            "score": c["fused_score"],
+            "title": (c.get("meta") or {}).get("title"),
+            "url": (c.get("meta") or {}).get("url")
+        })
+    mcp = assemble_mcp_context(q, chunks_for_mcp, max_chunks=min(len(chunks_for_mcp), top_k))
+    # log the context for audit
+    log_mcp(mcp["metadata"])
+
+    return {"query": q, "top_k": top_k, "candidates": top_candidates, "mcp_context": mcp["context_str"]}
+
+# diagnostics endpoint
+@app.get("/diagnostics")
+def diagnostics():
+    out = {}
+    # DB reachable?
+    try:
+        with storage.conn.cursor() as cur:
+            cur.execute("SELECT 1")
+            out["db"] = {"ok": True}
+    except Exception as e:
+        out["db"] = {"ok": False, "error": str(e)}
+        return JSONResponse(status_code=500, content=out)
+
+    # extensions
+    try:
+        with storage.conn.cursor() as cur:
+            cur.execute("SELECT extname, extversion FROM pg_extension")
+            ext = cur.fetchall()
+            out["extensions"] = [{"extname": r[0], "version": r[1]} for r in ext]
+    except Exception as e:
+        out["extensions_error"] = str(e)
+
+    # tables and counts
+    try:
+        with storage.conn.cursor() as cur:
+            cur.execute("SELECT tablename FROM pg_tables WHERE schemaname='public' AND tablename IN ('documents','chunks','ingest_jobs')")
+            t = [r[0] for r in cur.fetchall()]
+            out["tables_present"] = t
+
+            cur.execute("SELECT COUNT(*) FROM documents")
+            out["documents_count"] = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) FROM chunks")
+            out["chunks_count"] = cur.fetchone()[0]
+            cur.execute("SELECT ROUND(AVG(LENGTH(chunk_text))::numeric,2) FROM chunks")
+            out["avg_chunk_chars"] = cur.fetchone()[0]
+    except Exception as e:
+        out["counts_error"] = str(e)
+
+    # indexes
+    try:
+        with storage.conn.cursor() as cur:
+            cur.execute("SELECT indexname FROM pg_indexes WHERE tablename='chunks'")
+            out["indexes"] = [r[0] for r in cur.fetchall()]
+    except Exception as e:
+        out["indexes_error"] = str(e)
+
+    # sample doc + chunk
+    try:
+        with storage.conn.cursor() as cur:
+            cur.execute("SELECT id, title, url FROM documents ORDER BY ingested_at DESC LIMIT 3")
+            out["sample_documents"] = [{"id":r[0],"title":r[1],"url":r[2]} for r in cur.fetchall()]
+            cur.execute("SELECT id, substring(chunk_text,1,200) FROM chunks ORDER BY id DESC LIMIT 3")
+            out["sample_chunks"] = [{"id":r[0],"sample":r[1]} for r in cur.fetchall()]
+    except Exception as e:
+        out["sample_error"] = str(e)
+
+    return out
 
 
 if __name__ == "__main__":

@@ -32,26 +32,55 @@ class PostgresStorage:
     def insert_document(self, source: str, external_id: str, title: str, url: str,
                         content_hash: Optional[str] = None, canonical_text: Optional[str] = None,
                         meta: Optional[Dict[str, Any]] = None, last_modified: Optional[str] = None) -> int:
+        """
+        Idempotent insert/update for documents. If a document with (source, external_id)
+        exists, update its metadata and return its id; otherwise insert and return new id.
+        This avoids relying on ON CONFLICT and works with partial indexes.
+        """
         meta = meta or {}
-        with self.conn.cursor() as cur:
+
+        with self.conn.cursor(row_factory=dict_row) as cur:
+            # Try to find existing document
             cur.execute(
-                """
-                INSERT INTO documents (source, external_id, title, url, content_hash, canonical_text, meta, last_modified)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
-                ON CONFLICT (source, external_id) DO UPDATE
-                  SET title = EXCLUDED.title,
-                      url = EXCLUDED.url,
-                      content_hash = EXCLUDED.content_hash,
-                      canonical_text = EXCLUDED.canonical_text,
-                      meta = EXCLUDED.meta,
-                      last_modified = EXCLUDED.last_modified
-                RETURNING id;
-                """,
-                (source, external_id, title, url, content_hash, canonical_text, json.dumps(meta), last_modified)
+                "SELECT id, content_hash FROM documents WHERE source = %s AND external_id = %s",
+                (source, external_id)
             )
-            docid = cur.fetchone()[0]
-            self.conn.commit()
-            return docid
+            existing = cur.fetchone()
+
+            if existing:
+                docid = existing["id"]
+                # If hash is unchanged, we still update title/url/meta/last_modified for freshness
+                cur.execute(
+                    """
+                    UPDATE documents
+                       SET title = %s,
+                           url = %s,
+                           content_hash = %s,
+                           canonical_text = %s,
+                           meta = %s,
+                           last_modified = %s,
+                           ingested_at = now()
+                     WHERE id = %s
+                     """,
+                    (title, url, content_hash, canonical_text, json.dumps(meta), last_modified, docid)
+                )
+                self.conn.commit()
+                return docid
+            else:
+                # Insert new document
+                cur.execute(
+                    """
+                    INSERT INTO documents
+                      (source, external_id, title, url, content_hash, canonical_text, meta, last_modified, ingested_at)
+                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s, now())
+                    RETURNING id
+                    """,
+                    (source, external_id, title, url, content_hash, canonical_text, json.dumps(meta), last_modified)
+                )
+                docid = cur.fetchone()["id"]
+                self.conn.commit()
+                return docid
+
 
     def update_document_content(self, docid: int, content_hash: str, canonical_text: str, meta: Dict[str, Any], last_modified: Optional[str] = None):
         with self.conn.cursor() as cur:
