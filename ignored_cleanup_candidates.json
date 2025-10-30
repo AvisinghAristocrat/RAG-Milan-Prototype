@@ -1,0 +1,162 @@
+{
+  "generated_at": "2025-10-30T05:49:08.328605Z",
+  "stats": {
+    "scanned_dirs": [
+      "logs",
+      "data",
+      "exports",
+      "models",
+      "embeddings"
+    ],
+    "total_found": 7,
+    "large_threshold_bytes": 52428800,
+    "large_threshold_human": "50.0 MB",
+    "log_days": 180,
+    "num_duplicates": 0
+  },
+  "items": [
+    {
+      "path": "logs/migrate_30c5d1d3-fec3-4bf4-adeb-274b2eb5e053.log",
+      "size_bytes": 179,
+      "size_human": "179.0 B",
+      "last_modified": "2025-10-29T05:29:23.645193Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 1
+    },
+    {
+      "path": "logs/migrate_71d40d4b-93e4-4db9-98ce-8601abe21188.log",
+      "size_bytes": 179,
+      "size_human": "179.0 B",
+      "last_modified": "2025-10-29T06:21:59.825344Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 0
+    },
+    {
+      "path": "logs/migrate_bb314e8f-3dfa-4230-8e71-0f095f9f3c2e.log",
+      "size_bytes": 806,
+      "size_human": "806.0 B",
+      "last_modified": "2025-10-29T05:24:02.957492Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 1
+    },
+    {
+      "path": "logs/migrate_c7f4dfb1-0c7d-4b7b-9048-31cbe1d0d915.log",
+      "size_bytes": 179,
+      "size_human": "179.0 B",
+      "last_modified": "2025-10-29T05:30:12.785688Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 1
+    },
+    {
+      "path": "logs/migrate_bed39551-8669-4306-810a-a294fcd9b863.log",
+      "size_bytes": 179,
+      "size_human": "179.0 B",
+      "last_modified": "2025-10-29T05:50:02.416080Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 0
+    },
+    {
+      "path": "embeddings/embed_adapter.py",
+      "size_bytes": 1449,
+      "size_human": "1.4 KB",
+      "last_modified": "2025-10-28T14:36:33.514627Z",
+      "is_large": false,
+      "is_log": false,
+      "is_old_log": false,
+      "days_old": null
+    },
+    {
+      "path": "embeddings/embedder.py",
+      "size_bytes": 643,
+      "size_human": "643.0 B",
+      "last_modified": "2025-10-28T14:36:16.075860Z",
+      "is_large": false,
+      "is_log": false,
+      "is_old_log": false,
+      "days_old": null
+    }
+  ],
+  "duplicates": [],
+  "top_large": [
+    {
+      "path": "embeddings/embed_adapter.py",
+      "size_bytes": 1449,
+      "size_human": "1.4 KB",
+      "last_modified": "2025-10-28T14:36:33.514627Z",
+      "is_large": false,
+      "is_log": false,
+      "is_old_log": false,
+      "days_old": null
+    },
+    {
+      "path": "logs/migrate_bb314e8f-3dfa-4230-8e71-0f095f9f3c2e.log",
+      "size_bytes": 806,
+      "size_human": "806.0 B",
+      "last_modified": "2025-10-29T05:24:02.957492Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 1
+    },
+    {
+      "path": "embeddings/embedder.py",
+      "size_bytes": 643,
+      "size_human": "643.0 B",
+      "last_modified": "2025-10-28T14:36:16.075860Z",
+      "is_large": false,
+      "is_log": false,
+      "is_old_log": false,
+      "days_old": null
+    },
+    {
+      "path": "logs/migrate_30c5d1d3-fec3-4bf4-adeb-274b2eb5e053.log",
+      "size_bytes": 179,
+      "size_human": "179.0 B",
+      "last_modified": "2025-10-29T05:29:23.645193Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 1
+    },
+    {
+      "path": "logs/migrate_71d40d4b-93e4-4db9-98ce-8601abe21188.log",
+      "size_bytes": 179,
+      "size_human": "179.0 B",
+      "last_modified": "2025-10-29T06:21:59.825344Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 0
+    },
+    {
+      "path": "logs/migrate_c7f4dfb1-0c7d-4b7b-9048-31cbe1d0d915.log",
+      "size_bytes": 179,
+      "size_human": "179.0 B",
+      "last_modified": "2025-10-29T05:30:12.785688Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 1
+    },
+    {
+      "path": "logs/migrate_bed39551-8669-4306-810a-a294fcd9b863.log",
+      "size_bytes": 179,
+      "size_human": "179.0 B",
+      "last_modified": "2025-10-29T05:50:02.416080Z",
+      "is_large": false,
+      "is_log": true,
+      "is_old_log": false,
+      "days_old": 0
+    }
+  ]
+}

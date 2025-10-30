@@ -1,86 +1,96 @@
 {
-  "generated_at": "2025-10-30T05:34:49.680925Z",
+  "generated_at": "2025-10-30T05:48:46.006161Z",
   "large_files_threshold_bytes": 10485760,
   "log_days_threshold": 180,
   "counts": {
-    "tracked_files": 27,
-    "large_files": 0,
+    "tracked_files": 60,
+    "large_files": 1,
     "unreferenced_scripts": 9,
     "old_logs": 0,
     "duplicates": 1,
-    "docker_make_warnings": 11
+    "docker_make_warnings": 45
   },
-  "large_files": [],
+  "large_files": [
+    {
+      "path": "backup_chunks_all.csv",
+      "size_bytes": 12149181,
+      "size_human": "11.6 MB",
+      "last_commit": "45cdec2c31cf81d5dc96e6af3654d3cd95a6d884",
+      "last_commit_date": "2025-10-30 11:08:39 +0530",
+      "last_commit_author": "Singh, Avinash",
+      "last_modified": "2025-10-28T18:26:05.218217Z"
+    }
+  ],
   "unreferenced_scripts": [
     {
-      "path": "create_milan_repo.sh",
-      "basename": "create_milan_repo.sh",
-      "last_commit_date": "2025-10-28 20:41:58 +0530",
-      "last_commit": "1466801fd19bc6dae5ca44fb0656200ae352d412",
+      "path": "tools/analyze_misses.py",
+      "basename": "analyze_misses.py",
+      "last_commit_date": "2025-10-30 11:08:39 +0530",
+      "last_commit": "45cdec2c31cf81d5dc96e6af3654d3cd95a6d884",
       "last_commit_author": "Singh, Avinash",
       "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
     },
     {
-      "path": "tools/collect_pages_ids.py",
-      "basename": "collect_pages_ids.py",
-      "last_commit_date": "2025-10-28 20:41:58 +0530",
-      "last_commit": "1466801fd19bc6dae5ca44fb0656200ae352d412",
+      "path": "tools/check_similarity.py",
+      "basename": "check_similarity.py",
+      "last_commit_date": "2025-10-30 11:08:39 +0530",
+      "last_commit": "45cdec2c31cf81d5dc96e6af3654d3cd95a6d884",
       "last_commit_author": "Singh, Avinash",
       "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
     },
     {
-      "path": "mcp/__init__.py",
-      "basename": "__init__.py",
-      "last_commit_date": "2025-10-29 10:41:20 +0530",
-      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "path": "tools/generate_cleanup_candidates.py",
+      "basename": "generate_cleanup_candidates.py",
+      "last_commit_date": "2025-10-30 11:08:39 +0530",
+      "last_commit": "45cdec2c31cf81d5dc96e6af3654d3cd95a6d884",
       "last_commit_author": "Singh, Avinash",
       "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
     },
     {
-      "path": "mcp/mcp.py",
-      "basename": "mcp.py",
-      "last_commit_date": "2025-10-29 10:41:20 +0530",
-      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "path": "tools/quick_failure_summary.py",
+      "basename": "quick_failure_summary.py",
+      "last_commit_date": "2025-10-30 11:08:39 +0530",
+      "last_commit": "45cdec2c31cf81d5dc96e6af3654d3cd95a6d884",
       "last_commit_author": "Singh, Avinash",
       "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
     },
     {
-      "path": "storage/__init__.py",
-      "basename": "__init__.py",
-      "last_commit_date": "2025-10-29 10:41:20 +0530",
-      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "path": "ui/pages/ANN_Evaluation.py",
+      "basename": "ANN_Evaluation.py",
+      "last_commit_date": "2025-10-30 11:08:39 +0530",
+      "last_commit": "45cdec2c31cf81d5dc96e6af3654d3cd95a6d884",
       "last_commit_author": "Singh, Avinash",
       "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
     },
     {
-      "path": "tools/__init__.py",
-      "basename": "__init__.py",
-      "last_commit_date": "2025-10-29 10:41:20 +0530",
-      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "path": "ui/pages/Failure_Inspector.py",
+      "basename": "Failure_Inspector.py",
+      "last_commit_date": "2025-10-30 11:08:39 +0530",
+      "last_commit": "45cdec2c31cf81d5dc96e6af3654d3cd95a6d884",
       "last_commit_author": "Singh, Avinash",
       "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
     },
     {
-      "path": "tools/rechunk_documents.py",
-      "basename": "rechunk_documents.py",
-      "last_commit_date": "2025-10-29 10:41:20 +0530",
-      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "path": "ui/pages/Revamp_Checklist.py",
+      "basename": "Revamp_Checklist.py",
+      "last_commit_date": "2025-10-30 11:08:39 +0530",
+      "last_commit": "45cdec2c31cf81d5dc96e6af3654d3cd95a6d884",
       "last_commit_author": "Singh, Avinash",
       "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
     },
     {
-      "path": "tools/test_insert_chunk.py",
-      "basename": "test_insert_chunk.py",
-      "last_commit_date": "2025-10-29 10:41:20 +0530",
-      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "path": "ui/pages/Tasks_Manager.py",
+      "basename": "Tasks_Manager.py",
+      "last_commit_date": "2025-10-30 11:08:39 +0530",
+      "last_commit": "45cdec2c31cf81d5dc96e6af3654d3cd95a6d884",
       "last_commit_author": "Singh, Avinash",
       "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
     },
     {
-      "path": "ui/__init__.py",
-      "basename": "__init__.py",
-      "last_commit_date": "2025-10-29 10:41:20 +0530",
-      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "path": "tools/generate_ignored_candidates.py",
+      "basename": "generate_ignored_candidates.py",
+      "last_commit_date": "2025-10-30 11:17:10 +0530",
+      "last_commit": "db7a0e6e29afe63d875fc425eb56ec8ef020748c",
       "last_commit_author": "Singh, Avinash",
       "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
     }
@@ -114,6 +124,131 @@
     }
   ],
   "docker_make_warnings": [
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "119:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "120:      \"match_line\": \"4:      context: ./postgres-pgvector\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "124:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "125:      \"match_line\": \"6:    image: local/postgres-pgvector:15\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "129:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "130:      \"match_line\": \"2:-- Ensure pgvector extension exists\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "134:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "135:      \"match_line\": \"47:-- HNSW index for dense vectors (pgvector)\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "138:      \"path\": \"postgres-pgvector/Dockerfile\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "139:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "140:      \"match_line\": \"6:    git clone --depth 1 https://github.com/pgvector/pgvector.git /tmp/pgvector && \\\\\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "143:      \"path\": \"postgres-pgvector/Dockerfile\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "144:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "145:      \"match_line\": \"7:    cd /tmp/pgvector && make && make install && \\\\\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "148:      \"path\": \"postgres-pgvector/Dockerfile\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "149:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "150:      \"match_line\": \"8:    rm -rf /tmp/pgvector && \\\\\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "154:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "155:      \"match_line\": \"11:pgvector==0.4.1\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "159:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "160:      \"match_line\": \"368:    # 2) Dense ANN: use pgvector operator \\\"<->\\\" (L2 distance) - lower is better\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "164:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "165:      \"match_line\": \"3:Migrate JSONB embeddings in `chunks.embedding` into `chunks.embedding_vector` (pgvector).\""
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "169:      \"warning\": \"Found 'pgvector' string; review postgres image references for platform compatibility.\","
+    },
+    {
+      "path": "cleanup_candidates.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "170:      \"match_line\": \"162:    parser = argparse.ArgumentParser(description=\\\"Migrate JSONB embeddings -> pgvector embedding_vector\\\")\""
+    },
     {
       "path": "docker-compose.yml",
       "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
@@ -160,6 +295,46 @@
       "match_line": "368:    # 2) Dense ANN: use pgvector operator \"<->\" (L2 distance) - lower is better"
     },
     {
+      "path": "tasks.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "26:    \"note\": \"Postgres + pgvector + migrations + HNSW/IVF indexes\","
+    },
+    {
+      "path": "tasks.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "32:        \"title\": \"Build postgres-pgvector image and bring DB up\","
+    },
+    {
+      "path": "tasks.json",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "51:    \"note\": \"Ensure documents and chunks schema is correct and that embeddings are stored as pgvector.\","
+    },
+    {
+      "path": "tools/eval_ann.py",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "55:            cur.execute(f\"SET pgvector.hnsw.ef_search = {int(ef_search)};\")"
+    },
+    {
+      "path": "tools/eval_fusion.py",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "61:            cur.execute(f\"SET pgvector.hnsw.ef_search = {int(ef_search)};\")"
+    },
+    {
+      "path": "tools/generate_cleanup_candidates.py",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "203:    # also search for specific images / references (example ankane/pgvector)"
+    },
+    {
+      "path": "tools/generate_cleanup_candidates.py",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "204:    p = run([\"git\", \"grep\", \"-n\", \"--\", \"pgvector\"])"
+    },
+    {
+      "path": "tools/generate_cleanup_candidates.py",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "208:            warnings.append({\"path\": parts[0], \"warning\":\"Found 'pgvector' string; review postgres image references for platform compatibility.\", \"match_line\": parts[1] if len(parts)>1 else \"\"})"
+    },
+    {
       "path": "tools/migrate_embeddings.py",
       "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
       "match_line": "3:Migrate JSONB embeddings in `chunks.embedding` into `chunks.embedding_vector` (pgvector)."
@@ -168,6 +343,11 @@
       "path": "tools/migrate_embeddings.py",
       "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
       "match_line": "162:    parser = argparse.ArgumentParser(description=\"Migrate JSONB embeddings -> pgvector embedding_vector\")"
+    },
+    {
+      "path": "ui/pages/ANN_Evaluation.py",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "44:Use this page to run ANN recall/latency evaluation against your Postgres/pgvector index."
     }
   ]
 }

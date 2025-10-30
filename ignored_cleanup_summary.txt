@@ -1,0 +1,28 @@
+Ignored cleanup summary
+======================
+
+Generated: 2025-10-30T05:49:08.328605Z
+
+{
+  "scanned_dirs": [
+    "logs",
+    "data",
+    "exports",
+    "models",
+    "embeddings"
+  ],
+  "total_found": 7,
+  "large_threshold_bytes": 52428800,
+  "large_threshold_human": "50.0 MB",
+  "log_days": 180,
+  "num_duplicates": 0
+}
+
+Top large files:
+ - embeddings/embed_adapter.py 1.4 KB last_modified=2025-10-28T14:36:33.514627Z
+ - logs/migrate_bb314e8f-3dfa-4230-8e71-0f095f9f3c2e.log 806.0 B last_modified=2025-10-29T05:24:02.957492Z
+ - embeddings/embedder.py 643.0 B last_modified=2025-10-28T14:36:16.075860Z
+ - logs/migrate_30c5d1d3-fec3-4bf4-adeb-274b2eb5e053.log 179.0 B last_modified=2025-10-29T05:29:23.645193Z
+ - logs/migrate_71d40d4b-93e4-4db9-98ce-8601abe21188.log 179.0 B last_modified=2025-10-29T06:21:59.825344Z
+ - logs/migrate_c7f4dfb1-0c7d-4b7b-9048-31cbe1d0d915.log 179.0 B last_modified=2025-10-29T05:30:12.785688Z
+ - logs/migrate_bed39551-8669-4306-810a-a294fcd9b863.log 179.0 B last_modified=2025-10-29T05:50:02.416080Z
