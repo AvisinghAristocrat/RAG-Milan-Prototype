@@ -37,7 +37,6 @@ Thumbs.db
 *.log
 logs/
 mcp_logs.jsonl
-tasks.json
 collected_pages.json
 *.sqlite3
 coverage.xml

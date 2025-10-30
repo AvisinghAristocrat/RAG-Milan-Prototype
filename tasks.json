@@ -1,0 +1,400 @@
+[
+  {
+    "title": "Revamp: Tasks Manager & Governance",
+    "note": "Deliver a clean Tasks Manager UI (Completed + Next) and governance rules so we stay on sprint and capture side tasks.",
+    "status": "done",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "Create Tasks Manager page (Completed + Next)",
+        "status": "done"
+      },
+      {
+        "title": "Implement governance (side tasks, sprint policy)",
+        "status": "done"
+      },
+      {
+        "title": "Make notes layman-readable and scrollable",
+        "status": "done"
+      }
+    ],
+    "done": true
+  },
+  {
+    "title": "Infrastructure & DB",
+    "note": "Postgres + pgvector + migrations + HNSW/IVF indexes",
+    "status": "done",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "Build postgres-pgvector image and bring DB up",
+        "status": "done"
+      },
+      {
+        "title": "CREATE EXTENSION vector and verify version",
+        "status": "done"
+      },
+      {
+        "title": "Apply migrations (documents/chunks/ingest_jobs)",
+        "status": "done"
+      },
+      {
+        "title": "Create HNSW and IVFFLAT indexes + GIN chunk_tsv",
+        "status": "done"
+      }
+    ]
+  },
+  {
+    "title": "Storage & Schema Migration",
+    "note": "Ensure documents and chunks schema is correct and that embeddings are stored as pgvector.",
+    "status": "done",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "documents table with unique(source,external_id)",
+        "status": "done"
+      },
+      {
+        "title": "chunks table with embedding_vector VECTOR(384) and chunk_tsv",
+        "status": "done"
+      },
+      {
+        "title": "Migrate json embeddings \u2192 embedding_vector and backfill",
+        "status": "done"
+      },
+      {
+        "title": "Ensure triggers and indexes are present",
+        "status": "done"
+      }
+    ]
+  },
+  {
+    "title": "Connectors & Idempotent Ingest",
+    "note": "Confluence & GitHub connectors + idempotent ingest (content_hash upsert).",
+    "status": "done",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "Confluence connector + page_ids endpoint",
+        "status": "done"
+      },
+      {
+        "title": "GitHub connector and repo fetch",
+        "status": "done"
+      },
+      {
+        "title": "Idempotent ingest (content_hash + upsert)",
+        "status": "done"
+      },
+      {
+        "title": "Streamlit ingest flows (select pages / whole space)",
+        "status": "done"
+      }
+    ]
+  },
+  {
+    "title": "Chunker & Canonicalization",
+    "note": "Boundary-aware chunking, canonical HTML stripper, target chunk size ~1000 chars and overlap ~150.",
+    "status": "todo_prototype",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "Paragraph/sentence-aware chunker (prototype)",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Canonical HTML stripping (preserve paragraphs)",
+        "status": "done"
+      },
+      {
+        "title": "Expose chunking knobs (INGEST_CHARS, INGEST_OVERLAP)",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Tune average chunk size (~700\u20131200)",
+        "status": "done"
+      }
+    ]
+  },
+  {
+    "title": "Embeddings & Multi-model Adapter",
+    "note": "EmbedAdapter and routing for doc vs code models; re-embed tooling.",
+    "status": "todo_prototype",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "EmbedAdapter (docs vs code routing)",
+        "status": "done"
+      },
+      {
+        "title": "Tooling to re-embed selected documents",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Support stronger multilingual model option",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Embedding batch size knobs",
+        "status": "done"
+      }
+    ]
+  },
+  {
+    "title": "ANN + FTS Indexing and Param Tuning",
+    "note": "Typed vector column, ANN indexes & tuning knobs (m, ef_construction, ef_search).",
+    "status": "todo_prototype",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "HNSW & IVFFLAT indexes present",
+        "status": "done"
+      },
+      {
+        "title": "Provide default params and UI knobs",
+        "status": "done"
+      },
+      {
+        "title": "Run ef_search sweeps and tune",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Monitor index memory footprint",
+        "status": "todo_final"
+      }
+    ]
+  },
+  {
+    "title": "Fusion Retrieval & Reranker",
+    "note": "Union ANN and FTS candidates, re-rank by fused score; integrate cross-encoder reranker.",
+    "status": "todo_prototype",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "Union ANN + FTS pipeline",
+        "status": "done"
+      },
+      {
+        "title": "Alpha/Beta fusion weights and knobs",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Prototype rerank_union.py (cross-encoder)",
+        "status": "done"
+      },
+      {
+        "title": "Integrate reranker in jobs and measure lift",
+        "status": "todo_prototype"
+      }
+    ]
+  },
+  {
+    "title": "Evaluation & Tuning (ANN/Fusion)",
+    "note": "Scripts and processes for running ANN/fusion evaluations and selecting defaults.",
+    "status": "todo_prototype",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "tools/eval_ann.py and ground truth",
+        "status": "done"
+      },
+      {
+        "title": "tools/eval_fusion.py and fusion analysis",
+        "status": "done"
+      },
+      {
+        "title": "ef_search / candidate sweeps",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Pick prototype defaults",
+        "status": "todo_prototype"
+      }
+    ]
+  },
+  {
+    "title": "Failure fixes (example q47)",
+    "note": "Create title chunk, embed and re-evaluate failing queries; escalate to stronger model or rerank if needed.",
+    "status": "todo_prototype",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "Create title/summary chunk for doc 886",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Embed title chunk and persist vector",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Re-evaluate similarity and fusion for q47",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Re-embed with stronger model if needed",
+        "status": "todo_prototype"
+      }
+    ]
+  },
+  {
+    "title": "UI: Failure Inspector & Tasks integration",
+    "note": "Failure Inspector with per-chunk sims and actions; attach job outputs to tasks.",
+    "status": "done",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "Add Failure Inspector (UI)",
+        "status": "done"
+      },
+      {
+        "title": "Per-chunk similarity & re-chunk/re-embed actions",
+        "status": "done"
+      },
+      {
+        "title": "Hookup job-run outputs to tasks",
+        "status": "todo_prototype"
+      }
+    ]
+  },
+  {
+    "title": "Job Runner & Job Monitor",
+    "note": "Admin endpoints and background runner to run scripts, capture logs and artifacts; Job Monitor UI.",
+    "status": "todo_prototype",
+    "priority": "high",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "Add ingest_jobs table + admin endpoints",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Background runner to execute scripts and write logs/artifacts",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Add Job Monitor UI page",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Wire tasks to create jobs and attach results",
+        "status": "todo_prototype"
+      }
+    ]
+  },
+  {
+    "title": "Async ingestion workers (production)",
+    "note": "Implement workers (RQ/Celery), retries and per-document locking for production-grade ingestion.",
+    "status": "todo_final",
+    "priority": "high",
+    "side": true,
+    "subtasks": [
+      {
+        "title": "Design ingest_jobs schema & lifecycle",
+        "status": "todo_final"
+      },
+      {
+        "title": "Implement worker and retry/backoff",
+        "status": "todo_final"
+      },
+      {
+        "title": "Per-document locking",
+        "status": "todo_final"
+      }
+    ]
+  },
+  {
+    "title": "Operationalization & Security",
+    "note": "Secrets, monitoring, backups, RBAC and scaling for production readiness.",
+    "status": "todo_final",
+    "priority": "high",
+    "side": true,
+    "subtasks": [
+      {
+        "title": "Secrets management (Vault/AWS)",
+        "status": "todo_final"
+      },
+      {
+        "title": "Prometheus metrics & dashboards",
+        "status": "todo_final"
+      },
+      {
+        "title": "Backups & index rebuild strategy",
+        "status": "todo_final"
+      },
+      {
+        "title": "RBAC & audit logging",
+        "status": "todo_final"
+      }
+    ]
+  },
+  {
+    "title": "Repo housekeeping & cleanup",
+    "note": "Reorganize artifacts under /data & /logs, and produce a candidate list of scripts to archive/remove.",
+    "status": "todo_prototype",
+    "priority": "medium",
+    "side": true,
+    "subtasks": [
+      {
+        "title": "tools/organize_data.sh and folder layout",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Run repo scan to create cleanup_candidates.json",
+        "status": "todo_prototype"
+      },
+      {
+        "title": "Review and archive/delete redundant scripts",
+        "status": "todo_prototype"
+      }
+    ]
+  },
+  {
+    "title": "MCP & Audit Logging",
+    "note": "Model Context Protocol to assemble LLM context and log contexts for audit; keep audit logs in mcp_logs.jsonl.",
+    "status": "done",
+    "priority": "medium",
+    "side": false,
+    "subtasks": [
+      {
+        "title": "MCP builder & logging",
+        "status": "done"
+      },
+      {
+        "title": "Log contexts for audit",
+        "status": "done"
+      },
+      {
+        "title": "Plan enforcement and provenance fields",
+        "status": "todo_final"
+      }
+    ]
+  },
+  {
+    "title": "Feature enhancements (Must-have vs Good-to-have)",
+    "note": "High-level list categorized for future work. Must-have items are final, Good-to-have are optional for scale.",
+    "status": "todo_prototype",
+    "priority": "medium",
+    "side": true,
+    "subtasks": [
+      {
+        "title": "Must-have: Async workers, secrets, monitoring, backups, RBAC",
+        "status": "todo_final"
+      },
+      {
+        "title": "Good-to-have: near-duplicate detection, dedicated vector DB, advanced reranking",
+        "status": "todo_final"
+      }
+    ]
+  }
+]
