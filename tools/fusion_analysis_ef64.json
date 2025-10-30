@@ -1,0 +1,1093 @@
+{
+  "num_queries": 50,
+  "failures": [
+    {
+      "qid": "q1",
+      "query": "Target release TBD Epic/Story N/A Document status DRAFT Document owner Designer Tech lead Technical writers QA Narrative Description Subsection Following",
+      "expected": [
+        252
+      ],
+      "ann": [
+        693,
+        199,
+        414,
+        381,
+        653,
+        745,
+        657,
+        148,
+        401,
+        3
+      ],
+      "fts": [
+        252,
+        323,
+        723,
+        381
+      ],
+      "union_top_k": [
+        693,
+        199,
+        414,
+        381,
+        653,
+        745,
+        657,
+        148,
+        401,
+        3
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 252,
+          "exists": true,
+          "title": "SkinToolkit V2 - Variants Technical Design Doc (TDD)",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110263",
+          "chunks": [
+            {
+              "id": 1075,
+              "sample": "Target release TBD Epic/Story N/A Document status DRAFT Document owner Designer Tech lead Technical writers QA Narrative Description Subsection Following the initial launch of the SKinToolkit, there were a number of noted quality of life improvements that didn\u2019t quite make the cut when it came to sc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q2",
+      "query": "MAB Version 3.x.x Release Notes",
+      "expected": [
+        84
+      ],
+      "ann": [
+        559,
+        1064,
+        568,
+        568,
+        340,
+        559,
+        1064,
+        421,
+        340,
+        614
+      ],
+      "fts": [],
+      "union_top_k": [
+        559,
+        1064,
+        568,
+        340,
+        421,
+        614,
+        409,
+        647,
+        357,
+        1026
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 84,
+          "exists": true,
+          "title": "MAB Version 3.x.x Release Notes",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853109923",
+          "chunks": []
+        }
+      ]
+    },
+    {
+      "qid": "q4",
+      "query": "Tools",
+      "expected": [
+        365
+      ],
+      "ann": [
+        595,
+        1074,
+        949,
+        1009,
+        1127,
+        521,
+        215,
+        896,
+        1067,
+        795
+      ],
+      "fts": [
+        456,
+        196,
+        1041,
+        256,
+        289,
+        380,
+        1031,
+        926,
+        407,
+        86
+      ],
+      "union_top_k": [
+        595,
+        1074,
+        949,
+        1009,
+        1127,
+        521,
+        215,
+        896,
+        1067,
+        795
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 365,
+          "exists": true,
+          "title": "Tools",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110523",
+          "chunks": []
+        }
+      ]
+    },
+    {
+      "qid": "q14",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        936
+      ],
+      "ann": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 936,
+          "exists": true,
+          "title": "2023-07-14 Backend Retrospective",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2867856510",
+          "chunks": [
+            {
+              "id": 3603,
+              "sample": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date Team Milan Backend Team Participants Retrospective Sprint 76 Goals: PFC updating to 3.3.1; latest v3.5.0 update published. In addition to ongoing partner support o"
+            },
+            {
+              "id": 3604,
+              "sample": "- Great work from Lucas on overcoming the challenges and being capable of finish the task for laying down the foundation for FE automation+ - Amazing work from Sunayana, she has tackled a lot of tasks from a wide array of stories and issues+ - Good work from Diego taking care of the DevOps request w"
+            },
+            {
+              "id": 3605,
+              "sample": "- Thanks to Diego for all the help and collaboration with OTL and dashboard stories - Great work by Marco on perf improvements and analysis Lucas Henrique - - - Thanks Sunayana for the effort on analyzing and fixing the MV bugs - Thanks to Marco for the help removing the blockers for FE environment "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q17",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        894
+      ],
+      "ann": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 894,
+          "exists": true,
+          "title": "2024-Jan-22 Frontend Retrospective",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2867856138",
+          "chunks": [
+            {
+              "id": 3478,
+              "sample": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date Team Milan Frontend Team Participants Retrospective Sprint 84 Goals: - MFF Test Environment Replacement (Milan Barebones) - Prune PFC Specific Functionality out of"
+            },
+            {
+              "id": 3479,
+              "sample": "Centralized documentation for larger \u201cproject-level\u201d efforts, e.g. 5.0.0 as a whole where individual feature documentation lives - separated into internal/partner-facing in advance to simplify release notes efforts, as well as single doc for discovery (sometimes it\u2019s difficult to know where somethin"
+            },
+            {
+              "id": 3480,
+              "sample": "Multi-Verison SerializedType was identified early as a potential problem. The time it took to iterate could have been better spent on a refactor/replace to avoid the root of the bugs New ticket formats are looking very good. + Tracking new issues/items as they come up during sprints Frontend Enginee"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q18",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        914
+      ],
+      "ann": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 914,
+          "exists": true,
+          "title": "2022-10-06 Frontend Retrospective",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2867856282",
+          "chunks": [
+            {
+              "id": 3541,
+              "sample": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date Team Milan Frontend Team Participants Retrospective Sprint 63 Goals: Important to Note: Current Milestone for Studios is Code Lock on 10/21 w/Soft Launch set for 1"
+            },
+            {
+              "id": 3542,
+              "sample": "- using PTO for things that aren\u2019t fun + - adapting sprint goals when required for partners ++ - Need to Hire backfill positions for lead and director (lead what?) - Working late ++++ - Reaching out to the game teams before beginning dev on a feature (When it makes sense to) ++ - Hop on more zoom ca"
+            },
+            {
+              "id": 3543,
+              "sample": "- If possible, get a tighter coordination with whoever owns the updating of packages on the main PFC app team ~ Action items Add 1-2 follow-up action items to help the team apply what they learned in the retrospective: 1 complete Prioritizing External Requests 2 complete Work with PFC on Milan Relea"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q20",
+      "query": "Automated Test Flow Setup",
+      "expected": [
+        485
+      ],
+      "ann": [
+        763,
+        763,
+        171,
+        878,
+        555,
+        309,
+        573,
+        573,
+        364,
+        530
+      ],
+      "fts": [],
+      "union_top_k": [
+        763,
+        171,
+        878,
+        555,
+        309,
+        573,
+        364,
+        530,
+        221,
+        576
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 485,
+          "exists": true,
+          "title": "Automated Test Flow Setup",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110895",
+          "chunks": []
+        }
+      ]
+    },
+    {
+      "qid": "q21",
+      "query": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description,",
+      "expected": [
+        190
+      ],
+      "ann": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "fts": [
+        414,
+        148,
+        199,
+        693,
+        657,
+        653,
+        745,
+        190,
+        1133,
+        550
+      ],
+      "union_top_k": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 190,
+          "exists": true,
+          "title": "Slot Partner Game De-version Tool",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110127",
+          "chunks": [
+            {
+              "id": 840,
+              "sample": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description, basic implementation, and next steps to tutorials and API documentation. The narrative description may contain as many headings/subheadings necessary to cov"
+            },
+            {
+              "id": 841,
+              "sample": "This section displays a basic, non-contextual implementation of the feature. The purpose of this section is to give the reader a sense of how they might use it as part of their build. Use simple, stepwise instructions and code blocks to walk them through implementation. Diagrams Insert static and se"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q25",
+      "query": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description,",
+      "expected": [
+        747
+      ],
+      "ann": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "fts": [
+        414,
+        148,
+        199,
+        693,
+        657,
+        653,
+        745,
+        190,
+        1133,
+        550
+      ],
+      "union_top_k": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 747,
+          "exists": true,
+          "title": "DataMapper and DTO cleanup",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112190",
+          "chunks": [
+            {
+              "id": 2937,
+              "sample": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description, basic implementation, and next steps to tutorials and API documentation. The narrative description may contain as many headings/subheadings necessary to cov"
+            },
+            {
+              "id": 2938,
+              "sample": "Don\u2019t forget to update your milan.targets file if you\u2019re planning on developing a BE Solution Milan.targets This package takes care of the mapping between BE and FE models by using AutoMapper . Types to map have to be registered on profile. This solution provides base profiles: - PayloadsProfile: Co"
+            },
+            {
+              "id": 2939,
+              "sample": "c# If custom profiles are needed, these can be set by initializing a custom IMapper: c# (source);]]> Class renaming and mapping DTO mapping and updates Note: Moved all \u201cData\u201d classes into FE shared DTOs: All Data original classes added in shared FE DTOs under \u201cDependencies\u201d. FE Model BE Model Source"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q28",
+      "query": "Date Version 6.1.0 Build and Release Version Details High-level Notable Changes: - Milan - Allow comments in JSON files -",
+      "expected": [
+        695
+      ],
+      "ann": [
+        729,
+        586,
+        510,
+        811,
+        55,
+        417,
+        616,
+        1056,
+        191,
+        197
+      ],
+      "fts": [
+        695
+      ],
+      "union_top_k": [
+        729,
+        586,
+        510,
+        811,
+        55,
+        417,
+        616,
+        1056,
+        191,
+        197
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 695,
+          "exists": true,
+          "title": "Bobcat - MAB 6.1.0_24-Feb-2025",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853111757",
+          "chunks": [
+            {
+              "id": 2771,
+              "sample": "Date Version 6.1.0 Build and Release Version Details High-level Notable Changes: - Milan - Allow comments in JSON files - Dependency and Game information Resource - XSlot - Support for the new JPE Client and Configuration for slots - JPE - Configuration files for setup - JP Client for improved commu"
+            },
+            {
+              "id": 2772,
+              "sample": "Note: These are stories, tasks and bugs specific to the Franchise Integration completed and delivered in v6.0. v6.x Jira breakdown - Milan Internal Note: These are stories, tasks and bugs internal to Milan completed and delivered in v6.0. System Jira type,key,summary,description issuetype,issuekey,s"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q29",
+      "query": "Target release TBD Epic/Story MFF-3121 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status PUBLISHED Green Document owner Designer Tech lead Technical writers QA",
+      "expected": [
+        330
+      ],
+      "ann": [
+        352,
+        438,
+        512,
+        649,
+        399,
+        201,
+        750,
+        667,
+        744,
+        685
+      ],
+      "fts": [
+        330
+      ],
+      "union_top_k": [
+        352,
+        438,
+        512,
+        649,
+        399,
+        201,
+        750,
+        667,
+        744,
+        685
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 330,
+          "exists": true,
+          "title": "Robot Mode with Metrics TDD",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110427",
+          "chunks": [
+            {
+              "id": 1349,
+              "sample": "Target release TBD Epic/Story MFF-3121 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status PUBLISHED Green Document owner Designer Tech lead Technical writers QA Background Robot Mode is test support that executes slot play automatically without any subsequent user interaction. The tool"
+            },
+            {
+              "id": 1350,
+              "sample": "- The rate at which robot mode interacts with something - Interact w/Bet Buttons (bool) - Interact w/Info Screen Button (bool) - Execute Gaffes - Gaffes Sequence - Custom Gaffes Sequence (conditionally shown based on Gaffes Sequence value) - This a section that populates each gaffe option, a check b"
+            },
+            {
+              "id": 1351,
+              "sample": "- Pending Gaffe Sequence Count A semi-transparent overlay will be provided and shown during gameplay when metrics collection is active (graphy can be used when robot mode is inactive). This overlay will include the following information (as per configuration): - Latest Memory / FPS / Battery Sample "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q30",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        897
+      ],
+      "ann": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 897,
+          "exists": true,
+          "title": "2023-Oct-27 Frontend Retrospective",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2867856161",
+          "chunks": [
+            {
+              "id": 3489,
+              "sample": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date Team Milan Frontend Team Participants Retrospective Sprint 81 Goals: This will be a minor version release and will consist of the following updates: - Milan Barebo"
+            },
+            {
+              "id": 3490,
+              "sample": "Tickets Living in Code Review Through an entire sprint++ Thinking critically of how we can be better, not only in codebase but, as a team+ Embrace hanging references/better hierarchal structures+ Hardcoded inputs +++++ great collaboration as always + Start using the QA Testing/Test Results tab for r"
+            },
+            {
+              "id": 3491,
+              "sample": "Possible start-doing for tech writers and/or devs: if new features will be studio-facing, tagging the tech writer team for documentation tasks during dev work would be tremendously helpful in getting the RAD docs up to snuff (up for discussion; definitely don't want to add a ton of extra dev work!) "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q32",
+      "query": "Target release MFF 6.0 Epic/Story MFF-2775 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status PUBLISHED Green Document owner Designer Tech lead Technical writers",
+      "expected": [
+        499
+      ],
+      "ann": [
+        352,
+        1089,
+        512,
+        324,
+        586,
+        1091,
+        399,
+        649,
+        407,
+        750
+      ],
+      "fts": [
+        130,
+        499,
+        776
+      ],
+      "union_top_k": [
+        352,
+        1089,
+        512,
+        324,
+        586,
+        1091,
+        399,
+        649,
+        407,
+        750
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 499,
+          "exists": true,
+          "title": "Conditional Landing Symbols",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110931",
+          "chunks": [
+            {
+              "id": 2054,
+              "sample": "An abstract class which provides serialized configuration support on the SymbolConditionSO object. This base class is leveraged on animation and sound providers to dictate animation / sound execution eligibility. Created via the context menu: Create \u2192 Milan \u2192 Conditional Landing Symbols \u2192 Execution "
+            },
+            {
+              "id": 2055,
+              "sample": "A landing symbol execution criteria which determines execution eligibility by reviewing how many of the symbol has landed thus far combined with how many of the symbol can potentially still land on actively spinning reels. Symbol sound/animation execution eligibility is determined comparing this cou"
+            },
+            {
+              "id": 2056,
+              "sample": "A landing symbol execution criteria which determines execution eligibility by reviewing how many of the symbol has landed thus far combined with how many of the symbol can potentially still land on actively spinning reels in conjunction with a left to right requirement. Symbol sound/animation execut"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q39",
+      "query": "Date Issues System JIRA Key in (MAB-5870,MAB-5882,MAB-5886,MAB-5890,MAB-5935,MAB-5939,MAB-5804) true c4e08610-9d10-3772-9090-85558771fcbd Version 3.4.0 https://aristocratdd.atlassian.net/l/c/NzBLT56u Sprint 72 & 73 - Issue Summary, Solution",
+      "expected": [
+        409
+      ],
+      "ann": [
+        415,
+        614,
+        469,
+        421,
+        775,
+        324,
+        12,
+        581,
+        432,
+        651
+      ],
+      "fts": [
+        409
+      ],
+      "union_top_k": [
+        415,
+        614,
+        469,
+        421,
+        775,
+        324,
+        12,
+        581,
+        432,
+        651
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 409,
+          "exists": true,
+          "title": "MAB Release v3.4.0_12-May-2023",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110656",
+          "chunks": [
+            {
+              "id": 1662,
+              "sample": "Date Issues System JIRA Key in (MAB-5870,MAB-5882,MAB-5886,MAB-5890,MAB-5935,MAB-5939,MAB-5804) true c4e08610-9d10-3772-9090-85558771fcbd Version 3.4.0 https://aristocratdd.atlassian.net/l/c/NzBLT56u Sprint 72 & 73 - Issue Summary, Solution & Impact Notes [BE] MathVerification - Fault Tolerance Key "
+            },
+            {
+              "id": 1663,
+              "sample": "[DevOps] MathVerification - Workflow option Minor Blue Summary / Solution - https://aristocrat.atlassian.net/browse/MAB-5889 Impact to Studios or App Team - N/A Additional Confluence Documentation - N/A MAB-5890 [BE] Combinations Inquiry NONE Minor Blue Major Red Summary / Solution - https://aristoc"
+            },
+            {
+              "id": 1664,
+              "sample": "Efficiency Related Requests / Bugs <Ticket Link> <Summary of Original Issue> NONE Minor Blue Major Red Summary / Solution - Impact to Studios or App Team - Additional Confluence Documentation - Key Description Overall Impact Level Issue Summary and Impact Details Internal Milan Tasks (Selfcare) - En"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q42",
+      "query": "Date Participants Meeting type Weekly Check-in Goals and progress Fill in the table before your meeting. Add questions about what",
+      "expected": [
+        995
+      ],
+      "ann": [
+        968,
+        964,
+        961,
+        1001,
+        994,
+        980,
+        1007,
+        973,
+        1005,
+        967
+      ],
+      "fts": [
+        1002,
+        1007,
+        989,
+        1004,
+        1003,
+        979,
+        959,
+        1001,
+        973,
+        975
+      ],
+      "union_top_k": [
+        968,
+        964,
+        961,
+        1001,
+        994,
+        980,
+        1007,
+        973,
+        1005,
+        967
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 995,
+          "exists": true,
+          "title": "Weekly Recap_14May2024",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2867856911",
+          "chunks": [
+            {
+              "id": 3800,
+              "sample": "Date Participants Meeting type Weekly Check-in Goals and progress Fill in the table before your meeting. Add questions about what you learned since the last meeting and what you hope to achieve by the next meeting. Participants Priorities since we last met Comments Follow up Actions Aidan Multi-vers"
+            },
+            {
+              "id": 3801,
+              "sample": "Defining measurements of success with respect to GDK/ALABs performance., building in peakon surveys and creating a dashboard of quarterly performance details. Scott Marco Chris Dominique Action items Add action items that you create during the meeting and check off boxes as you make progress. 3 inco"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q43",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        881
+      ],
+      "ann": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 881,
+          "exists": true,
+          "title": "2024-Sep-09 Frontend Retrospective",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2867856047",
+          "chunks": [
+            {
+              "id": 3420,
+              "sample": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date Team Milan Frontend Team Participants Retrospective note Agenda: - Review Insights - Close Sprint / Start New Sprint - Review Burndown / Velocity Reports - Review "
+            },
+            {
+              "id": 3421,
+              "sample": "- Wildcatify 50 Dragons / Wildcat-50 Dragons Integration - Wildcat Support & Bug Fixes - Ongoing Franchise Meta Feature Requirements Investigation - Performance Testing comparison (Milan vs Lonestar) - AltTester POC - Milan Test Cases Creation/Updation Smoke Run Note: A 6.0.2 patch release is expect"
+            },
+            {
+              "id": 3422,
+              "sample": "feels like a big bump in documentation efforts as well, GG! CI/CD continues to be a big boon for releases Matt Scofield Multi version dev branches can be confusing without clear ticket version numbering Dev always needs to spin /double check if changes in one scene need to be mirrored in others / up"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "qid": "q44",
+      "query": "Milan Test Planning",
+      "expected": [
+        310
+      ],
+      "ann": [
+        777,
+        763,
+        763,
+        359,
+        1005,
+        879,
+        763,
+        1003,
+        724,
+        642
+      ],
+      "fts": [
+        1004,
+        1001,
+        1002,
+        1005,
+        1003,
+        1033,
+        1016,
+        879,
+        878,
+        880
+      ],
+      "union_top_k": [
+        777,
+        763,
+        359,
+        1005,
+        879,
+        1003,
+        724,
+        642,
+        928,
+        881
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 310,
+          "exists": true,
+          "title": "Milan Test Planning",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110389",
+          "chunks": []
+        }
+      ]
+    },
+    {
+      "qid": "q46",
+      "query": "Math Verification",
+      "expected": [
+        145
+      ],
+      "ann": [
+        830,
+        43,
+        43,
+        1055,
+        385,
+        43,
+        846,
+        707,
+        754,
+        258
+      ],
+      "fts": [
+        690,
+        559,
+        223,
+        434,
+        13,
+        707,
+        765,
+        600,
+        652,
+        201
+      ],
+      "union_top_k": [
+        830,
+        43,
+        1055,
+        385,
+        846,
+        707,
+        754,
+        258,
+        182,
+        687
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 145,
+          "exists": true,
+          "title": "Math Verification",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110034",
+          "chunks": []
+        }
+      ]
+    },
+    {
+      "qid": "q47",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        886
+      ],
+      "ann": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "expected_docs_info": [
+        {
+          "doc_id": 886,
+          "exists": true,
+          "title": "2024-Jun-21 Frontend Retrospective",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2867856082",
+          "chunks": [
+            {
+              "id": 3441,
+              "sample": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date Team Milan Frontend Team Participants Retrospective Sprint 92 Goals: In addition to the following deliverables, majority of this sprint will focused on GUID Collis"
+            },
+            {
+              "id": 3442,
+              "sample": "The team is very good a supporting one big push while being heads down on their own big pushes. Will Long Matt Scofield Convert editor scripts to UI toolkit. Unity 2022 features make some of the work arounds for editor scripting no longer necessary (boxed value) MFDTestHarness makes a world of diffe"
+            },
+            {
+              "id": 3443,
+              "sample": "After reviewing partner bugs I think we should get back to expecting more details from partners as to why they think an issue might be on the Milan side Appreciate the quick PR reviews from MAB on 50 Dragons updates! Really appreciate the quick responses on questions from both MAB and MFF teams! Sho"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

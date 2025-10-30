@@ -1,0 +1,52 @@
+[
+  {
+    "id": "E001",
+    "title": "AgGrid UX polishing",
+    "priority": "High",
+    "components": ["ui/app.py", "ui/tasks.py"],
+    "description": "Add color-coding, inline JSON modal viewer, and context menu for tasks; enable bulk operations and filters.",
+    "acceptance": "Rows colored by done/failed; modal JSON viewer works; bulk actions verified.",
+    "effort_days": 2,
+    "status": "open"
+  },
+  {
+    "id": "E002",
+    "title": "Modal JSON viewer / inspector",
+    "priority": "Medium",
+    "components": ["ui/app.py"],
+    "description": "Add a modal pane for deep inspection and pretty JSON formatting.",
+    "acceptance": "Select a task -> click Inspect -> modal opens with pretty JSON.",
+    "effort_days": 1,
+    "status": "open"
+  },
+  {
+    "id": "E003",
+    "title": "ANN evaluation endpoint & UI job",
+    "priority": "High",
+    "components": ["retrieval_api.py", "tools/eval_ann.py", "ui/app.py"],
+    "description": "Provide server-side ANN evaluation endpoint to run tools/eval_ann.py as background job.",
+    "acceptance": "Upload GT set in UI -> background job runs -> result saved to ingest_jobs and Task.",
+    "effort_days": 2,
+    "status": "open"
+  },
+  {
+    "id": "E004",
+    "title": "Reranker (Cross-encoder)",
+    "priority": "High",
+    "components": ["retrieval_api.py", "embeddings", "ingest"],
+    "description": "Integrate cross-encoder reranker for final scoring of candidate chunks.",
+    "acceptance": "Reranker used in pipeline and improves evaluation precision.",
+    "effort_days": 4,
+    "status": "open"
+  },
+  {
+    "id": "E005",
+    "title": "Async ingestion workers (Redis/Celery)",
+    "priority": "High",
+    "components": ["retrieval_api.py", "workers", "ui/app.py"],
+    "description": "Background ingestion workers with job tracking and retries.",
+    "acceptance": "Jobs survive restarts and UI polls ingest_jobs for progress.",
+    "effort_days": 4,
+    "status": "open"
+  }
+]

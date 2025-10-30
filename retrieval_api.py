@@ -13,7 +13,7 @@ from __future__ import annotations
 import os
 import time
 from typing import Optional, List, Dict, Any
-from fastapi import FastAPI, HTTPException, Body, Query
+from fastapi import FastAPI, HTTPException, Body, Query, BackgroundTasks
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import uvicorn
@@ -33,6 +33,12 @@ from mcp.mcp import assemble_mcp_context, log_mcp
 import hashlib
 import psycopg
 from psycopg.rows import dict_row
+
+import json
+import uuid
+import subprocess
+import sys 
+from pathlib import Path
 
 app = FastAPI(title="Milan RAG - Retrieval API")
 
@@ -501,6 +507,132 @@ def diagnostics():
 
     return out
 
+# admin migration endpoints
+
+ADMIN_TOKEN = os.getenv("ADMIN_TOKEN", None)
+LOG_DIR = os.getenv("ADMIN_LOG_DIR", "/tmp")  # can be changed to repo/logs
+
+def run_migration_job(job_row_id: int, job_uuid: str, log_path: str):
+    """
+    Background job to run the embedding migration script and update ingest_jobs.
+    """
+    # update job status to running
+    try:
+        with storage.conn.cursor() as cur:
+            cur.execute("UPDATE ingest_jobs SET status=%s, started_at=now() WHERE id=%s", ("running", job_row_id))
+            storage.conn.commit()
+    except Exception as e:
+        # If we cannot update DB, still proceed to run migration but log the DB error
+        pass
+
+    rc = 1
+    try:
+        env = os.environ.copy()
+        # ensure we execute with the same python as the running process
+        python_exec = sys.executable or "python"
+        # open logfile and run migration
+        with open(log_path, "w", encoding="utf-8") as fh:
+            proc = subprocess.Popen([python_exec, "tools/migrate_embeddings.py"], stdout=fh, stderr=fh, env=env)
+            rc = proc.wait()
+    except Exception as e:
+        # write exception into log
+        with open(log_path, "a", encoding="utf-8") as fh:
+            fh.write(f"\nException running migration: {e}\n")
+        rc = 2
+
+    # update job status on completion
+    try:
+        status = "succeeded" if rc == 0 else "failed"
+        summary = {"job_uuid": job_uuid, "rc": rc, "log": log_path}
+        with storage.conn.cursor() as cur:
+            cur.execute(
+                "UPDATE ingest_jobs SET status=%s, finished_at=now(), summary=%s WHERE id=%s",
+                (status, json.dumps(summary), job_row_id)
+            )
+            storage.conn.commit()
+    except Exception as e:
+        # best-effort: log but do not raise
+        with open(log_path, "a", encoding="utf-8") as fh:
+            fh.write(f"\nException updating job record: {e}\n")
+
+@app.post("/admin/migrate_embeddings")
+def admin_migrate(background_tasks: BackgroundTasks, token: str = None):
+    # simple admin auth
+    if ADMIN_TOKEN is None:
+        raise HTTPException(status_code=500, detail="ADMIN_TOKEN not configured on server")
+    if token != ADMIN_TOKEN:
+        raise HTTPException(status_code=401, detail="unauthorized")
+
+    # create a job record
+    job_uuid = str(uuid.uuid4())
+    log_fn = f"migrate_{job_uuid}.log"
+    os.makedirs(LOG_DIR, exist_ok=True)
+    log_path = str(Path(LOG_DIR) / log_fn)
+
+    try:
+        with storage.conn.cursor() as cur:
+            cur.execute(
+                "INSERT INTO ingest_jobs (source, external_key, status, summary) VALUES (%s,%s,%s,%s) RETURNING id",
+                ("migration", "migrate_embeddings", "queued", json.dumps({"log": log_path}))
+            )
+            job_row_id = cur.fetchone()[0]
+            storage.conn.commit()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to create job record: {e}")
+
+    # spawn background job
+    background_tasks.add_task(run_migration_job, job_row_id, job_uuid, log_path)
+    return {"started": True, "job_id": job_row_id, "log": log_path}
+
+@app.get("/admin/migration_status/{job_id}")
+def admin_migration_status(job_id: int, token: str = None):
+    if ADMIN_TOKEN is None:
+        raise HTTPException(status_code=500, detail="ADMIN_TOKEN not configured on server")
+    if token != ADMIN_TOKEN:
+        raise HTTPException(status_code=401, detail="unauthorized")
+    try:
+        with storage.conn.cursor() as cur:
+            cur.execute("SELECT id, source, external_key, status, summary, started_at, finished_at FROM ingest_jobs WHERE id = %s", (job_id,))
+            row = cur.fetchone()
+            if not row:
+                raise HTTPException(status_code=404, detail="job not found")
+            job = {
+                "id": row[0],
+                "source": row[1],
+                "external_key": row[2],
+                "status": row[3],
+                "summary": row[4],
+                "started_at": row[5].isoformat() if row[5] else None,
+                "finished_at": row[6].isoformat() if row[6] else None
+            }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+    # tail the log file if present in summary
+    log_tail = None
+    try:
+        summary = job.get("summary") or {}
+        if isinstance(summary, str):
+            try:
+                summary = json.loads(summary)
+            except:
+                summary = {}
+        log_path = summary.get("log")
+        if log_path and os.path.exists(log_path):
+            with open(log_path, "rb") as fh:
+                # read last ~20000 bytes safely
+                fh.seek(0, os.SEEK_END)
+                sz = fh.tell()
+                tail_size = 20000
+                if sz > tail_size:
+                    fh.seek(sz - tail_size)
+                else:
+                    fh.seek(0)
+                log_tail = fh.read().decode(errors="replace")
+    except Exception:
+        log_tail = "error reading log"
+    job["log_tail"] = log_tail
+    return job
 
 if __name__ == "__main__":
     uvicorn.run("retrieval_api:app", host="0.0.0.0", port=int(os.getenv("API_PORT", "8000")), reload=True)

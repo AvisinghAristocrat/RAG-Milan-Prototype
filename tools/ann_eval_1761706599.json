@@ -1,0 +1,1059 @@
+{
+  "num_queries": 50,
+  "top_k": 10,
+  "ef_search": 64,
+  "avg_latency_ms": 114.76169671999983,
+  "recall_at_k": 0.62,
+  "details": [
+    {
+      "qid": "q1",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        909
+      ],
+      "returned": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "hit": true,
+      "latency_ms": 4322.410082999998
+    },
+    {
+      "qid": "q2",
+      "query": "This document describes the steps followed to build a deploy a Milan Vanila Instance, this workflow allows users include TestBackend",
+      "expected": [
+        543
+      ],
+      "returned": [
+        543,
+        1080,
+        777,
+        1080,
+        1008,
+        179,
+        603,
+        665,
+        658,
+        11
+      ],
+      "hit": true,
+      "latency_ms": 10.266666999999785
+    },
+    {
+      "qid": "q3",
+      "query": "As part of the FrontEnd team, you will be responsible for ensuring that the Milan GDK contains the necessary visual",
+      "expected": [
+        234
+      ],
+      "returned": [
+        234,
+        803,
+        405,
+        949,
+        763,
+        201,
+        763,
+        1083,
+        1,
+        349
+      ],
+      "hit": true,
+      "latency_ms": 7.768708000000402
+    },
+    {
+      "qid": "q4",
+      "query": "Application Level - Directly used: - Jetbrains.Annotations - 2021.2.0 - MongoDB Driver - 2.13.2 - Microsoft.AspNetCore.Mvc.Core - 2.2.5 - Swashbuckle.AspNetCore",
+      "expected": [
+        820
+      ],
+      "returned": [
+        820,
+        305,
+        152,
+        30,
+        152,
+        416,
+        429,
+        429,
+        476,
+        462
+      ],
+      "hit": true,
+      "latency_ms": 30.791957999998232
+    },
+    {
+      "qid": "q5",
+      "query": "Target release TBD Epic/Story MFF-2860 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status DRAFT Yellow Document owner Designer Tech lead Technical writers QA",
+      "expected": [
+        200
+      ],
+      "returned": [
+        352,
+        512,
+        667,
+        1089,
+        649,
+        201,
+        438,
+        399,
+        750,
+        1091
+      ],
+      "hit": false,
+      "latency_ms": 10.70420900000002
+    },
+    {
+      "qid": "q6",
+      "query": "Target release MFF Release 5.1 Epic/Story MFF-2594 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status DRAFT Document owner Designer Tech lead @Technical writers",
+      "expected": [
+        142
+      ],
+      "returned": [
+        352,
+        1089,
+        667,
+        1091,
+        407,
+        399,
+        586,
+        512,
+        750,
+        217
+      ],
+      "hit": false,
+      "latency_ms": 11.860374999997703
+    },
+    {
+      "qid": "q7",
+      "query": "Designer @user Release Target x.x.x Scope of Change major, minor, patch none Do I need a TDD? See this document",
+      "expected": [
+        1060
+      ],
+      "returned": [
+        1060,
+        490,
+        1089,
+        648,
+        1092,
+        1087,
+        787,
+        746,
+        524,
+        1091
+      ],
+      "hit": true,
+      "latency_ms": 11.927499999998759
+    },
+    {
+      "qid": "q8",
+      "query": "- Record & Replay - Validation",
+      "expected": [
+        641
+      ],
+      "returned": [
+        641,
+        492,
+        314,
+        770,
+        289,
+        563,
+        763,
+        1111,
+        214,
+        871
+      ],
+      "hit": true,
+      "latency_ms": 39.840584000000234
+    },
+    {
+      "qid": "q9",
+      "query": "Date Version 4.0.0 https://aristocratdd.atlassian.net/l/c/NzBLT56u NOTE: To review Story and the related Documentation details, please sort by Summary field . key,summary,type,description",
+      "expected": [
+        713
+      ],
+      "returned": [
+        713,
+        512,
+        649,
+        750,
+        744,
+        399,
+        3,
+        653,
+        414,
+        199
+      ],
+      "hit": true,
+      "latency_ms": 13.176957999998962
+    },
+    {
+      "qid": "q10",
+      "query": "true",
+      "expected": [
+        8
+      ],
+      "returned": [
+        503,
+        440,
+        734,
+        333,
+        332,
+        194,
+        81,
+        24,
+        553,
+        1052
+      ],
+      "hit": false,
+      "latency_ms": 45.47774999999987
+    },
+    {
+      "qid": "q11",
+      "query": "General Concepts Sonarqube Server It\u2019s the component in charge of hosting and exposing all the tools used for static code",
+      "expected": [
+        410
+      ],
+      "returned": [
+        410,
+        42,
+        578,
+        410,
+        873,
+        12,
+        415,
+        469,
+        453,
+        490
+      ],
+      "hit": true,
+      "latency_ms": 18.495000000001482
+    },
+    {
+      "qid": "q12",
+      "query": "Document status DRAFT Document owner Technical writers Goal The goal of this article is to walk through the process of",
+      "expected": [
+        701
+      ],
+      "returned": [
+        1028,
+        1034,
+        648,
+        1033,
+        230,
+        1025,
+        364,
+        1036,
+        453,
+        667
+      ],
+      "hit": false,
+      "latency_ms": 12.59870899999882
+    },
+    {
+      "qid": "q13",
+      "query": "Gaffe implementation for the XSlotEngine to load gaffes or categorized gaffes, and operate with queues. Epic/Story MAB-5862 c4e08610-9d10-3772-9090-85558771fcbd System JIRA",
+      "expected": [
+        209
+      ],
+      "returned": [
+        209,
+        430,
+        140,
+        430,
+        209,
+        688,
+        330,
+        688,
+        209,
+        209
+      ],
+      "hit": true,
+      "latency_ms": 51.916166999998126
+    },
+    {
+      "qid": "q14",
+      "query": "Date Issues System JIRA key in (MAB-3169,MAB-5862,MAB-5866,MAB-6008,MAB-6057,MAB-6062,MAB-6099,MAB-6107,MAB-6123,MAB-6143,MAB-6191,MAB-6197,MAB-6193,MAB-6189,MAB-6158,MAB-6034) true c4e08610-9d10-3772-9090-85558771fcbd Version 3.5.0 https://aristocratdd.atlassian.net/l/c/NzBLT56u Sprint 75 - Issue Summary, Solution & Impact",
+      "expected": [
+        614
+      ],
+      "returned": [
+        415,
+        614,
+        421,
+        469,
+        775,
+        12,
+        581,
+        432,
+        324,
+        30
+      ],
+      "hit": true,
+      "latency_ms": 49.46045799999865
+    },
+    {
+      "qid": "q15",
+      "query": "Level Test Scenarios Example Unit Happy path and negative ReelSetUnitTest.cs Module (Isolated) happy path, alternative, *error handling and negative PatternMatcher.feature",
+      "expected": [
+        214
+      ],
+      "returned": [
+        214,
+        26,
+        238,
+        271,
+        645,
+        271,
+        329,
+        225,
+        271,
+        329
+      ],
+      "hit": true,
+      "latency_ms": 45.75620800000024
+    },
+    {
+      "qid": "q16",
+      "query": "The Milan Audio Extraction Tool is used for collecting audio event data and sound files used in a Milan project",
+      "expected": [
+        756
+      ],
+      "returned": [
+        756,
+        705,
+        396,
+        69,
+        396,
+        611,
+        601,
+        705,
+        601,
+        448
+      ],
+      "hit": true,
+      "latency_ms": 16.949750000001984
+    },
+    {
+      "qid": "q17",
+      "query": "Automated Testing",
+      "expected": [
+        486
+      ],
+      "returned": [
+        763,
+        763,
+        309,
+        763,
+        763,
+        763,
+        632,
+        878,
+        573,
+        763
+      ],
+      "hit": false,
+      "latency_ms": 49.94783300000094
+    },
+    {
+      "qid": "q18",
+      "query": "Provide instructions for game studios to implement a feature using the Milan GDK. Briefly describe the desired outcome and provide",
+      "expected": [
+        502
+      ],
+      "returned": [
+        699,
+        436,
+        425,
+        93,
+        192,
+        450,
+        165,
+        621,
+        493,
+        545
+      ],
+      "hit": false,
+      "latency_ms": 15.791332999999241
+    },
+    {
+      "qid": "q19",
+      "query": "com.milan.slots.shared:0.1.7 - Upgraded TabbedDebugMenu to be pixel density agnostic - Recovered Backwards compatibility for WinFrameIncrementWinPresenter Related Jiras: https://aristocrat.atlassian.net/browse/MFF-543 https://aristocrat.atlassian.net/browse/MFF-504",
+      "expected": [
+        387
+      ],
+      "returned": [
+        387,
+        56,
+        274,
+        738,
+        757,
+        431,
+        426,
+        738,
+        1099,
+        468
+      ],
+      "hit": true,
+      "latency_ms": 48.20233299999899
+    },
+    {
+      "qid": "q20",
+      "query": "Provide stepwise instructions for implementing a process for the Milan team. Provide steps and desired outcomes and link to Process",
+      "expected": [
+        539
+      ],
+      "returned": [
+        539,
+        1018,
+        1020,
+        1019,
+        1017,
+        746,
+        296,
+        143,
+        60,
+        867
+      ],
+      "hit": true,
+      "latency_ms": 15.464250000000845
+    },
+    {
+      "qid": "q21",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        1117
+      ],
+      "returned": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "hit": false,
+      "latency_ms": 15.202499999997343
+    },
+    {
+      "qid": "q22",
+      "query": "Objective Have a local build machine that helps to create a local build while maintaining the expected software quality with",
+      "expected": [
+        273
+      ],
+      "returned": [
+        760,
+        1080,
+        464,
+        763,
+        235,
+        220,
+        500,
+        442,
+        1080,
+        241
+      ],
+      "hit": false,
+      "latency_ms": 14.951666999998281
+    },
+    {
+      "qid": "q23",
+      "query": "References Perforce: //OnlineStudio/main/50Dragons/Documents/ Evergreen GDS: https://confluence.productmadness.com/display/NMG/50+Dragons+GDS Evergreen source: - https://svn.ali.global/nAble/Digital/Games/16.0/Games/50Dragons - https://svn.ali.global/nAble/Digital/Games/16.0/GameDependencies/GDX_1_1_13 - https://svn.ali.global/nAble/Digital/Games/16.0/GameArt/50Dragons - https://svn.ali.global/nAble/Digital/Games/16.0/GameArt/Common_files Questions - [Answer: Will",
+      "expected": [
+        804
+      ],
+      "returned": [
+        804,
+        767,
+        159,
+        23,
+        1038,
+        967,
+        59,
+        958,
+        956,
+        703
+      ],
+      "hit": true,
+      "latency_ms": 55.30045900000147
+    },
+    {
+      "qid": "q24",
+      "query": "possible duplicate. see MAB-3148 c4e08610-9d10-3772-9090-85558771fcbd System JIRA",
+      "expected": [
+        497
+      ],
+      "returned": [
+        497,
+        5,
+        150,
+        674,
+        377,
+        99,
+        454,
+        616,
+        685,
+        163
+      ],
+      "hit": true,
+      "latency_ms": 18.089625000001774
+    },
+    {
+      "qid": "q25",
+      "query": "Date Participants Meeting type Weekly Check-in Goals and progress Fill in the table before your meeting. Add questions about what",
+      "expected": [
+        1006
+      ],
+      "returned": [
+        968,
+        964,
+        961,
+        1001,
+        994,
+        980,
+        1007,
+        973,
+        1005,
+        967
+      ],
+      "hit": false,
+      "latency_ms": 14.301041999999597
+    },
+    {
+      "qid": "q26",
+      "query": "Currently, defect triage within the Milan team is handled informally and this is working very well during the earlier stages",
+      "expected": [
+        1013
+      ],
+      "returned": [
+        763,
+        1013,
+        539,
+        1014,
+        887,
+        879,
+        1106,
+        763,
+        1083,
+        999
+      ],
+      "hit": true,
+      "latency_ms": 15.593584000001215
+    },
+    {
+      "qid": "q27",
+      "query": "- Load Gaffes Request sent to BackEnd ( GetGaffes or GaffeCommands ) - BackEnd returns list of Gaffes stored in",
+      "expected": [
+        139
+      ],
+      "returned": [
+        139,
+        197,
+        430,
+        501,
+        140,
+        510,
+        1054,
+        430,
+        140,
+        209
+      ],
+      "hit": true,
+      "latency_ms": 52.58366700000039
+    },
+    {
+      "qid": "q28",
+      "query": "ALPACA - MAB Version 5.x.x Release Notes",
+      "expected": [
+        98
+      ],
+      "returned": [
+        722,
+        559,
+        722,
+        340,
+        722,
+        1064,
+        340,
+        340,
+        614,
+        568
+      ],
+      "hit": false,
+      "latency_ms": 18.299374999998008
+    },
+    {
+      "qid": "q29",
+      "query": "Date Version 2.1.1 https://aristocratdd.atlassian.net/l/c/NzBLT56u Hotfix - Issue Summary, Solution & Impact Notes Key Description Overall Impact Level Issue Summary and",
+      "expected": [
+        198
+      ],
+      "returned": [
+        664,
+        764,
+        49,
+        713,
+        554,
+        586,
+        432,
+        588,
+        775,
+        512
+      ],
+      "hit": false,
+      "latency_ms": 53.76795800000167
+    },
+    {
+      "qid": "q30",
+      "query": "true",
+      "expected": [
+        440
+      ],
+      "returned": [
+        503,
+        440,
+        734,
+        333,
+        332,
+        194,
+        81,
+        24,
+        553,
+        1052
+      ],
+      "hit": true,
+      "latency_ms": 19.60325000000296
+    },
+    {
+      "qid": "q31",
+      "query": "Target release Epic/Story MFF-3394 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status DRAFT Document owner Designer @ designer Tech lead Technical writers @",
+      "expected": [
+        506
+      ],
+      "returned": [
+        352,
+        438,
+        667,
+        512,
+        348,
+        1089,
+        399,
+        750,
+        649,
+        569
+      ],
+      "hit": false,
+      "latency_ms": 60.47079200000027
+    },
+    {
+      "qid": "q32",
+      "query": "Date Issues System JIRA key in (MFF-1707, MFF-1708) true c4e08610-9d10-3772-9090-85558771fcbd Version 2.2.1002 https://aristocratdd.atlassian.net/l/c/NzBLT56u Issue Summary, Solution & Impact Notes Key",
+      "expected": [
+        661
+      ],
+      "returned": [
+        775,
+        432,
+        651,
+        581,
+        324,
+        737,
+        415,
+        649,
+        469,
+        512
+      ],
+      "hit": false,
+      "latency_ms": 69.74187500000184
+    },
+    {
+      "qid": "q33",
+      "query": "A subgraph is an organizational tool for the visual state machine. It enables developers to group and store game states",
+      "expected": [
+        344
+      ],
+      "returned": [
+        344,
+        343,
+        344,
+        137,
+        343,
+        344,
+        343,
+        366,
+        737,
+        28
+      ],
+      "hit": true,
+      "latency_ms": 20.343000000000444
+    },
+    {
+      "qid": "q34",
+      "query": "Date Issues System JIRA key in (MFF-1533,MFF-1529,MFF-759,MFF-985,MFF-841,MFF-839,MFF-1535,MFF-1514,MFF-1515,MFF-1512,MFF-1517,MFF-1541,MFF-1546,MFF-1497,MFF-1496,MFF-1482,MFF-1161,MFF-1540,MFF-1477, MFF-1523,MFF-1526,MFF-1067,MFF-1516,MFF-1539) true c4e08610-9d10-3772-9090-85558771fcbd Version 2.1.2 https://aristocratdd.atlassian.net/l/c/NzBLT56u Sprint 61 - Issue Summary, Solution &",
+      "expected": [
+        775
+      ],
+      "returned": [
+        415,
+        775,
+        581,
+        737,
+        651,
+        469,
+        421,
+        432,
+        602,
+        614
+      ],
+      "hit": true,
+      "latency_ms": 54.846083000001045
+    },
+    {
+      "qid": "q35",
+      "query": "Since Jenkins will soon be needed to be shared across Studios, the objective of this document is to provide a",
+      "expected": [
+        378
+      ],
+      "returned": [
+        378,
+        12,
+        759,
+        453,
+        948,
+        378,
+        42,
+        30,
+        42,
+        795
+      ],
+      "hit": true,
+      "latency_ms": 49.82670899999775
+    },
+    {
+      "qid": "q36",
+      "query": "Scenarios identification Due to the nature of the main technology used for Milan (Google Kubernetes Engine), we have identified the",
+      "expected": [
+        211
+      ],
+      "returned": [
+        211,
+        578,
+        42,
+        42,
+        210,
+        71,
+        415,
+        763,
+        521,
+        1083
+      ],
+      "hit": true,
+      "latency_ms": 21.208625000003423
+    },
+    {
+      "qid": "q37",
+      "query": "Milan and Alabs Internal Channels: - front-end-stand-up \u2013 Milan Frontend channel for team communication and status updates, if you can't",
+      "expected": [
+        803
+      ],
+      "returned": [
+        803,
+        131,
+        923,
+        890,
+        743,
+        405,
+        241,
+        943,
+        985,
+        896
+      ],
+      "hit": true,
+      "latency_ms": 16.628209000000282
+    },
+    {
+      "qid": "q38",
+      "query": "Useful Resources https://docs.unity3d.com/2019.4/Documentation/Manual/profiler-profiling-applications.html https://docs.unity3d.com/2019.4/Documentation/Manual/MobileOptimisation.html https://www.gamebench.net/ Asset Bundle Size - 50 MB For download time, load time, and memory usage reasons,",
+      "expected": [
+        730
+      ],
+      "returned": [
+        730,
+        437,
+        1133,
+        730,
+        730,
+        1133,
+        237,
+        1133,
+        979,
+        1119
+      ],
+      "hit": true,
+      "latency_ms": 53.78391700000407
+    },
+    {
+      "qid": "q39",
+      "query": "Running tests - lets put a section here on how to run the tests using milan-backend-development - OR - create",
+      "expected": [
+        102
+      ],
+      "returned": [
+        777,
+        724,
+        768,
+        642,
+        489,
+        530,
+        645,
+        665,
+        658,
+        555
+      ],
+      "hit": false,
+      "latency_ms": 18.55229199999542
+    },
+    {
+      "qid": "q40",
+      "query": "none Deliveries We are delivering source packages to be consumed by app and games teams. These are marked as dependencies",
+      "expected": [
+        208
+      ],
+      "returned": [
+        208,
+        1111,
+        793,
+        1104,
+        177,
+        754,
+        377,
+        1078,
+        793,
+        289
+      ],
+      "hit": true,
+      "latency_ms": 17.790374999997027
+    },
+    {
+      "qid": "q41",
+      "query": "A reference to the UnityEngine.UI Button has been added to the proxy button. This has been done to help facilitate",
+      "expected": [
+        818
+      ],
+      "returned": [
+        818,
+        818,
+        494,
+        494,
+        21,
+        613,
+        41,
+        501,
+        1053,
+        828
+      ],
+      "hit": true,
+      "latency_ms": 19.029625000001715
+    },
+    {
+      "qid": "q42",
+      "query": "true",
+      "expected": [
+        57
+      ],
+      "returned": [
+        503,
+        440,
+        734,
+        333,
+        332,
+        194,
+        81,
+        24,
+        553,
+        1052
+      ],
+      "hit": false,
+      "latency_ms": 17.998708999996893
+    },
+    {
+      "qid": "q43",
+      "query": "This is an overview of the changes made to ScattersCombinationData , WinningLineData , WinningCombinationData (WaysData.cs) For the Milan 5.0 update.",
+      "expected": [
+        538
+      ],
+      "returned": [
+        538,
+        122,
+        435,
+        123,
+        90,
+        802,
+        294,
+        722,
+        482,
+        825
+      ],
+      "hit": true,
+      "latency_ms": 69.01816700000296
+    },
+    {
+      "qid": "q44",
+      "query": "Provide stepwise instructions for implementing a process for the Milan team. Provide steps and desired outcomes and link to Process",
+      "expected": [
+        420
+      ],
+      "returned": [
+        539,
+        1018,
+        1020,
+        1019,
+        1017,
+        746,
+        296,
+        143,
+        60,
+        867
+      ],
+      "hit": false,
+      "latency_ms": 24.00562500000092
+    },
+    {
+      "qid": "q45",
+      "query": "To maintain integrity in the code base, QA has identified following expectation and requirements around the feature hand-off. Document owner",
+      "expected": [
+        518
+      ],
+      "returned": [
+        518,
+        1024,
+        648,
+        556,
+        596,
+        1033,
+        1034,
+        1033,
+        693,
+        199
+      ],
+      "hit": true,
+      "latency_ms": 19.811457999999504
+    },
+    {
+      "qid": "q46",
+      "query": "100 -name https://onedrive.live.com/?id=014EAHJSC2LROUFHTGZBCJMDNGPDE5FONL&webUrl=https%3A%2F%2Faristocratgaming.sharepoint.com%2Fsites%2FMilanDigitalShare%2FShared%2520Documents%2FMilan%2520-%2520Sprint%2520Demos%2FFront%2520End%2520Sprint%2520Demos&driveId=b!qVqYK05QZEORJebDY0zNk5k9DGGi9AtPjo4g4lXPrheTzyQqJg2AT7rVEqbe7R3X",
+      "expected": [
+        865
+      ],
+      "returned": [
+        865,
+        862,
+        861,
+        863,
+        848,
+        864,
+        674,
+        90,
+        259,
+        1104
+      ],
+      "hit": true,
+      "latency_ms": 55.626332999999306
+    },
+    {
+      "qid": "q47",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        947
+      ],
+      "returned": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "hit": false,
+      "latency_ms": 11.770499999997242
+    },
+    {
+      "qid": "q48",
+      "query": "Phase / Milestone Status Moved to\u2026 Pre-Production Complete Done Ready for Dev Development Complete Done Ready for QA QA Test",
+      "expected": [
+        1021
+      ],
+      "returned": [
+        1021,
+        187,
+        72,
+        1025,
+        556,
+        1010,
+        204,
+        339,
+        1015,
+        339
+      ],
+      "hit": true,
+      "latency_ms": 10.816165999997907
+    },
+    {
+      "qid": "q49",
+      "query": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description,",
+      "expected": [
+        550
+      ],
+      "returned": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "hit": false,
+      "latency_ms": 10.41808299999758
+    },
+    {
+      "qid": "q50",
+      "query": "This template is used to create documentation that describes best practices around a process or use of tool for the",
+      "expected": [
+        564
+      ],
+      "returned": [
+        667,
+        60,
+        407,
+        143,
+        296,
+        44,
+        746,
+        1033,
+        718,
+        765
+      ],
+      "hit": false,
+      "latency_ms": 9.898333000002424
+    }
+  ]
+}

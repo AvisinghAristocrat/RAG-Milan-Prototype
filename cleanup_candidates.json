@@ -1,0 +1,173 @@
+{
+  "generated_at": "2025-10-30T05:34:49.680925Z",
+  "large_files_threshold_bytes": 10485760,
+  "log_days_threshold": 180,
+  "counts": {
+    "tracked_files": 27,
+    "large_files": 0,
+    "unreferenced_scripts": 9,
+    "old_logs": 0,
+    "duplicates": 1,
+    "docker_make_warnings": 11
+  },
+  "large_files": [],
+  "unreferenced_scripts": [
+    {
+      "path": "create_milan_repo.sh",
+      "basename": "create_milan_repo.sh",
+      "last_commit_date": "2025-10-28 20:41:58 +0530",
+      "last_commit": "1466801fd19bc6dae5ca44fb0656200ae352d412",
+      "last_commit_author": "Singh, Avinash",
+      "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
+    },
+    {
+      "path": "tools/collect_pages_ids.py",
+      "basename": "collect_pages_ids.py",
+      "last_commit_date": "2025-10-28 20:41:58 +0530",
+      "last_commit": "1466801fd19bc6dae5ca44fb0656200ae352d412",
+      "last_commit_author": "Singh, Avinash",
+      "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
+    },
+    {
+      "path": "mcp/__init__.py",
+      "basename": "__init__.py",
+      "last_commit_date": "2025-10-29 10:41:20 +0530",
+      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "last_commit_author": "Singh, Avinash",
+      "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
+    },
+    {
+      "path": "mcp/mcp.py",
+      "basename": "mcp.py",
+      "last_commit_date": "2025-10-29 10:41:20 +0530",
+      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "last_commit_author": "Singh, Avinash",
+      "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
+    },
+    {
+      "path": "storage/__init__.py",
+      "basename": "__init__.py",
+      "last_commit_date": "2025-10-29 10:41:20 +0530",
+      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "last_commit_author": "Singh, Avinash",
+      "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
+    },
+    {
+      "path": "tools/__init__.py",
+      "basename": "__init__.py",
+      "last_commit_date": "2025-10-29 10:41:20 +0530",
+      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "last_commit_author": "Singh, Avinash",
+      "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
+    },
+    {
+      "path": "tools/rechunk_documents.py",
+      "basename": "rechunk_documents.py",
+      "last_commit_date": "2025-10-29 10:41:20 +0530",
+      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "last_commit_author": "Singh, Avinash",
+      "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
+    },
+    {
+      "path": "tools/test_insert_chunk.py",
+      "basename": "test_insert_chunk.py",
+      "last_commit_date": "2025-10-29 10:41:20 +0530",
+      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "last_commit_author": "Singh, Avinash",
+      "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
+    },
+    {
+      "path": "ui/__init__.py",
+      "basename": "__init__.py",
+      "last_commit_date": "2025-10-29 10:41:20 +0530",
+      "last_commit": "b611424d9caf764285c2afadce0454339747aac0",
+      "last_commit_author": "Singh, Avinash",
+      "note": "No references found via git grep (could be false positive if referenced by dynamic name)."
+    }
+  ],
+  "old_logs": [],
+  "duplicates": [
+    {
+      "basename": "__init__.py",
+      "paths": [
+        {
+          "path": "mcp/__init__.py",
+          "last_commit_date": "2025-10-29 10:41:20 +0530",
+          "last_commit": "b611424d9caf764285c2afadce0454339747aac0"
+        },
+        {
+          "path": "storage/__init__.py",
+          "last_commit_date": "2025-10-29 10:41:20 +0530",
+          "last_commit": "b611424d9caf764285c2afadce0454339747aac0"
+        },
+        {
+          "path": "tools/__init__.py",
+          "last_commit_date": "2025-10-29 10:41:20 +0530",
+          "last_commit": "b611424d9caf764285c2afadce0454339747aac0"
+        },
+        {
+          "path": "ui/__init__.py",
+          "last_commit_date": "2025-10-29 10:41:20 +0530",
+          "last_commit": "b611424d9caf764285c2afadce0454339747aac0"
+        }
+      ]
+    }
+  ],
+  "docker_make_warnings": [
+    {
+      "path": "docker-compose.yml",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "4:      context: ./postgres-pgvector"
+    },
+    {
+      "path": "docker-compose.yml",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "6:    image: local/postgres-pgvector:15"
+    },
+    {
+      "path": "migrations/001_schema.sql",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "2:-- Ensure pgvector extension exists"
+    },
+    {
+      "path": "migrations/001_schema.sql",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "47:-- HNSW index for dense vectors (pgvector)"
+    },
+    {
+      "path": "postgres-pgvector/Dockerfile",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "6:    git clone --depth 1 https://github.com/pgvector/pgvector.git /tmp/pgvector && \\"
+    },
+    {
+      "path": "postgres-pgvector/Dockerfile",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "7:    cd /tmp/pgvector && make && make install && \\"
+    },
+    {
+      "path": "postgres-pgvector/Dockerfile",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "8:    rm -rf /tmp/pgvector && \\"
+    },
+    {
+      "path": "requirements.txt",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "11:pgvector==0.4.1"
+    },
+    {
+      "path": "retrieval_api.py",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "368:    # 2) Dense ANN: use pgvector operator \"<->\" (L2 distance) - lower is better"
+    },
+    {
+      "path": "tools/migrate_embeddings.py",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "3:Migrate JSONB embeddings in `chunks.embedding` into `chunks.embedding_vector` (pgvector)."
+    },
+    {
+      "path": "tools/migrate_embeddings.py",
+      "warning": "Found 'pgvector' string; review postgres image references for platform compatibility.",
+      "match_line": "162:    parser = argparse.ArgumentParser(description=\"Migrate JSONB embeddings -> pgvector embedding_vector\")"
+    }
+  ]
+}

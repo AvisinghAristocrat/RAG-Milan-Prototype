@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "item": "New UI page: Tasks Manager",
+    "description": "Build the Tasks Manager page with Completed + Next tabs, governance banner and side-task policy.",
+    "status": "done",
+    "notes": "Implemented; notes and scrollable layman descriptions added. (Completed 2025-10-29T19:06:44.962023Z)"
+  },
+  {
+    "id": 2,
+    "item": "Future enhancements categorized",
+    "description": "Produce a Must-have vs Good-to-have list for future work and store in the app.",
+    "status": "done",
+    "notes": "Stored in tasks.json under Future enhancements."
+  },
+  {
+    "id": 3,
+    "item": "Staying on track \u2014 governance rule",
+    "description": "Agree and enforce a governance rule (sprint banner, side tasks) so we keep on the sprint and track tangents as side tasks.",
+    "status": "done",
+    "notes": "`side` flag and sprint policy implemented in Tasks Manager."
+  },
+  {
+    "id": 4,
+    "item": "App Work Flow, scaled execution plan",
+    "description": "Define the scaled process for dev vs prod (job-runner, async workers, artifacts, job lifecycle).",
+    "status": "todo",
+    "notes": "Phase B (job runner) is planned next."
+  },
+  {
+    "id": 5,
+    "item": "Replan UI + reorganize JSON/data files",
+    "description": "Consolidate generated artifacts under `/data` and logs under `/logs`, and reorganize tools outputs into these folders.",
+    "status": "todo",
+    "notes": "Will add tools/organize_data.sh and update UI to point to /data and /logs."
+  },
+  {
+    "id": 6,
+    "item": "Clean up note",
+    "description": "Scan repo for unused scripts and produce `cleanup_candidates.json` for review and removal/archival.",
+    "status": "todo",
+    "notes": "This will be a manual review step; candidate file to be generated."
+  }
+]

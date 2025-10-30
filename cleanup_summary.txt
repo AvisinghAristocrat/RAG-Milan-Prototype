@@ -1,0 +1,13 @@
+Cleanup candidates summary
+=========================
+
+Generated: 2025-10-30T05:34:49.680925Z
+
+Tracked files: 27
+Large files: 0 (threshold 10.0 MB)
+Unreferenced scripts: 9
+Old logs: 0
+Duplicates: 1
+Docker/Make warnings: 11
+
+Top large files:

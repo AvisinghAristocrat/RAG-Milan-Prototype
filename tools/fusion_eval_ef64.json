@@ -1,0 +1,1933 @@
+{
+  "num_queries": 50,
+  "top_k": 10,
+  "k_dense": 100,
+  "k_fts": 100,
+  "ef_search": 64,
+  "avg_latency_ms": 156.56552161999983,
+  "recall_at_k": 0.62,
+  "details": [
+    {
+      "qid": "q1",
+      "query": "Target release TBD Epic/Story N/A Document status DRAFT Document owner Designer Tech lead Technical writers QA Narrative Description Subsection Following",
+      "expected": [
+        252
+      ],
+      "ann_docs": [
+        693,
+        199,
+        414,
+        381,
+        653,
+        745,
+        657,
+        148,
+        401,
+        3
+      ],
+      "fts_docs": [
+        252,
+        323,
+        723,
+        381
+      ],
+      "union_top_k": [
+        693,
+        199,
+        414,
+        381,
+        653,
+        745,
+        657,
+        148,
+        401,
+        3
+      ],
+      "hit": false,
+      "latency_ms": 6309.544166999999
+    },
+    {
+      "qid": "q2",
+      "query": "MAB Version 3.x.x Release Notes",
+      "expected": [
+        84
+      ],
+      "ann_docs": [
+        559,
+        1064,
+        568,
+        568,
+        340,
+        559,
+        1064,
+        421,
+        340,
+        614
+      ],
+      "fts_docs": [],
+      "union_top_k": [
+        559,
+        1064,
+        568,
+        340,
+        421,
+        614,
+        409,
+        647,
+        357,
+        1026
+      ],
+      "hit": false,
+      "latency_ms": 43.932958000000966
+    },
+    {
+      "qid": "q3",
+      "query": "Variable Description Data Type Example Target RTP The desired return to player value that will be validated within the confidence",
+      "expected": [
+        1129
+      ],
+      "ann_docs": [
+        144,
+        1129,
+        43,
+        271,
+        3,
+        499,
+        271,
+        43,
+        770,
+        1004
+      ],
+      "fts_docs": [
+        1129
+      ],
+      "union_top_k": [
+        144,
+        1129,
+        43,
+        271,
+        3,
+        499,
+        770,
+        1004,
+        641,
+        227
+      ],
+      "hit": true,
+      "latency_ms": 33.09924999999936
+    },
+    {
+      "qid": "q4",
+      "query": "Tools",
+      "expected": [
+        365
+      ],
+      "ann_docs": [
+        595,
+        1074,
+        949,
+        1009,
+        1127,
+        521,
+        215,
+        896,
+        1067,
+        795
+      ],
+      "fts_docs": [
+        456,
+        196,
+        1041,
+        256,
+        289,
+        380,
+        1031,
+        926,
+        407,
+        86
+      ],
+      "union_top_k": [
+        595,
+        1074,
+        949,
+        1009,
+        1127,
+        521,
+        215,
+        896,
+        1067,
+        795
+      ],
+      "hit": false,
+      "latency_ms": 107.80520900000035
+    },
+    {
+      "qid": "q5",
+      "query": "Unity has a built-in solution for the performance testing - https://docs.unity3d.com/Packages/com.unity.test-framework.performance@1.0/manual/index.html To enable the performance testing you would need to",
+      "expected": [
+        790
+      ],
+      "ann_docs": [
+        790,
+        623,
+        255,
+        884,
+        692,
+        255,
+        632,
+        780,
+        530,
+        777
+      ],
+      "fts_docs": [
+        790
+      ],
+      "union_top_k": [
+        790,
+        623,
+        255,
+        884,
+        692,
+        632,
+        780,
+        530,
+        777,
+        1109
+      ],
+      "hit": true,
+      "latency_ms": 32.526707999998905
+    },
+    {
+      "qid": "q6",
+      "query": "Target release To Milan Team To Studios Epic MFF-920 c4e08610-9d10-3772-9090-85558771fcbd System JIRA Document owner Designer Tech lead Technical writers QA",
+      "expected": [
+        639
+      ],
+      "ann_docs": [
+        201,
+        488,
+        438,
+        207,
+        639,
+        168,
+        800,
+        729,
+        586,
+        591
+      ],
+      "fts_docs": [
+        639
+      ],
+      "union_top_k": [
+        201,
+        488,
+        438,
+        207,
+        639,
+        168,
+        800,
+        729,
+        586,
+        591
+      ],
+      "hit": true,
+      "latency_ms": 29.657041000000106
+    },
+    {
+      "qid": "q7",
+      "query": "Status 95e2298a-0b27-4ae3-83da-6c0b7dae2704 215bdf6a-7231-4977-8b92-0a9faf844c38 DECIDED The upgrade to 2.4.X for the PFC Backend has been approved and will be incorporated into",
+      "expected": [
+        572
+      ],
+      "ann_docs": [
+        572,
+        914,
+        1087,
+        1065,
+        737,
+        1089,
+        504,
+        943,
+        1091,
+        559
+      ],
+      "fts_docs": [
+        572
+      ],
+      "union_top_k": [
+        572,
+        914,
+        1087,
+        1065,
+        737,
+        1089,
+        504,
+        943,
+        1091,
+        559
+      ],
+      "hit": true,
+      "latency_ms": 38.73191699999978
+    },
+    {
+      "qid": "q8",
+      "query": "Providing a switch for turning off or on the logging mechanism for backends included in the ApplicationLogger. We should still",
+      "expected": [
+        320
+      ],
+      "ann_docs": [
+        320,
+        320,
+        316,
+        429,
+        58,
+        317,
+        58,
+        622,
+        283,
+        737
+      ],
+      "fts_docs": [
+        320
+      ],
+      "union_top_k": [
+        320,
+        316,
+        429,
+        58,
+        317,
+        622,
+        283,
+        737,
+        388,
+        342
+      ],
+      "hit": true,
+      "latency_ms": 28.414250000000862
+    },
+    {
+      "qid": "q9",
+      "query": "Overview The Math Verification platform is capable of running a wide range of games developed using the different GDKs across",
+      "expected": [
+        1131
+      ],
+      "ann_docs": [
+        707,
+        1131,
+        43,
+        707,
+        754,
+        846,
+        707,
+        258,
+        846,
+        521
+      ],
+      "fts_docs": [
+        1131
+      ],
+      "union_top_k": [
+        707,
+        1131,
+        43,
+        754,
+        846,
+        258,
+        521,
+        201,
+        215,
+        453
+      ],
+      "hit": true,
+      "latency_ms": 12.897749999998709
+    },
+    {
+      "qid": "q10",
+      "query": "To create a new repository within the aristocratdd organization , you will need to utilize the template repository to streamline",
+      "expected": [
+        1077
+      ],
+      "ann_docs": [
+        1077,
+        178,
+        376,
+        514,
+        95,
+        488,
+        326,
+        583,
+        534,
+        686
+      ],
+      "fts_docs": [
+        1077
+      ],
+      "union_top_k": [
+        1077,
+        178,
+        376,
+        514,
+        95,
+        488,
+        326,
+        583,
+        534,
+        686
+      ],
+      "hit": true,
+      "latency_ms": 29.19345799999995
+    },
+    {
+      "qid": "q11",
+      "query": "Target release Epic/Story MFF-48 c4e08610-9d10-3772-9090-85558771fcbd System JIRA Document owner Technical writers QA Narrative Description Subsection Layered audio entails playing separate",
+      "expected": [
+        423
+      ],
+      "ann_docs": [
+        423,
+        587,
+        705,
+        634,
+        737,
+        381,
+        581,
+        776,
+        352,
+        581
+      ],
+      "fts_docs": [
+        423
+      ],
+      "union_top_k": [
+        423,
+        587,
+        705,
+        634,
+        737,
+        381,
+        581,
+        776,
+        352,
+        176
+      ],
+      "hit": true,
+      "latency_ms": 28.796583000000098
+    },
+    {
+      "qid": "q12",
+      "query": "This document describes the steps followed to build a deploy a Milan Vanila Instance, this workflow allows users include TestBackend",
+      "expected": [
+        543
+      ],
+      "ann_docs": [
+        543,
+        1080,
+        777,
+        1080,
+        1008,
+        179,
+        603,
+        665,
+        658,
+        11
+      ],
+      "fts_docs": [
+        543
+      ],
+      "union_top_k": [
+        543,
+        1080,
+        777,
+        1008,
+        179,
+        603,
+        665,
+        658,
+        11,
+        645
+      ],
+      "hit": true,
+      "latency_ms": 12.529834000000406
+    },
+    {
+      "qid": "q13",
+      "query": "Date MFF v6.2.2 Patch Release Build and Release Version Details For more details on the 6.2.2 release, review the release",
+      "expected": [
+        1085
+      ],
+      "ann_docs": [
+        116,
+        154,
+        1085,
+        1066,
+        746,
+        217,
+        682,
+        559,
+        431,
+        738
+      ],
+      "fts_docs": [
+        1085
+      ],
+      "union_top_k": [
+        116,
+        154,
+        1085,
+        1066,
+        746,
+        217,
+        682,
+        559,
+        431,
+        738
+      ],
+      "hit": true,
+      "latency_ms": 41.89350000000047
+    },
+    {
+      "qid": "q14",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        936
+      ],
+      "ann_docs": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts_docs": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "hit": false,
+      "latency_ms": 32.93170799999956
+    },
+    {
+      "qid": "q15",
+      "query": "Date Issues System JIRA key in (MAB-4912,MAB-4842,MAB-4841,MAB-4840,MAB-4839,MAB-4838,MAB-4821,MAB-4383,MAB-4382,MAB-4381,MAB-4380,MAB-4379,MAB-4378,MAB-4963,MAB-4910,MAB-4902,MAB-4866,MAB-4824,MAB-4763,MAB-4757,MAB-4755,MAB-4396,MAB-3865,MAB-4811,MAB-4937,MAB-4927,MAB-4924,MAB-4920,MAB-4904,MAB-4881,MAB-4836,MAB-4760,MAB-4759,MAB-3670,MAB-3513,MAB-3320) true c4e08610-9d10-3772-9090-85558771fcbd Version 2.4.3 https://aristocratdd.atlassian.net/l/c/NzBLT56u Sprint 61 - Issue Summary, Solution & Impact",
+      "expected": [
+        415
+      ],
+      "ann_docs": [
+        415,
+        421,
+        469,
+        614,
+        30,
+        12,
+        476,
+        107,
+        775,
+        849
+      ],
+      "fts_docs": [
+        415
+      ],
+      "union_top_k": [
+        415,
+        421,
+        469,
+        614,
+        30,
+        12,
+        476,
+        107,
+        775,
+        849
+      ],
+      "hit": true,
+      "latency_ms": 33.041292000000055
+    },
+    {
+      "qid": "q16",
+      "query": "Date MFF v6.0.2 Patch Build and Release Version Details High-level notable changes: - Reel Window Validator - Reel Window Validator",
+      "expected": [
+        536
+      ],
+      "ann_docs": [
+        116,
+        536,
+        1099,
+        602,
+        116,
+        728,
+        1066,
+        1089,
+        216,
+        200
+      ],
+      "fts_docs": [
+        536
+      ],
+      "union_top_k": [
+        116,
+        536,
+        1099,
+        602,
+        728,
+        1066,
+        1089,
+        216,
+        200,
+        1090
+      ],
+      "hit": true,
+      "latency_ms": 12.354541999998858
+    },
+    {
+      "qid": "q17",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        894
+      ],
+      "ann_docs": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts_docs": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "hit": false,
+      "latency_ms": 14.209582999999526
+    },
+    {
+      "qid": "q18",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        914
+      ],
+      "ann_docs": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts_docs": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "hit": false,
+      "latency_ms": 21.832291999999143
+    },
+    {
+      "qid": "q19",
+      "query": "Points of Contact Jira Tasks MFF-921 c4e08610-9d10-3772-9090-85558771fcbd System JIRA Repos Shared Git Repo https://github.com/aristocratdd/milan-shared-slots-dto Branches: - milan-slot-engine-shared/feature/MFF-800-DTOCohesion - com.slotstburg.test-components/feature/DTOCohesion -",
+      "expected": [
+        136
+      ],
+      "ann_docs": [
+        136,
+        435,
+        482,
+        802,
+        799,
+        764,
+        91,
+        624,
+        174,
+        80
+      ],
+      "fts_docs": [
+        136
+      ],
+      "union_top_k": [
+        136,
+        435,
+        482,
+        802,
+        799,
+        764,
+        91,
+        624,
+        174,
+        80
+      ],
+      "hit": true,
+      "latency_ms": 34.246416000000224
+    },
+    {
+      "qid": "q20",
+      "query": "Automated Test Flow Setup",
+      "expected": [
+        485
+      ],
+      "ann_docs": [
+        763,
+        763,
+        171,
+        878,
+        555,
+        309,
+        573,
+        573,
+        364,
+        530
+      ],
+      "fts_docs": [],
+      "union_top_k": [
+        763,
+        171,
+        878,
+        555,
+        309,
+        573,
+        364,
+        530,
+        221,
+        576
+      ],
+      "hit": false,
+      "latency_ms": 32.92841600000074
+    },
+    {
+      "qid": "q21",
+      "query": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description,",
+      "expected": [
+        190
+      ],
+      "ann_docs": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "fts_docs": [
+        414,
+        148,
+        199,
+        693,
+        657,
+        653,
+        745,
+        190,
+        1133,
+        550
+      ],
+      "union_top_k": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "hit": false,
+      "latency_ms": 13.065291999998507
+    },
+    {
+      "qid": "q22",
+      "query": "A Gaffe supplies the Random Number Queue with a specific set of values rather than those generated by the Random",
+      "expected": [
+        140
+      ],
+      "ann_docs": [
+        430,
+        140,
+        140,
+        209,
+        140,
+        430,
+        430,
+        140,
+        209,
+        535
+      ],
+      "fts_docs": [
+        140,
+        430
+      ],
+      "union_top_k": [
+        430,
+        140,
+        209,
+        535,
+        139,
+        27,
+        857,
+        330,
+        403,
+        239
+      ],
+      "hit": true,
+      "latency_ms": 34.91350000000004
+    },
+    {
+      "qid": "q23",
+      "query": "A GameBase Context is a special Context that stores the game data for a slot. The GameBase Context prepares game",
+      "expected": [
+        529
+      ],
+      "ann_docs": [
+        529,
+        546,
+        827,
+        754,
+        201,
+        201,
+        201,
+        754,
+        428,
+        679
+      ],
+      "fts_docs": [
+        529
+      ],
+      "union_top_k": [
+        529,
+        546,
+        827,
+        754,
+        201,
+        428,
+        679,
+        585,
+        563,
+        597
+      ],
+      "hit": true,
+      "latency_ms": 34.34999999999988
+    },
+    {
+      "qid": "q24",
+      "query": "The Milan Platform ships with both an in-memory storage adapter and a local file system storage adapter. As their names",
+      "expected": [
+        471
+      ],
+      "ann_docs": [
+        471,
+        597,
+        71,
+        292,
+        471,
+        71,
+        471,
+        597,
+        702,
+        453
+      ],
+      "fts_docs": [
+        597,
+        292,
+        471
+      ],
+      "union_top_k": [
+        471,
+        597,
+        71,
+        292,
+        702,
+        453,
+        428,
+        291,
+        202,
+        834
+      ],
+      "hit": true,
+      "latency_ms": 14.005082999998919
+    },
+    {
+      "qid": "q25",
+      "query": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description,",
+      "expected": [
+        747
+      ],
+      "ann_docs": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "fts_docs": [
+        414,
+        148,
+        199,
+        693,
+        657,
+        653,
+        745,
+        190,
+        1133,
+        550
+      ],
+      "union_top_k": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "hit": false,
+      "latency_ms": 13.213083000000125
+    },
+    {
+      "qid": "q26",
+      "query": "These items describe changes to DocFX site code or the site directory structure to be implemented by documentation owners. topofpage",
+      "expected": [
+        1038
+      ],
+      "ann_docs": [
+        1038,
+        1036,
+        1031,
+        1038,
+        1037,
+        796,
+        1031,
+        1036,
+        1029,
+        1036
+      ],
+      "fts_docs": [
+        1038
+      ],
+      "union_top_k": [
+        1038,
+        1036,
+        1031,
+        1037,
+        796,
+        1029,
+        1033,
+        667,
+        581,
+        1030
+      ],
+      "hit": true,
+      "latency_ms": 15.029000000000181
+    },
+    {
+      "qid": "q27",
+      "query": "Use this page to document the necessary requirements. The requirements table will map to the parent page under \"Requirements.\" Additional",
+      "expected": [
+        670
+      ],
+      "ann_docs": [
+        670,
+        261,
+        1031,
+        1031,
+        648,
+        1033,
+        317,
+        1031,
+        1027,
+        810
+      ],
+      "fts_docs": [
+        261,
+        670
+      ],
+      "union_top_k": [
+        670,
+        261,
+        1031,
+        648,
+        1033,
+        317,
+        1027,
+        810,
+        550,
+        190
+      ],
+      "hit": true,
+      "latency_ms": 15.716832999999042
+    },
+    {
+      "qid": "q28",
+      "query": "Date Version 6.1.0 Build and Release Version Details High-level Notable Changes: - Milan - Allow comments in JSON files -",
+      "expected": [
+        695
+      ],
+      "ann_docs": [
+        729,
+        586,
+        510,
+        811,
+        55,
+        417,
+        616,
+        1056,
+        191,
+        197
+      ],
+      "fts_docs": [
+        695
+      ],
+      "union_top_k": [
+        729,
+        586,
+        510,
+        811,
+        55,
+        417,
+        616,
+        1056,
+        191,
+        197
+      ],
+      "hit": false,
+      "latency_ms": 42.706041999998945
+    },
+    {
+      "qid": "q29",
+      "query": "Target release TBD Epic/Story MFF-3121 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status PUBLISHED Green Document owner Designer Tech lead Technical writers QA",
+      "expected": [
+        330
+      ],
+      "ann_docs": [
+        352,
+        438,
+        512,
+        649,
+        399,
+        201,
+        750,
+        667,
+        744,
+        685
+      ],
+      "fts_docs": [
+        330
+      ],
+      "union_top_k": [
+        352,
+        438,
+        512,
+        649,
+        399,
+        201,
+        750,
+        667,
+        744,
+        685
+      ],
+      "hit": false,
+      "latency_ms": 14.826499999999854
+    },
+    {
+      "qid": "q30",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        897
+      ],
+      "ann_docs": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts_docs": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "hit": false,
+      "latency_ms": 16.504791000000907
+    },
+    {
+      "qid": "q31",
+      "query": "Document status DRAFT Document owner , , Technical writers N/A Goal Outline all steps taken to fully upgrade MN602 and",
+      "expected": [
+        371
+      ],
+      "ann_docs": [
+        420,
+        1057,
+        371,
+        582,
+        648,
+        230,
+        55,
+        510,
+        1028,
+        349
+      ],
+      "fts_docs": [
+        371
+      ],
+      "union_top_k": [
+        420,
+        1057,
+        371,
+        582,
+        648,
+        230,
+        55,
+        510,
+        1028,
+        349
+      ],
+      "hit": true,
+      "latency_ms": 14.002624999999824
+    },
+    {
+      "qid": "q32",
+      "query": "Target release MFF 6.0 Epic/Story MFF-2775 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status PUBLISHED Green Document owner Designer Tech lead Technical writers",
+      "expected": [
+        499
+      ],
+      "ann_docs": [
+        352,
+        1089,
+        512,
+        324,
+        586,
+        1091,
+        399,
+        649,
+        407,
+        750
+      ],
+      "fts_docs": [
+        130,
+        499,
+        776
+      ],
+      "union_top_k": [
+        352,
+        1089,
+        512,
+        324,
+        586,
+        1091,
+        399,
+        649,
+        407,
+        750
+      ],
+      "hit": false,
+      "latency_ms": 44.56133300000076
+    },
+    {
+      "qid": "q33",
+      "query": "com.milan.core: 0.1.10 => 0.1.11 - MFF-609 - Reformatted Build Validation log output to be easier to parse when in batch",
+      "expected": [
+        748
+      ],
+      "ann_docs": [
+        289,
+        758,
+        852,
+        42,
+        748,
+        132,
+        14,
+        317,
+        674,
+        763
+      ],
+      "fts_docs": [
+        748
+      ],
+      "union_top_k": [
+        289,
+        758,
+        852,
+        42,
+        748,
+        132,
+        14,
+        317,
+        674,
+        763
+      ],
+      "hit": true,
+      "latency_ms": 54.99866699999956
+    },
+    {
+      "qid": "q34",
+      "query": "Date Issues 1 issues Version 3.3.3 (Milan.XSlotEngine) https://aristocratdd.atlassian.net/l/c/NzBLT56u Hotfix - Issue Summary, Solution & Impact Notes Key Description Overall Impact",
+      "expected": [
+        25
+      ],
+      "ann_docs": [
+        764,
+        664,
+        586,
+        713,
+        49,
+        775,
+        729,
+        432,
+        25,
+        581
+      ],
+      "fts_docs": [
+        25
+      ],
+      "union_top_k": [
+        764,
+        664,
+        586,
+        713,
+        49,
+        775,
+        729,
+        432,
+        25,
+        581
+      ],
+      "hit": true,
+      "latency_ms": 47.91854099999959
+    },
+    {
+      "qid": "q35",
+      "query": "10-Jul-2025 Version Details: Build and Release Version Details Release Packages Updated Frontend Expanded Definition Delivery Date Capybara Minor - MFF",
+      "expected": [
+        116
+      ],
+      "ann_docs": [
+        116,
+        1081,
+        1127,
+        340,
+        867,
+        1081,
+        1127,
+        1054,
+        1128,
+        956
+      ],
+      "fts_docs": [
+        116
+      ],
+      "union_top_k": [
+        116,
+        1081,
+        1127,
+        340,
+        867,
+        1054,
+        1128,
+        956,
+        1026,
+        1064
+      ],
+      "hit": true,
+      "latency_ms": 18.034249999999474
+    },
+    {
+      "qid": "q36",
+      "query": "Date Participants Meeting type Mid-Project Review / Retro Meeting Agenda Recording - Franchise-Milan_Mid-Project Review_28Oct2024.mp4 This meeting is being scheduled to",
+      "expected": [
+        660
+      ],
+      "ann_docs": [
+        62,
+        448,
+        660,
+        1001,
+        957,
+        448,
+        1002,
+        953,
+        131,
+        419
+      ],
+      "fts_docs": [
+        660
+      ],
+      "union_top_k": [
+        62,
+        448,
+        660,
+        1001,
+        957,
+        1002,
+        953,
+        131,
+        419,
+        1043
+      ],
+      "hit": true,
+      "latency_ms": 51.05691599999851
+    },
+    {
+      "qid": "q37",
+      "query": "com.milan.core: 0.1.2 - Build Validation - Can now be called from CI services - Package Validator - Can validate package",
+      "expected": [
+        132
+      ],
+      "ann_docs": [
+        132,
+        87,
+        669,
+        758,
+        289,
+        380,
+        208,
+        289,
+        765,
+        377
+      ],
+      "fts_docs": [
+        132
+      ],
+      "union_top_k": [
+        132,
+        87,
+        669,
+        758,
+        289,
+        380,
+        208,
+        765,
+        377,
+        417
+      ],
+      "hit": true,
+      "latency_ms": 45.30300000000054
+    },
+    {
+      "qid": "q38",
+      "query": "This incremental release targets Vertical Slice specific issues for slotsburg. com.milan.slots.shared: 0.0.11 - JackpotBetLevelMultiplierServerModel - Updated to include proper constructor",
+      "expected": [
+        774
+      ],
+      "ann_docs": [
+        774,
+        835,
+        769,
+        1065,
+        738,
+        274,
+        444,
+        607,
+        217,
+        504
+      ],
+      "fts_docs": [
+        774
+      ],
+      "union_top_k": [
+        774,
+        835,
+        769,
+        1065,
+        738,
+        274,
+        444,
+        607,
+        217,
+        504
+      ],
+      "hit": true,
+      "latency_ms": 45.748624999999876
+    },
+    {
+      "qid": "q39",
+      "query": "Date Issues System JIRA Key in (MAB-5870,MAB-5882,MAB-5886,MAB-5890,MAB-5935,MAB-5939,MAB-5804) true c4e08610-9d10-3772-9090-85558771fcbd Version 3.4.0 https://aristocratdd.atlassian.net/l/c/NzBLT56u Sprint 72 & 73 - Issue Summary, Solution",
+      "expected": [
+        409
+      ],
+      "ann_docs": [
+        415,
+        614,
+        469,
+        421,
+        775,
+        324,
+        12,
+        581,
+        432,
+        651
+      ],
+      "fts_docs": [
+        409
+      ],
+      "union_top_k": [
+        415,
+        614,
+        469,
+        421,
+        775,
+        324,
+        12,
+        581,
+        432,
+        651
+      ],
+      "hit": false,
+      "latency_ms": 54.19633300000015
+    },
+    {
+      "qid": "q40",
+      "query": "Library Version Issue Impact Milan.XSlotEngine.Core 1.1.3 MAB-3736 BUG: Applied Substitutions list grows without clearing between spins while server is up",
+      "expected": [
+        549
+      ],
+      "ann_docs": [
+        549,
+        771,
+        317,
+        469,
+        14,
+        30,
+        43,
+        182,
+        769,
+        13
+      ],
+      "fts_docs": [
+        549
+      ],
+      "union_top_k": [
+        549,
+        771,
+        317,
+        469,
+        14,
+        30,
+        43,
+        182,
+        769,
+        13
+      ],
+      "hit": true,
+      "latency_ms": 21.948040999999918
+    },
+    {
+      "qid": "q41",
+      "query": "Non-Versioned Repos (See here for more details( Milan Frontend Development Strategy in a Multi-Version World )) - Bridge: https://github.com/aristocratdd/com.aristocrat.milan.bridge -",
+      "expected": [
+        188
+      ],
+      "ann_docs": [
+        639,
+        516,
+        1008,
+        746,
+        417,
+        188,
+        495,
+        746,
+        514,
+        455
+      ],
+      "fts_docs": [
+        188
+      ],
+      "union_top_k": [
+        639,
+        516,
+        1008,
+        746,
+        417,
+        188,
+        495,
+        514,
+        455,
+        567
+      ],
+      "hit": true,
+      "latency_ms": 16.4358749999991
+    },
+    {
+      "qid": "q42",
+      "query": "Date Participants Meeting type Weekly Check-in Goals and progress Fill in the table before your meeting. Add questions about what",
+      "expected": [
+        995
+      ],
+      "ann_docs": [
+        968,
+        964,
+        961,
+        1001,
+        994,
+        980,
+        1007,
+        973,
+        1005,
+        967
+      ],
+      "fts_docs": [
+        1002,
+        1007,
+        989,
+        1004,
+        1003,
+        979,
+        959,
+        1001,
+        973,
+        975
+      ],
+      "union_top_k": [
+        968,
+        964,
+        961,
+        1001,
+        994,
+        980,
+        1007,
+        973,
+        1005,
+        967
+      ],
+      "hit": false,
+      "latency_ms": 18.242917000000247
+    },
+    {
+      "qid": "q43",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        881
+      ],
+      "ann_docs": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts_docs": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "hit": false,
+      "latency_ms": 19.39658300000069
+    },
+    {
+      "qid": "q44",
+      "query": "Milan Test Planning",
+      "expected": [
+        310
+      ],
+      "ann_docs": [
+        777,
+        763,
+        763,
+        359,
+        1005,
+        879,
+        763,
+        1003,
+        724,
+        642
+      ],
+      "fts_docs": [
+        1004,
+        1001,
+        1002,
+        1005,
+        1003,
+        1033,
+        1016,
+        879,
+        878,
+        880
+      ],
+      "union_top_k": [
+        777,
+        763,
+        359,
+        1005,
+        879,
+        1003,
+        724,
+        642,
+        928,
+        881
+      ],
+      "hit": false,
+      "latency_ms": 68.51779199999974
+    },
+    {
+      "qid": "q45",
+      "query": "Team processes, workflows and technologies. Topics: - Jenkins - SonarQube - Artifacts repositories - Cloud platform (GCP) - MathVerification Slides:",
+      "expected": [
+        759
+      ],
+      "ann_docs": [
+        759,
+        12,
+        576,
+        42,
+        378,
+        1067,
+        849,
+        410,
+        476,
+        326
+      ],
+      "fts_docs": [
+        759
+      ],
+      "union_top_k": [
+        759,
+        12,
+        576,
+        42,
+        378,
+        1067,
+        849,
+        410,
+        476,
+        326
+      ],
+      "hit": true,
+      "latency_ms": 44.20187500000061
+    },
+    {
+      "qid": "q46",
+      "query": "Math Verification",
+      "expected": [
+        145
+      ],
+      "ann_docs": [
+        830,
+        43,
+        43,
+        1055,
+        385,
+        43,
+        846,
+        707,
+        754,
+        258
+      ],
+      "fts_docs": [
+        690,
+        559,
+        223,
+        434,
+        13,
+        707,
+        765,
+        600,
+        652,
+        201
+      ],
+      "union_top_k": [
+        830,
+        43,
+        1055,
+        385,
+        846,
+        707,
+        754,
+        258,
+        182,
+        687
+      ],
+      "hit": false,
+      "latency_ms": 52.044709000000466
+    },
+    {
+      "qid": "q47",
+      "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+      "expected": [
+        886
+      ],
+      "ann_docs": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "fts_docs": [
+        889,
+        911,
+        909,
+        884,
+        890,
+        925,
+        940,
+        918,
+        926,
+        1070
+      ],
+      "union_top_k": [
+        939,
+        918,
+        919,
+        922,
+        921,
+        903,
+        913,
+        931,
+        909,
+        945
+      ],
+      "hit": false,
+      "latency_ms": 23.28416699999991
+    },
+    {
+      "qid": "q48",
+      "query": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description,",
+      "expected": [
+        693
+      ],
+      "ann_docs": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "fts_docs": [
+        414,
+        148,
+        199,
+        693,
+        657,
+        653,
+        745,
+        190,
+        1133,
+        550
+      ],
+      "union_top_k": [
+        414,
+        653,
+        745,
+        657,
+        199,
+        693,
+        401,
+        148,
+        704,
+        381
+      ],
+      "hit": true,
+      "latency_ms": 15.133999999999759
+    },
+    {
+      "qid": "q49",
+      "query": "Visual Studios - Windows Setup - Open visual studios backend project. - In the Solution Explorer right click on the",
+      "expected": [
+        53
+      ],
+      "ann_docs": [
+        53,
+        511,
+        53,
+        183,
+        1080,
+        511,
+        375,
+        11,
+        511,
+        1080
+      ],
+      "fts_docs": [
+        53
+      ],
+      "union_top_k": [
+        53,
+        511,
+        183,
+        1080,
+        375,
+        11,
+        1130,
+        404,
+        488,
+        754
+      ],
+      "hit": true,
+      "latency_ms": 14.457583999998747
+    },
+    {
+      "qid": "q50",
+      "query": "Before Running on Cloud Requirements - Ensure your MathVerification service call works by hitting the endpoint using any REST client",
+      "expected": [
+        144
+      ],
+      "ann_docs": [
+        144,
+        568,
+        415,
+        846,
+        846,
+        1130,
+        469,
+        43,
+        144,
+        652
+      ],
+      "fts_docs": [
+        144
+      ],
+      "union_top_k": [
+        144,
+        568,
+        415,
+        846,
+        1130,
+        469,
+        43,
+        652,
+        434,
+        600
+      ],
+      "hit": true,
+      "latency_ms": 13.895250000000914
+    }
+  ]
+}

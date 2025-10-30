@@ -1,0 +1,352 @@
+[
+  {
+    "id": "q1",
+    "query": "Target release TBD Epic/Story N/A Document status DRAFT Document owner Designer Tech lead Technical writers QA Narrative Description Subsection Following",
+    "expected_document_ids": [
+      252
+    ]
+  },
+  {
+    "id": "q2",
+    "query": "MAB Version 3.x.x Release Notes",
+    "expected_document_ids": [
+      84
+    ]
+  },
+  {
+    "id": "q3",
+    "query": "Variable Description Data Type Example Target RTP The desired return to player value that will be validated within the confidence",
+    "expected_document_ids": [
+      1129
+    ]
+  },
+  {
+    "id": "q4",
+    "query": "Tools",
+    "expected_document_ids": [
+      365
+    ]
+  },
+  {
+    "id": "q5",
+    "query": "Unity has a built-in solution for the performance testing - https://docs.unity3d.com/Packages/com.unity.test-framework.performance@1.0/manual/index.html To enable the performance testing you would need to",
+    "expected_document_ids": [
+      790
+    ]
+  },
+  {
+    "id": "q6",
+    "query": "Target release To Milan Team To Studios Epic MFF-920 c4e08610-9d10-3772-9090-85558771fcbd System JIRA Document owner Designer Tech lead Technical writers QA",
+    "expected_document_ids": [
+      639
+    ]
+  },
+  {
+    "id": "q7",
+    "query": "Status 95e2298a-0b27-4ae3-83da-6c0b7dae2704 215bdf6a-7231-4977-8b92-0a9faf844c38 DECIDED The upgrade to 2.4.X for the PFC Backend has been approved and will be incorporated into",
+    "expected_document_ids": [
+      572
+    ]
+  },
+  {
+    "id": "q8",
+    "query": "Providing a switch for turning off or on the logging mechanism for backends included in the ApplicationLogger. We should still",
+    "expected_document_ids": [
+      320
+    ]
+  },
+  {
+    "id": "q9",
+    "query": "Overview The Math Verification platform is capable of running a wide range of games developed using the different GDKs across",
+    "expected_document_ids": [
+      1131
+    ]
+  },
+  {
+    "id": "q10",
+    "query": "To create a new repository within the aristocratdd organization , you will need to utilize the template repository to streamline",
+    "expected_document_ids": [
+      1077
+    ]
+  },
+  {
+    "id": "q11",
+    "query": "Target release Epic/Story MFF-48 c4e08610-9d10-3772-9090-85558771fcbd System JIRA Document owner Technical writers QA Narrative Description Subsection Layered audio entails playing separate",
+    "expected_document_ids": [
+      423
+    ]
+  },
+  {
+    "id": "q12",
+    "query": "This document describes the steps followed to build a deploy a Milan Vanila Instance, this workflow allows users include TestBackend",
+    "expected_document_ids": [
+      543
+    ]
+  },
+  {
+    "id": "q13",
+    "query": "Date MFF v6.2.2 Patch Release Build and Release Version Details For more details on the 6.2.2 release, review the release",
+    "expected_document_ids": [
+      1085
+    ]
+  },
+  {
+    "id": "q14",
+    "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+    "expected_document_ids": [
+      936
+    ]
+  },
+  {
+    "id": "q15",
+    "query": "Date Issues System JIRA key in (MAB-4912,MAB-4842,MAB-4841,MAB-4840,MAB-4839,MAB-4838,MAB-4821,MAB-4383,MAB-4382,MAB-4381,MAB-4380,MAB-4379,MAB-4378,MAB-4963,MAB-4910,MAB-4902,MAB-4866,MAB-4824,MAB-4763,MAB-4757,MAB-4755,MAB-4396,MAB-3865,MAB-4811,MAB-4937,MAB-4927,MAB-4924,MAB-4920,MAB-4904,MAB-4881,MAB-4836,MAB-4760,MAB-4759,MAB-3670,MAB-3513,MAB-3320) true c4e08610-9d10-3772-9090-85558771fcbd Version 2.4.3 https://aristocratdd.atlassian.net/l/c/NzBLT56u Sprint 61 - Issue Summary, Solution & Impact",
+    "expected_document_ids": [
+      415
+    ]
+  },
+  {
+    "id": "q16",
+    "query": "Date MFF v6.0.2 Patch Build and Release Version Details High-level notable changes: - Reel Window Validator - Reel Window Validator",
+    "expected_document_ids": [
+      536
+    ]
+  },
+  {
+    "id": "q17",
+    "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+    "expected_document_ids": [
+      894
+    ]
+  },
+  {
+    "id": "q18",
+    "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+    "expected_document_ids": [
+      914
+    ]
+  },
+  {
+    "id": "q19",
+    "query": "Points of Contact Jira Tasks MFF-921 c4e08610-9d10-3772-9090-85558771fcbd System JIRA Repos Shared Git Repo https://github.com/aristocratdd/milan-shared-slots-dto Branches: - milan-slot-engine-shared/feature/MFF-800-DTOCohesion - com.slotstburg.test-components/feature/DTOCohesion -",
+    "expected_document_ids": [
+      136
+    ]
+  },
+  {
+    "id": "q20",
+    "query": "Automated Test Flow Setup",
+    "expected_document_ids": [
+      485
+    ]
+  },
+  {
+    "id": "q21",
+    "query": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description,",
+    "expected_document_ids": [
+      190
+    ]
+  },
+  {
+    "id": "q22",
+    "query": "A Gaffe supplies the Random Number Queue with a specific set of values rather than those generated by the Random",
+    "expected_document_ids": [
+      140
+    ]
+  },
+  {
+    "id": "q23",
+    "query": "A GameBase Context is a special Context that stores the game data for a slot. The GameBase Context prepares game",
+    "expected_document_ids": [
+      529
+    ]
+  },
+  {
+    "id": "q24",
+    "query": "The Milan Platform ships with both an in-memory storage adapter and a local file system storage adapter. As their names",
+    "expected_document_ids": [
+      471
+    ]
+  },
+  {
+    "id": "q25",
+    "query": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description,",
+    "expected_document_ids": [
+      747
+    ]
+  },
+  {
+    "id": "q26",
+    "query": "These items describe changes to DocFX site code or the site directory structure to be implemented by documentation owners. topofpage",
+    "expected_document_ids": [
+      1038
+    ]
+  },
+  {
+    "id": "q27",
+    "query": "Use this page to document the necessary requirements. The requirements table will map to the parent page under \"Requirements.\" Additional",
+    "expected_document_ids": [
+      670
+    ]
+  },
+  {
+    "id": "q28",
+    "query": "Date Version 6.1.0 Build and Release Version Details High-level Notable Changes: - Milan - Allow comments in JSON files -",
+    "expected_document_ids": [
+      695
+    ]
+  },
+  {
+    "id": "q29",
+    "query": "Target release TBD Epic/Story MFF-3121 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status PUBLISHED Green Document owner Designer Tech lead Technical writers QA",
+    "expected_document_ids": [
+      330
+    ]
+  },
+  {
+    "id": "q30",
+    "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+    "expected_document_ids": [
+      897
+    ]
+  },
+  {
+    "id": "q31",
+    "query": "Document status DRAFT Document owner , , Technical writers N/A Goal Outline all steps taken to fully upgrade MN602 and",
+    "expected_document_ids": [
+      371
+    ]
+  },
+  {
+    "id": "q32",
+    "query": "Target release MFF 6.0 Epic/Story MFF-2775 c4e08610-9d10-3772-9090-85558771fcbd System Jira Document status PUBLISHED Green Document owner Designer Tech lead Technical writers",
+    "expected_document_ids": [
+      499
+    ]
+  },
+  {
+    "id": "q33",
+    "query": "com.milan.core: 0.1.10 => 0.1.11 - MFF-609 - Reformatted Build Validation log output to be easier to parse when in batch",
+    "expected_document_ids": [
+      748
+    ]
+  },
+  {
+    "id": "q34",
+    "query": "Date Issues 1 issues Version 3.3.3 (Milan.XSlotEngine) https://aristocratdd.atlassian.net/l/c/NzBLT56u Hotfix - Issue Summary, Solution & Impact Notes Key Description Overall Impact",
+    "expected_document_ids": [
+      25
+    ]
+  },
+  {
+    "id": "q35",
+    "query": "10-Jul-2025 Version Details: Build and Release Version Details Release Packages Updated Frontend Expanded Definition Delivery Date Capybara Minor - MFF",
+    "expected_document_ids": [
+      116
+    ]
+  },
+  {
+    "id": "q36",
+    "query": "Date Participants Meeting type Mid-Project Review / Retro Meeting Agenda Recording - Franchise-Milan_Mid-Project Review_28Oct2024.mp4 This meeting is being scheduled to",
+    "expected_document_ids": [
+      660
+    ]
+  },
+  {
+    "id": "q37",
+    "query": "com.milan.core: 0.1.2 - Build Validation - Can now be called from CI services - Package Validator - Can validate package",
+    "expected_document_ids": [
+      132
+    ]
+  },
+  {
+    "id": "q38",
+    "query": "This incremental release targets Vertical Slice specific issues for slotsburg. com.milan.slots.shared: 0.0.11 - JackpotBetLevelMultiplierServerModel - Updated to include proper constructor",
+    "expected_document_ids": [
+      774
+    ]
+  },
+  {
+    "id": "q39",
+    "query": "Date Issues System JIRA Key in (MAB-5870,MAB-5882,MAB-5886,MAB-5890,MAB-5935,MAB-5939,MAB-5804) true c4e08610-9d10-3772-9090-85558771fcbd Version 3.4.0 https://aristocratdd.atlassian.net/l/c/NzBLT56u Sprint 72 & 73 - Issue Summary, Solution",
+    "expected_document_ids": [
+      409
+    ]
+  },
+  {
+    "id": "q40",
+    "query": "Library Version Issue Impact Milan.XSlotEngine.Core 1.1.3 MAB-3736 BUG: Applied Substitutions list grows without clearing between spins while server is up",
+    "expected_document_ids": [
+      549
+    ]
+  },
+  {
+    "id": "q41",
+    "query": "Non-Versioned Repos (See here for more details( Milan Frontend Development Strategy in a Multi-Version World )) - Bridge: https://github.com/aristocratdd/com.aristocrat.milan.bridge -",
+    "expected_document_ids": [
+      188
+    ]
+  },
+  {
+    "id": "q42",
+    "query": "Date Participants Meeting type Weekly Check-in Goals and progress Fill in the table before your meeting. Add questions about what",
+    "expected_document_ids": [
+      995
+    ]
+  },
+  {
+    "id": "q43",
+    "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+    "expected_document_ids": [
+      881
+    ]
+  },
+  {
+    "id": "q44",
+    "query": "Milan Test Planning",
+    "expected_document_ids": [
+      310
+    ]
+  },
+  {
+    "id": "q45",
+    "query": "Team processes, workflows and technologies. Topics: - Jenkins - SonarQube - Artifacts repositories - Cloud platform (GCP) - MathVerification Slides:",
+    "expected_document_ids": [
+      759
+    ]
+  },
+  {
+    "id": "q46",
+    "query": "Math Verification",
+    "expected_document_ids": [
+      145
+    ]
+  },
+  {
+    "id": "q47",
+    "query": "Overview Reflect on past work and identify opportunities for improvement by following the instructions for the Retrospective Play . Date",
+    "expected_document_ids": [
+      886
+    ]
+  },
+  {
+    "id": "q48",
+    "query": "This template is designed to capture high-level information regarding a feature. Key elements of this document include a narrative description,",
+    "expected_document_ids": [
+      693
+    ]
+  },
+  {
+    "id": "q49",
+    "query": "Visual Studios - Windows Setup - Open visual studios backend project. - In the Solution Explorer right click on the",
+    "expected_document_ids": [
+      53
+    ]
+  },
+  {
+    "id": "q50",
+    "query": "Before Running on Cloud Requirements - Ensure your MathVerification service call works by hitting the endpoint using any REST client",
+    "expected_document_ids": [
+      144
+    ]
+  }
+]
