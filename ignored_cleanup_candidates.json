@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-10-30T05:49:08.328605Z",
+  "generated_at": "2025-11-03T06:50:08.761067Z",
   "stats": {
     "scanned_dirs": [
       "logs",
@@ -23,7 +23,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 1
+      "days_old": 5
     },
     {
       "path": "logs/migrate_71d40d4b-93e4-4db9-98ce-8601abe21188.log",
@@ -33,7 +33,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 0
+      "days_old": 5
     },
     {
       "path": "logs/migrate_bb314e8f-3dfa-4230-8e71-0f095f9f3c2e.log",
@@ -43,7 +43,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 1
+      "days_old": 5
     },
     {
       "path": "logs/migrate_c7f4dfb1-0c7d-4b7b-9048-31cbe1d0d915.log",
@@ -53,7 +53,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 1
+      "days_old": 5
     },
     {
       "path": "logs/migrate_bed39551-8669-4306-810a-a294fcd9b863.log",
@@ -63,7 +63,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 0
+      "days_old": 5
     },
     {
       "path": "embeddings/embed_adapter.py",
@@ -106,7 +106,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 1
+      "days_old": 5
     },
     {
       "path": "embeddings/embedder.py",
@@ -126,7 +126,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 1
+      "days_old": 5
     },
     {
       "path": "logs/migrate_71d40d4b-93e4-4db9-98ce-8601abe21188.log",
@@ -136,7 +136,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 0
+      "days_old": 5
     },
     {
       "path": "logs/migrate_c7f4dfb1-0c7d-4b7b-9048-31cbe1d0d915.log",
@@ -146,7 +146,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 1
+      "days_old": 5
     },
     {
       "path": "logs/migrate_bed39551-8669-4306-810a-a294fcd9b863.log",
@@ -156,7 +156,7 @@
       "is_large": false,
       "is_log": true,
       "is_old_log": false,
-      "days_old": 0
+      "days_old": 5
     }
   ]
 }
