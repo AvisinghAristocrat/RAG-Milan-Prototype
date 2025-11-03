@@ -1,0 +1,9 @@
+[
+  {
+    "original_path": "backup_chunks_all.csv",
+    "new_path": "data/exports/backup_chunks_all.csv",
+    "size_bytes": 0,
+    "last_modified": "2025-11-03T12:59:21Z",
+    "note": "Original export removed from history; sanitized copy may be present."
+  }
+]
