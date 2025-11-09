@@ -85,3 +85,5 @@ yarn-debug.log*
 yarn-error.log*
 !/data/exports/
 !/data/exports/*
+data/exports/*.csv
+!data/exports/*.sanitized.csv
