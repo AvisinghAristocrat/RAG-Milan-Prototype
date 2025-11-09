@@ -37,7 +37,7 @@ from psycopg.rows import dict_row
 import json
 import uuid
 import subprocess
-import sys 
+import sys
 from pathlib import Path
 
 app = FastAPI(title="Milan RAG - Retrieval API")
