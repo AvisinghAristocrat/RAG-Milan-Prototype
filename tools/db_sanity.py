@@ -1,13 +1,3 @@
-#!/usr/bin/env python3
-# tools/db_sanity.py
-"""
-DB sanity checks for Milan RAG project.
-
-Usage:
-  source .venv/bin/activate
-  export DB_URL='postgresql://<USER>:<PASSWORD>@<HOST>:<PORT>/<DB>'
-  python tools/db_sanity.py
-"""
 import os
 import json
 import sys
@@ -20,11 +10,16 @@ except Exception as e:
 
 DB_URL = os.getenv("DB_URL")
 if not DB_URL:
-    print("Please set DB_URL environment variable. Example: set DB_URL via environment variable; e.g. export DB_URL='postgresql://<USER>:<PASSWORD>@<HOST>:<PORT>/<DB>' (use real credentials in env only)
+    print(
+        "Please set DB_URL environment variable.\n"
+        "Example (use real credentials only in your environment, do NOT commit them):\n"
+        "  export DB_URL='postgresql://<USER>:<PASSWORD>@<HOST>:<PORT>/<DB>'\n"
+        "Then run: python tools/db_sanity.py"
+    )
     sys.exit(1)
 
 def run(conn, sql, params=None):
-    """Run a single SQL statement and return the rows or None. Uses a new cursor per call."""
+    """Run a single SQL statement using its own cursor; return rows or an error dict."""
     try:
         with conn.cursor() as cur:
             cur.execute(sql, params or ())
@@ -32,14 +27,15 @@ def run(conn, sql, params=None):
                 rows = cur.fetchall()
                 return rows
             except Exception:
-                return None
+                # no rows to fetch (e.g., DDL) -> return empty list
+                return []
     except Exception as e:
-        # Return error text so the caller can inspect
         return {"__error__": str(e)}
 
 def main():
     out = {"ok": True, "checks": {}}
-    # Connect normally; we'll use separate cursors and handle exceptions per call
+    expected_dim = 384
+
     with psycopg.connect(DB_URL, row_factory=dict_row) as conn:
         # 1) list indexes on chunks
         idx_sql = "SELECT indexname, indexdef FROM pg_indexes WHERE tablename='chunks';"
@@ -58,15 +54,14 @@ def main():
         out["checks"]["chunks_columns"] = run(conn, cols_sql)
 
         # 4) compute embedding dimension safely by casting vector to text and splitting on commas
-        #    This will handle representation like "[0.1,0.2,...]" — use regexp_split_to_array to allow spaces
+        dim_sql = """
+        SELECT array_length(
+            regexp_split_to_array(trim(BOTH '[]' FROM embedding_vector::text), ',\\s*'), 1
+        ) AS dim
+        FROM chunks WHERE embedding_vector IS NOT NULL LIMIT 1;
+        """
+        dim = run(conn, dim_sql)
         try:
-            dim_sql = """
-            SELECT array_length(
-                regexp_split_to_array( trim(BOTH '[]' FROM embedding_vector::text), ',\\s*' ), 1
-            ) AS dim
-            FROM chunks WHERE embedding_vector IS NOT NULL LIMIT 1;
-            """
-            dim = run(conn, dim_sql)
             if isinstance(dim, list) and dim:
                 out["checks"]["embedding_dim"] = dim[0].get("dim")
             else:
@@ -78,7 +73,6 @@ def main():
             out["checks"]["embedding_dim"] = None
 
         # 5) count rows with dimension != expected (384) — only if we got a dim result
-        expected_dim = 384
         try:
             if out["checks"].get("embedding_dim"):
                 dim_check_sql = """
@@ -96,14 +90,16 @@ def main():
             out["checks"]["wrong_dim_count_error"] = str(e)
             out["checks"]["wrong_dim_count"] = None
 
-        # 6) check chunk_tsv index exists
+        # 6) check chunk_tsv index exists (use parameter to avoid psycopg placeholder issues)
         tsv_idx_sql = "SELECT indexname FROM pg_indexes WHERE tablename='chunks' AND indexdef ILIKE %s;"
         tsv_idx = run(conn, tsv_idx_sql, ('%chunk_tsv%',))
-        out["checks"]["chunk_tsv_index_exists"] = bool(tsv_idx) and isinstance(tsv_idx, list) and len(tsv_idx) > 0
         if isinstance(tsv_idx, dict) and "__error__" in tsv_idx:
             out["checks"]["chunk_tsv_index_error"] = tsv_idx["__error__"]
+            out["checks"]["chunk_tsv_index_exists"] = False
+        else:
+            out["checks"]["chunk_tsv_index_exists"] = bool(tsv_idx) and isinstance(tsv_idx, list) and len(tsv_idx) > 0
 
-        # 7) list HNSW indexes and look for operator class mention
+        # 7) list HNSW indexes and look for operator class mention (parameterized)
         hnsw_sql = "SELECT indexname, indexdef FROM pg_indexes WHERE tablename='chunks' AND indexdef ILIKE %s;"
         hnsw = run(conn, hnsw_sql, ('%hnsw%',))
         out["checks"]["hnsw_indexes"] = hnsw
