@@ -1,0 +1,2 @@
+create_milan_repo.sh -> scripts/create_milan_repo.sh
+tools/test_insert_chunk.py -> tools/tests/test_insert_chunk.py

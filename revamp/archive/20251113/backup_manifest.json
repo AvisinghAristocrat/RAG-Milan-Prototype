@@ -1,0 +1,35 @@
+{
+  "generated_at": "2025-11-13T09:23:54.763362Z",
+  "date": "20251113",
+  "items": [
+    {
+      "orig_path": "backup_chunks_all.csv",
+      "exists": false
+    },
+    {
+      "orig_path": "create_milan_repo.sh",
+      "archive_path": "revamp/archive/20251113/backup/create_milan_repo.sh",
+      "size_bytes": 15553,
+      "size_human": "0.0 MB",
+      "last_commit": "1466801fd19bc6dae5ca44fb0656200ae352d412|2025-10-28 20:41:58 +0530|Singh, Avinash",
+      "last_modified": "2025-11-13T07:36:44.445853Z",
+      "exists": true
+    },
+    {
+      "orig_path": "tools/test_insert_chunk.py",
+      "archive_path": "revamp/archive/20251113/backup/tools/test_insert_chunk.py",
+      "size_bytes": 1205,
+      "size_human": "0.0 MB",
+      "last_commit": "b611424d9caf764285c2afadce0454339747aac0|2025-10-29 10:41:20 +0530|Singh, Avinash",
+      "last_modified": "2025-10-28T15:26:43.450387Z",
+      "exists": true
+    }
+  ],
+  "notes": {
+    "files_to_archive": 1,
+    "move_plan_count": 2,
+    "unreferenced_scripts_count": 4,
+    "duplicates_count": 1
+  },
+  "source_cleanup": "/Users/avinash.singh/Desktop/Workspace/ChatGPT/cleanup_candidates.json"
+}

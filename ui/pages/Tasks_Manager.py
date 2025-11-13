@@ -6,6 +6,7 @@ import streamlit.components.v1 as components
 import hashlib
 import io, csv
 from copy import deepcopy
+from datetime import datetime, date
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
@@ -25,6 +26,9 @@ except Exception:
 
 st.set_page_config(page_title="Tasks Manager", layout="wide")
 st.title("Tasks Manager")
+
+# Sprint banner
+st.info("**Current Sprint: Revamp** — focus on cleanup & restructure. Please flag non-core items as `side` tasks.")
 
 # -------------------------
 # Utilities
@@ -62,6 +66,7 @@ def is_done(task):
 def set_done_flag(task, val: bool):
     task["done"] = bool(val)
     task["status"] = "done" if val else "todo"
+    task["modified_at"] = date.today().isoformat()
 
 # -------------------------
 # Load tasks
@@ -112,7 +117,7 @@ with tab_all:
     if st.button("Export visible tasks to CSV"):
         si = io.StringIO()
         writer = csv.writer(si)
-        writer.writerow(["index","title","note","priority","status","side","subtask_count","subtasks"])
+        writer.writerow(["index","title","note","priority","status","side","subtask_count","subtasks","modified_at"])
         for idx, task in shown:
             subs = task.get("subtasks", [])
             subs_text = " || ".join([f"{'x' if s.get('done') else ' '}: {s.get('title')}" for s in subs])
@@ -124,7 +129,8 @@ with tab_all:
                 "done" if is_done(task) else "todo",
                 str(bool(task.get("side", False))),
                 len(subs),
-                subs_text
+                subs_text,
+                task.get("modified_at", "")
             ])
         st.download_button("Download CSV", data=si.getvalue(), file_name="tasks_all_export.csv", mime="text/csv")
 
@@ -154,6 +160,7 @@ with tab_done:
             for i in completed_idxs:
                 t = tasks[i]
                 uid = uid_for(i, t)
+                old_title = t.get("title")
                 t["title"] = st.session_state.get(f"title_{uid}", t.get("title"))
                 t["priority"] = st.session_state.get(f"prio_{uid}", t.get("priority","medium"))
                 t["note"] = st.session_state.get(f"note_{uid}", t.get("note",""))
@@ -163,6 +170,8 @@ with tab_done:
                     stitle = st.session_state.get(f"subtitle_{uid}_{si}", s.get("title",""))
                     new_subs.append({"title": stitle, "done": sd})
                 t["subtasks"] = new_subs
+                # set modified_at
+                t["modified_at"] = date.today().isoformat()
                 set_done_flag(t, True)
             save_and_reload(tasks)
 
@@ -195,6 +204,8 @@ with tab_done:
             c1, c2, c3 = st.columns([1,1,1])
             if c1.button("Mark Undone", key=f"mark_undone_{s_uid}"):
                 set_done_flag(tasks[sel], False)
+                # update modified_at
+                tasks[sel]["modified_at"] = date.today().isoformat()
                 save_and_reload(tasks)
             if c2.button("Download JSON", key=f"download_done_{s_uid}"):
                 st.download_button("Download", data=json.dumps(sel_t, indent=2), file_name=f"completed_task_{sel}.json", mime="application/json")
@@ -255,6 +266,8 @@ with tab_next:
                     # Apply pending tasks, auto-mark candidates
                     for i in next_idxs:
                         tasks[i] = pending_tasks[i]
+                        # set modified_at for every saved/updated task
+                        tasks[i]["modified_at"] = date.today().isoformat()
                         # if candidate -> mark done, else mark false (unless it was already done)
                         if any(i == cand[0] for cand in auto_candidates):
                             set_done_flag(tasks[i], True)
@@ -268,6 +281,7 @@ with tab_next:
                     # Apply pending tasks but don't mark candidates done
                     for i in next_idxs:
                         tasks[i] = pending_tasks[i]
+                        tasks[i]["modified_at"] = date.today().isoformat()
                         set_done_flag(tasks[i], False)
                     del st.session_state["pending_next_edits"]
                     save_and_reload(tasks)
@@ -284,6 +298,7 @@ with tab_next:
                 if c_yes.button("Save pending edits"):
                     for i in next_idxs:
                         tasks[i] = pending_tasks[i]
+                        tasks[i]["modified_at"] = date.today().isoformat()
                         # Mark done only if all subs present and all True
                         subs = tasks[i].get("subtasks", [])
                         if len(subs) > 0 and all(s.get("done", False) for s in subs):
@@ -325,6 +340,7 @@ with tab_next:
         if b1.button("Mark selected Done"):
             for idx in chosen:
                 set_done_flag(tasks[int(idx)], True)
+                tasks[int(idx)]["modified_at"] = date.today().isoformat()
             save_and_reload(tasks)
         if b2.button("Delete selected"):
             for idx in sorted([int(x) for x in chosen], reverse=True):
