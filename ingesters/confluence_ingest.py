@@ -2,38 +2,57 @@
 import re
 import html
 from typing import List, Dict
+from bs4 import BeautifulSoup
 
-def _strip_html(storage_value: str) -> str:
+DEFAULT_CHUNK_SIZE = 1000
+DEFAULT_OVERLAP = 150
+
+def _strip_html(html: str) -> str:
     """
-    Convert Confluence storage format (XHTML) to plain text:
-     - preserve paragraphs as newlines
-     - remove tags, scripts, styles, and decode entities
+    Convert HTML-ish content (Confluence storage/view/export_view) into clean text.
+    Keep paragraph structure and list items. Returns empty string if nothing found.
     """
-    if not storage_value:
+    if not html:
         return ""
-    s = storage_value
 
-    # remove <script> and <style> blocks (case-insensitive, multiline)
-    s = re.sub(r"(?is)<(script|style).*?>.*?</\1>", " ", s)
+    # Remove Confluence XML/macros like <ac:structured-macro> by parsing with BeautifulSoup
+    soup = BeautifulSoup(html, "html.parser")
 
-    # replace <br> and common block tags with newlines
-    s = re.sub(r"(?i)<br\s*/?>", "\n", s)
-    s = re.sub(r"(?i)</p\s*>", "\n\n", s)
-    s = re.sub(r"(?i)</h\d\s*>", "\n\n", s)
-    s = re.sub(r"(?i)<li\s*>", "\n- ", s)
+    # remove script/style
+    for t in soup(["script", "style"]):
+        t.decompose()
 
-    # strip all remaining tags
-    s = re.sub(r"<[^>]+>", " ", s)
+    # Remove comments
+    for c in soup.findAll(text=lambda text: isinstance(text, type(soup.Comment))):
+        c.extract()
 
-    # decode HTML entities
-    s = html.unescape(s)
+    # Gather visible blocks: paragraphs, headings, list items, table cells
+    blocks = []
+    for el in soup.find_all(['p','h1','h2','h3','h4','h5','li','td','div']):
+        text = el.get_text(" ", strip=True)
+        if text:
+            # ignore very short artifacts
+            if len(text.strip()) > 0:
+                blocks.append(text.strip())
 
-    # normalize whitespace and paragraphs
-    s = re.sub(r"\r\n?", "\n", s)
-    s = re.sub(r"\n\s+\n", "\n\n", s)
-    s = re.sub(r"[ \t]+", " ", s)
-    s = re.sub(r"\n{3,}", "\n\n", s)
-    return s.strip()
+    if not blocks:
+        # as a fallback, return all text
+        text_all = soup.get_text("\n", strip=True)
+        text_all = re.sub(r"\n{2,}", "\n\n", text_all).strip()
+        return text_all
+
+    # Join blocks double newline to denote paragraph boundaries
+    text = "\n\n".join(blocks)
+    # Normalize whitespace
+    text = re.sub(r'[ \t]{2,}', ' ', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
+
+
+def _sentence_split(text: str) -> List[str]:
+    # simple sentence splitter (no heavy dependency)
+    sents = re.split(r'(?<=[\.\?\!])\s+', text)
+    return [s for s in sents if s.strip()]
 
 def _split_into_windows_by_chars(text: str, chunk_size: int, overlap: int) -> List[str]:
     """
@@ -133,9 +152,77 @@ def chunk_text_by_chars(text: str, chunk_size: int = 1000, overlap: int = 150) -
     # Convert to list of dicts
     return [{"text": c} for c in chunks]
 
-def chunk_page(storage_value: str, chunk_size: int = 1000, overlap: int = 150) -> List[Dict]:
+def chunk_page(html_content: str, chunk_size: int = DEFAULT_CHUNK_SIZE, overlap: int = DEFAULT_OVERLAP) -> List[Dict]:
     """
-    Public function called by ingest. Returns list of {'text': ...} chunks.
+    Boundary-aware chunker: splits cleaned text into chunks ~chunk_size chars,
+    preferring paragraph boundaries, then sentence boundaries as fallback.
+    Returns list of {"text": "..."} dicts.
     """
-    text = _strip_html(storage_value)
-    return chunk_text_by_chars(text, chunk_size=chunk_size, overlap=overlap)
+    text = _strip_html(html_content)
+    if not text:
+        return []
+
+    # split into paragraphs
+    paragraphs = [p.strip() for p in text.split("\n\n") if p.strip()]
+
+    chunks = []
+    cur = ""
+    for para in paragraphs:
+        if not cur:
+            # start new
+            if len(para) <= chunk_size:
+                cur = para
+            else:
+                # paragraph too big: split by sentences
+                for sent in _sentence_split(para):
+                    if not cur:
+                        cur = sent
+                    elif len(cur) + 1 + len(sent) <= chunk_size:
+                        cur = cur + " " + sent
+                    else:
+                        chunks.append(cur)
+                        cur = sent
+        else:
+            # try to append paragraph
+            if len(cur) + 2 + len(para) <= chunk_size:
+                cur = cur + "\n\n" + para
+            else:
+                # flush current chunk
+                chunks.append(cur)
+                # start new chunk with paragraph (or split paragraph)
+                if len(para) <= chunk_size:
+                    cur = para
+                else:
+                    cur = ""
+                    for sent in _sentence_split(para):
+                        if not cur:
+                            cur = sent
+                        elif len(cur) + 1 + len(sent) <= chunk_size:
+                            cur = cur + " " + sent
+                        else:
+                            chunks.append(cur)
+                            cur = sent
+
+    if cur:
+        chunks.append(cur)
+
+    # Add overlap: create overlapping chunks by merging end of previous with start of next when helpful
+    if overlap and len(chunks) > 1:
+        out_chunks = []
+        for i, ch in enumerate(chunks):
+            if i == 0:
+                out_chunks.append(ch)
+            else:
+                prev = out_chunks[-1]
+                # take last overlap chars from prev + current chunk start
+                prev_tail = prev[-overlap:] if overlap < len(prev) else prev
+                merged = (prev_tail + " " + ch).strip()
+                # keep both versions: prev (unchanged) and merged as new chunk only if merged length not excessive
+                if len(merged) <= chunk_size + overlap:
+                    out_chunks.append(ch)  # keep current as-is
+                else:
+                    out_chunks.append(ch)
+        chunks = out_chunks
+
+    # Return as list of dicts for storage.insert_chunk API
+    return [{"text": c} for c in chunks]

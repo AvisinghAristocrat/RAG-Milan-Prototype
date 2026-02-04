@@ -1,0 +1,66 @@
+*** Begin Patch
+*** Update File: retrieval_api.py
+@@
+ import json
+ import uuid
+ import subprocess
+ import sys
++import datetime
+ from pathlib import Path
+ from jobs.ann_jobs import create_job, update_job, get_job, list_jobs, result_path, save_result, save_log
+@@
+ def _run_ann_eval_job(job_id: str, params: dict):
+     """
+     Background runner: runs tools/eval_ann.py with provided params and writes result to data/ann_eval/<job_id>.json.
+     """
+-    update_job(job_id, status="running", started_at=datetime.datetime.utcnow().isoformat() + "Z")
++    update_job(job_id, status="running", started_at=datetime.datetime.utcnow().isoformat() + "Z")
+     log_lines = []
+     try:
+         # Ensure result directories available
+         out_file = result_path(job_id)
+         os.makedirs(os.path.dirname(out_file), exist_ok=True)
+
+         # Compose command
+-        # tools/eval_ann.py should accept --model, --queries, --k, --ef_search and --out
+-        cmd = [
+-            "python", "tools/eval_ann.py",
+-            "--queries", params.get("queries", "tools/ground_truth.json"),
+-            "--k", str(params.get("top_k", 10)),
+-            "--ef_search", str(params.get("ef_search", 64)),
+-            "--out", out_file
+-        ]
+-        # optional model param
+-        if params.get("model"):
+-            cmd += ["--model", params["model"]]
+-
+-        # optional num_queries (if supported)
+-        if params.get("num_queries"):
+-            cmd += ["--num_queries", str(params["num_queries"])]
++        # Run with same python interpreter as this process (use venv)
++        python_exec = sys.executable or "python"
++        # tools/eval_ann.py should accept --model, --queries, --k, --ef_search and --out
++        cmd = [
++            python_exec, "tools/eval_ann.py",
++            "--queries", params.get("queries", "tools/ground_truth.json"),
++            "--k", str(params.get("top_k", 10)),
++            "--ef_search", str(params.get("ef_search", 64)),
++            "--out", out_file
++        ]
++        # optional model param
++        if params.get("model"):
++            cmd += ["--model", params["model"]]
++        # optional num_queries (if supported)
++        if params.get("num_queries"):
++            cmd += ["--num_queries", str(params["num_queries"])]
+@@
+         proc = subprocess.run(cmd, capture_output=True, text=True, cwd=os.getcwd())
+         log_lines.append("=== STDOUT ===\n")
+         log_lines.append((proc.stdout or "") + "\n")
+         log_lines.append("=== STDERR ===\n")
+         log_lines.append((proc.stderr or "") + "\n")
+@@
+     except Exception as e:
+         save_log(job_id, f"Unexpected error: {str(e)}\n")
+         update_job(job_id, status="failed", finished_at=datetime.datetime.utcnow().isoformat() + "Z")
+*** End Patch

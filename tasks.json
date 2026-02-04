@@ -1,400 +1,2708 @@
 [
   {
-    "title": "Revamp: Tasks Manager & Governance",
-    "note": "Deliver a clean Tasks Manager UI (Completed + Next) and governance rules so we stay on sprint and capture side tasks.",
-    "status": "done",
-    "priority": "high",
+    "title": "Revamp: Archive & repo reorg",
+    "note": "Archival of large exports and reorganization of scattered files into revamp/archive + scripts/ + tools/tests. Backup manifest created (revamp/archive/20251113/backup_manifest.json).",
+    "done": true,
     "side": false,
     "subtasks": [
       {
-        "title": "Create Tasks Manager page (Completed + Next)",
-        "status": "done"
+        "title": "Prepare cleanup_candidates.json",
+        "done": true
       },
       {
-        "title": "Implement governance (side tasks, sprint policy)",
-        "status": "done"
+        "title": "Prepare files_to_archive.txt & move_plan",
+        "done": true
       },
       {
-        "title": "Make notes layman-readable and scrollable",
-        "status": "done"
+        "title": "Create revamp/archive/20251113/backup_manifest.json",
+        "done": true
+      },
+      {
+        "title": "Apply archive moves (git mv) and commit",
+        "done": true
+      },
+      {
+        "title": "PR revamp/organize-work -> revamp/plan (audit)",
+        "done": true
       }
     ],
-    "done": true
+    "modified_at": "2025-11-13"
   },
   {
-    "title": "Infrastructure & DB",
-    "note": "Postgres + pgvector + migrations + HNSW/IVF indexes",
-    "status": "done",
-    "priority": "high",
+    "title": "Infrastructure & DB verification",
+    "note": "Verify pgvector, vector dim, HNSW index and chunk_tsv, migrated embedding_vector typed column, and confirmed missing_vectors=0.",
+    "done": true,
     "side": false,
     "subtasks": [
       {
-        "title": "Build postgres-pgvector image and bring DB up",
-        "status": "done"
+        "title": "Verify pgvector present & version",
+        "done": true
       },
       {
-        "title": "CREATE EXTENSION vector and verify version",
-        "status": "done"
+        "title": "HNSW & ivfflat indexes created",
+        "done": true
       },
       {
-        "title": "Apply migrations (documents/chunks/ingest_jobs)",
-        "status": "done"
+        "title": "Confirm embedding_vector dimension == 384",
+        "done": true
       },
       {
-        "title": "Create HNSW and IVFFLAT indexes + GIN chunk_tsv",
-        "status": "done"
+        "title": "Backfill chunk_tsv & created_at columns",
+        "done": true
       }
-    ]
+    ],
+    "modified_at": "2025-11-13"
   },
   {
-    "title": "Storage & Schema Migration",
-    "note": "Ensure documents and chunks schema is correct and that embeddings are stored as pgvector.",
-    "status": "done",
-    "priority": "high",
+    "title": "Tasks Manager & UI polish",
+    "note": "Streamlit Tasks Manager: All / Completed / Next tabs, modified_at metadata, confirmation before auto-mark, CSV export and sprint banner.",
+    "done": true,
     "side": false,
     "subtasks": [
       {
-        "title": "documents table with unique(source,external_id)",
-        "status": "done"
+        "title": "Add modified_at on save",
+        "done": true
       },
       {
-        "title": "chunks table with embedding_vector VECTOR(384) and chunk_tsv",
-        "status": "done"
+        "title": "Split tabs: All / Completed / Next",
+        "done": true
       },
       {
-        "title": "Migrate json embeddings \u2192 embedding_vector and backfill",
-        "status": "done"
-      },
-      {
-        "title": "Ensure triggers and indexes are present",
-        "status": "done"
+        "title": "Add CSV export & confirm autosave",
+        "done": true
       }
-    ]
+    ],
+    "modified_at": "2025-11-13"
   },
   {
-    "title": "Connectors & Idempotent Ingest",
-    "note": "Confluence & GitHub connectors + idempotent ingest (content_hash upsert).",
-    "status": "done",
-    "priority": "high",
+    "title": "Repo hygiene & tooling",
+    "note": "Pre-commit, detect-secrets, prepare_archive.py, apply_archive.py, db_sanity.py. Addressed pre-commit issues (EOF, whitespace, secrets false positives).",
+    "done": true,
     "side": false,
     "subtasks": [
       {
-        "title": "Confluence connector + page_ids endpoint",
-        "status": "done"
+        "title": "Add pre-commit hooks & run",
+        "done": true
       },
       {
-        "title": "GitHub connector and repo fetch",
-        "status": "done"
+        "title": "Fix detect-secrets false positives",
+        "done": true
       },
       {
-        "title": "Idempotent ingest (content_hash + upsert)",
-        "status": "done"
+        "title": "Add tools/prepare_archive.py and tools/apply_archive.py",
+        "done": true
       },
       {
-        "title": "Streamlit ingest flows (select pages / whole space)",
-        "status": "done"
+        "title": "Add tools/db_sanity.py",
+        "done": true
       }
-    ]
+    ],
+    "modified_at": "2025-11-13"
   },
   {
-    "title": "Chunker & Canonicalization",
-    "note": "Boundary-aware chunking, canonical HTML stripper, target chunk size ~1000 chars and overlap ~150.",
-    "status": "todo_prototype",
-    "priority": "high",
+    "title": "ANN evaluation endpoint + UI (Priority A1)",
+    "note": "Server-side ANN evaluation endpoint and a Streamlit admin button to run ANN recall/latency evaluations and store results for analysis.",
+    "done": false,
     "side": false,
     "subtasks": [
       {
-        "title": "Paragraph/sentence-aware chunker (prototype)",
-        "status": "todo_prototype"
+        "title": "Define ann_jobs table or reuse ingest_jobs for job tracking",
+        "done": false
       },
       {
-        "title": "Canonical HTML stripping (preserve paragraphs)",
-        "status": "done"
+        "title": "Add POST /admin/ann_eval to retrieval_api (accepts params: model, num_queries, top_k, ef_search)",
+        "done": false
       },
       {
-        "title": "Expose chunking knobs (INGEST_CHARS, INGEST_OVERLAP)",
-        "status": "todo_prototype"
+        "title": "Run eval_ann.py server-side as background job (store results .json)",
+        "done": false
       },
       {
-        "title": "Tune average chunk size (~700\u20131200)",
-        "status": "done"
+        "title": "Streamlit UI button to trigger job & show progress + result link",
+        "done": false
+      },
+      {
+        "title": "Save evaluation result to tools/ or data/ for audit",
+        "done": false
       }
-    ]
+    ],
+    "modified_at": "2025-11-17"
   },
   {
-    "title": "Embeddings & Multi-model Adapter",
-    "note": "EmbedAdapter and routing for doc vs code models; re-embed tooling.",
-    "status": "todo_prototype",
-    "priority": "high",
+    "title": "Reranker integration (Priority A2)",
+    "note": "Add cross-encoder reranker as final scoring stage for union candidates. Provide config toggle and batch rerank.",
+    "done": false,
     "side": false,
     "subtasks": [
       {
-        "title": "EmbedAdapter (docs vs code routing)",
-        "status": "done"
+        "title": "Add reranker module (rerank_union.py integration)",
+        "done": false
       },
       {
-        "title": "Tooling to re-embed selected documents",
-        "status": "todo_prototype"
+        "title": "Add config to MCP to optionally call reranker",
+        "done": false
       },
       {
-        "title": "Support stronger multilingual model option",
-        "status": "todo_prototype"
+        "title": "Add reranker model caching & batch scoring",
+        "done": false
       },
       {
-        "title": "Embedding batch size knobs",
-        "status": "done"
+        "title": "Evaluate reranker recall improvements on ground truth",
+        "done": false
       }
-    ]
+    ],
+    "modified_at": "2025-11-17"
   },
   {
-    "title": "ANN + FTS Indexing and Param Tuning",
-    "note": "Typed vector column, ANN indexes & tuning knobs (m, ef_construction, ef_search).",
-    "status": "todo_prototype",
-    "priority": "high",
+    "title": "Title-chunk & targeted re-embed (Priority A3)",
+    "note": "Quick fix for low-recall docs (e.g., q47): create a short title/summary chunk for failing docs and re-embed with stronger model if necessary.",
+    "done": false,
     "side": false,
     "subtasks": [
       {
-        "title": "HNSW & IVFFLAT indexes present",
-        "status": "done"
+        "title": "Create title/summary chunk utility (fast)",
+        "done": false
       },
       {
-        "title": "Provide default params and UI knobs",
-        "status": "done"
+        "title": "Re-embed failing doc chunks with stronger model (intfloat/e5)",
+        "done": false
       },
       {
-        "title": "Run ef_search sweeps and tune",
-        "status": "todo_prototype"
-      },
-      {
-        "title": "Monitor index memory footprint",
-        "status": "todo_final"
+        "title": "Run hybrid eval q47 and report improvements",
+        "done": false
       }
-    ]
+    ],
+    "modified_at": "2025-11-17"
   },
   {
-    "title": "Fusion Retrieval & Reranker",
-    "note": "Union ANN and FTS candidates, re-rank by fused score; integrate cross-encoder reranker.",
-    "status": "todo_prototype",
-    "priority": "high",
+    "title": "Confluence subtree ingestion by URL (Priority B1)",
+    "note": "Accept a Confluence page URL in the UI, translate to page_id, collect descendants via CQL ancestor=PAGE_ID, preview and ingest selected pages.",
+    "done": false,
     "side": false,
     "subtasks": [
       {
-        "title": "Union ANN + FTS pipeline",
-        "status": "done"
+        "title": "Add URL->page_id parser in connectors/confluence.py",
+        "done": false
       },
       {
-        "title": "Alpha/Beta fusion weights and knobs",
-        "status": "todo_prototype"
+        "title": "Add new Streamlit UI flow: Collect Preview -> Select -> Ingest subtree",
+        "done": false
       },
       {
-        "title": "Prototype rerank_union.py (cross-encoder)",
-        "status": "done"
-      },
-      {
-        "title": "Integrate reranker in jobs and measure lift",
-        "status": "todo_prototype"
+        "title": "Idempotency check & erase_existing option",
+        "done": false
       }
-    ]
+    ],
+    "modified_at": "2025-11-17"
   },
   {
-    "title": "Evaluation & Tuning (ANN/Fusion)",
-    "note": "Scripts and processes for running ANN/fusion evaluations and selecting defaults.",
-    "status": "todo_prototype",
-    "priority": "high",
+    "title": "Async ingestion workers (Priority B2)",
+    "note": "Add background worker with Redis/RQ or Celery to handle large ingests asynchronously with job tracking, retries and status.",
+    "done": false,
     "side": false,
     "subtasks": [
       {
-        "title": "tools/eval_ann.py and ground truth",
-        "status": "done"
+        "title": "Add ingest_jobs table + job runner scaffolding",
+        "done": false
       },
       {
-        "title": "tools/eval_fusion.py and fusion analysis",
-        "status": "done"
+        "title": "Implement worker (RQ/Celery) + Streamlit job status",
+        "done": false
       },
       {
-        "title": "ef_search / candidate sweeps",
-        "status": "todo_prototype"
-      },
-      {
-        "title": "Pick prototype defaults",
-        "status": "todo_prototype"
+        "title": "Test large-space ingestion end-to-end",
+        "done": false
       }
-    ]
+    ],
+    "modified_at": "2025-11-17"
   },
   {
-    "title": "Failure fixes (example q47)",
-    "note": "Create title chunk, embed and re-evaluate failing queries; escalate to stronger model or rerank if needed.",
-    "status": "todo_prototype",
-    "priority": "high",
+    "title": "Connectors: Google Drive & Teams (Priority B3)",
+    "note": "Add connectors and ingestion flows when credentials/permissions are available.",
+    "done": false,
     "side": false,
     "subtasks": [
       {
-        "title": "Create title/summary chunk for doc 886",
-        "status": "todo_prototype"
+        "title": "Add Drive connector with oauth flow & preview",
+        "done": false
       },
       {
-        "title": "Embed title chunk and persist vector",
-        "status": "todo_prototype"
+        "title": "Add Teams connector & preview",
+        "done": false
       },
       {
-        "title": "Re-evaluate similarity and fusion for q47",
-        "status": "todo_prototype"
-      },
-      {
-        "title": "Re-embed with stronger model if needed",
-        "status": "todo_prototype"
+        "title": "Add connector test & status in UI",
+        "done": false
       }
-    ]
+    ],
+    "modified_at": "2025-11-17"
   },
   {
-    "title": "UI: Failure Inspector & Tasks integration",
-    "note": "Failure Inspector with per-chunk sims and actions; attach job outputs to tasks.",
-    "status": "done",
-    "priority": "high",
+    "title": "MCP enforcement, multi-model & logging (Priority C1)",
+    "note": "Finalise Model Context Protocol (MCP) rules, multi-model routing and detailed logging for auditability.",
+    "done": false,
     "side": false,
     "subtasks": [
       {
-        "title": "Add Failure Inspector (UI)",
-        "status": "done"
+        "title": "Finalize MCP rules & context builder",
+        "done": false
       },
       {
-        "title": "Per-chunk similarity & re-chunk/re-embed actions",
-        "status": "done"
+        "title": "EmbedAdapter: finalize model routing (docs vs code)",
+        "done": false
       },
       {
-        "title": "Hookup job-run outputs to tasks",
-        "status": "todo_prototype"
+        "title": "Audit logging to mcp_logs.jsonl",
+        "done": false
       }
-    ]
+    ],
+    "modified_at": "2025-11-17"
   },
   {
-    "title": "Job Runner & Job Monitor",
-    "note": "Admin endpoints and background runner to run scripts, capture logs and artifacts; Job Monitor UI.",
-    "status": "todo_prototype",
-    "priority": "high",
+    "title": "Near-duplicate detection & canonicalization (Priority C2)",
+    "note": "Prevent redundant ingestion of highly similar docs (SimHash/MinHash or high-sim embedding thresholds).",
+    "done": false,
     "side": false,
     "subtasks": [
       {
-        "title": "Add ingest_jobs table + admin endpoints",
-        "status": "todo_prototype"
+        "title": "Prototype near-duplicate detector (SimHash)",
+        "done": false
       },
       {
-        "title": "Background runner to execute scripts and write logs/artifacts",
-        "status": "todo_prototype"
+        "title": "Integrate into ingest flow to skip near-duplicates",
+        "done": false
       },
       {
-        "title": "Add Job Monitor UI page",
-        "status": "todo_prototype"
-      },
-      {
-        "title": "Wire tasks to create jobs and attach results",
-        "status": "todo_prototype"
+        "title": "Add UI to view grouped duplicates",
+        "done": false
       }
-    ]
+    ],
+    "modified_at": "2025-11-17"
   },
   {
-    "title": "Async ingestion workers (production)",
-    "note": "Implement workers (RQ/Celery), retries and per-document locking for production-grade ingestion.",
-    "status": "todo_final",
-    "priority": "high",
+    "title": "Monitoring, CI & production hardening (Priority C3)",
+    "note": "Add metrics (Prometheus), tests, CI jobs, and a production checklist (backup, pgbouncer, scaling notes).",
+    "done": false,
+    "side": false,
+    "subtasks": [
+      {
+        "title": "Add unit tests for core modules",
+        "done": false
+      },
+      {
+        "title": "Expose basic Prometheus metrics (ingest rate, queries/sec)",
+        "done": false
+      },
+      {
+        "title": "Add CI workflow and PR checks",
+        "done": false
+      }
+    ],
+    "modified_at": "2025-11-17"
+  },
+  {
+    "title": "Side: UI polish & task UX",
+    "note": "AgGrid UX polishing, modal JSON viewer, side-task tracking improvements, and better Task Manager visuals.",
+    "done": false,
     "side": true,
     "subtasks": [
       {
-        "title": "Design ingest_jobs schema & lifecycle",
-        "status": "todo_final"
+        "title": "AgGrid color coding and inline JSON viewer",
+        "done": false
       },
       {
-        "title": "Implement worker and retry/backoff",
-        "status": "todo_final"
+        "title": "Make completed tasks look like Next tasks (same UX)",
+        "done": false
       },
       {
-        "title": "Per-document locking",
-        "status": "todo_final"
+        "title": "Add small confirmation prompt before auto-marking (already implemented)",
+        "done": true
       }
-    ]
+    ],
+    "modified_at": "2025-11-17"
   },
   {
-    "title": "Operationalization & Security",
-    "note": "Secrets, monitoring, backups, RBAC and scaling for production readiness.",
-    "status": "todo_final",
-    "priority": "high",
-    "side": true,
-    "subtasks": [
-      {
-        "title": "Secrets management (Vault/AWS)",
-        "status": "todo_final"
-      },
-      {
-        "title": "Prometheus metrics & dashboards",
-        "status": "todo_final"
-      },
-      {
-        "title": "Backups & index rebuild strategy",
-        "status": "todo_final"
-      },
-      {
-        "title": "RBAC & audit logging",
-        "status": "todo_final"
-      }
-    ]
-  },
-  {
-    "title": "Repo housekeeping & cleanup",
-    "note": "Reorganize artifacts under /data & /logs, and produce a candidate list of scripts to archive/remove.",
-    "status": "todo_prototype",
-    "priority": "medium",
-    "side": true,
-    "subtasks": [
-      {
-        "title": "tools/organize_data.sh and folder layout",
-        "status": "todo_prototype"
-      },
-      {
-        "title": "Run repo scan to create cleanup_candidates.json",
-        "status": "todo_prototype"
-      },
-      {
-        "title": "Review and archive/delete redundant scripts",
-        "status": "todo_prototype"
-      }
-    ]
-  },
-  {
-    "title": "MCP & Audit Logging",
-    "note": "Model Context Protocol to assemble LLM context and log contexts for audit; keep audit logs in mcp_logs.jsonl.",
-    "status": "done",
-    "priority": "medium",
+    "title": "Verify: API Health",
+    "note": "Automated run",
+    "done": false,
     "side": false,
-    "subtasks": [
-      {
-        "title": "MCP builder & logging",
-        "status": "done"
-      },
-      {
-        "title": "Log contexts for audit",
-        "status": "done"
-      },
-      {
-        "title": "Plan enforcement and provenance fields",
-        "status": "todo_final"
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "status": "ok"
       }
-    ]
+    }
   },
   {
-    "title": "Feature enhancements (Must-have vs Good-to-have)",
-    "note": "High-level list categorized for future work. Must-have items are final, Good-to-have are optional for scale.",
-    "status": "todo_prototype",
-    "priority": "medium",
-    "side": true,
-    "subtasks": [
-      {
-        "title": "Must-have: Async workers, secrets, monitoring, backups, RBAC",
-        "status": "todo_final"
-      },
-      {
-        "title": "Good-to-have: near-duplicate detection, dedicated vector DB, advanced reranking",
-        "status": "todo_final"
+    "title": "Verify: Diagnostics",
+    "note": "Automated run",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "db": {
+          "ok": true
+        },
+        "extensions": [
+          {
+            "extname": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "extname": "vector",
+            "version": "0.8.1"
+          }
+        ],
+        "tables_present": [
+          "chunks",
+          "documents",
+          "ingest_jobs"
+        ],
+        "documents_count": 1134,
+        "chunks_count": 4402,
+        "avg_chunk_chars": 798.82,
+        "indexes": [
+          "chunks_pkey",
+          "chunks_chunk_tsv_idx",
+          "chunks_embedding_hnsw_idx",
+          "chunks_embedding_ivf_idx"
+        ],
+        "sample_documents": [
+          {
+            "id": 1134,
+            "title": "Warnings Resolution Guide",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534"
+          },
+          {
+            "id": 1133,
+            "title": "Milan Interactive Web Support",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3313041878"
+          },
+          {
+            "id": 1132,
+            "title": "New GDK into the MV system",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3308781679"
+          }
+        ],
+        "sample_chunks": [
+          {
+            "id": 4402,
+            "sample": "Severity: Medium Description: This warning occurs when a variable or property is declared as non-nullable, but you assign it a null literal or a possibly null value. Example warning: c# Fix 1: Make th"
+          },
+          {
+            "id": 4401,
+            "sample": "Severity: Medium Warning: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.(external_roslyn:CS8632) Fix: Enable nullable context explici"
+          },
+          {
+            "id": 4400,
+            "sample": "none Overview To eliminate recurring code warnings across Milan projects, establish a maintainable standard for code quality and ensure all developers know how to handle similar warnings in the future"
+          }
+        ]
       }
-    ]
+    }
+  },
+  {
+    "title": "Verify: Diagnostics",
+    "note": "Result stored",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "db": {
+          "ok": true
+        },
+        "extensions": [
+          {
+            "extname": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "extname": "vector",
+            "version": "0.8.1"
+          }
+        ],
+        "tables_present": [
+          "chunks",
+          "documents",
+          "ingest_jobs"
+        ],
+        "documents_count": 1134,
+        "chunks_count": 4402,
+        "avg_chunk_chars": 798.82,
+        "indexes": [
+          "chunks_pkey",
+          "chunks_chunk_tsv_idx",
+          "chunks_embedding_hnsw_idx",
+          "chunks_embedding_ivf_idx"
+        ],
+        "sample_documents": [
+          {
+            "id": 1134,
+            "title": "Warnings Resolution Guide",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534"
+          },
+          {
+            "id": 1133,
+            "title": "Milan Interactive Web Support",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3313041878"
+          },
+          {
+            "id": 1132,
+            "title": "New GDK into the MV system",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3308781679"
+          }
+        ],
+        "sample_chunks": [
+          {
+            "id": 4402,
+            "sample": "Severity: Medium Description: This warning occurs when a variable or property is declared as non-nullable, but you assign it a null literal or a possibly null value. Example warning: c# Fix 1: Make th"
+          },
+          {
+            "id": 4401,
+            "sample": "Severity: Medium Warning: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.(external_roslyn:CS8632) Fix: Enable nullable context explici"
+          },
+          {
+            "id": 4400,
+            "sample": "none Overview To eliminate recurring code warnings across Milan projects, establish a maintainable standard for code quality and ensure all developers know how to handle similar warnings in the future"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Verify: API Health",
+    "note": "Automated run",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "status": "ok"
+      }
+    }
+  },
+  {
+    "title": "Verify: Diagnostics",
+    "note": "Automated run",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "db": {
+          "ok": true
+        },
+        "extensions": [
+          {
+            "extname": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "extname": "vector",
+            "version": "0.8.1"
+          }
+        ],
+        "tables_present": [
+          "chunks",
+          "documents",
+          "ingest_jobs"
+        ],
+        "documents_count": 1134,
+        "chunks_count": 4402,
+        "avg_chunk_chars": 798.82,
+        "indexes": [
+          "chunks_pkey",
+          "chunks_chunk_tsv_idx",
+          "chunks_embedding_hnsw_idx",
+          "chunks_embedding_ivf_idx"
+        ],
+        "sample_documents": [
+          {
+            "id": 1134,
+            "title": "Warnings Resolution Guide",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534"
+          },
+          {
+            "id": 1133,
+            "title": "Milan Interactive Web Support",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3313041878"
+          },
+          {
+            "id": 1132,
+            "title": "New GDK into the MV system",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3308781679"
+          }
+        ],
+        "sample_chunks": [
+          {
+            "id": 4402,
+            "sample": "Severity: Medium Description: This warning occurs when a variable or property is declared as non-nullable, but you assign it a null literal or a possibly null value. Example warning: c# Fix 1: Make th"
+          },
+          {
+            "id": 4401,
+            "sample": "Severity: Medium Warning: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.(external_roslyn:CS8632) Fix: Enable nullable context explici"
+          },
+          {
+            "id": 4400,
+            "sample": "none Overview To eliminate recurring code warnings across Milan projects, establish a maintainable standard for code quality and ensure all developers know how to handle similar warnings in the future"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Verify: Diagnostics",
+    "note": "Result stored",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "db": {
+          "ok": true
+        },
+        "extensions": [
+          {
+            "extname": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "extname": "vector",
+            "version": "0.8.1"
+          }
+        ],
+        "tables_present": [
+          "chunks",
+          "documents",
+          "ingest_jobs"
+        ],
+        "documents_count": 1134,
+        "chunks_count": 4402,
+        "avg_chunk_chars": 798.82,
+        "indexes": [
+          "chunks_pkey",
+          "chunks_chunk_tsv_idx",
+          "chunks_embedding_hnsw_idx",
+          "chunks_embedding_ivf_idx"
+        ],
+        "sample_documents": [
+          {
+            "id": 1134,
+            "title": "Warnings Resolution Guide",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534"
+          },
+          {
+            "id": 1133,
+            "title": "Milan Interactive Web Support",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3313041878"
+          },
+          {
+            "id": 1132,
+            "title": "New GDK into the MV system",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3308781679"
+          }
+        ],
+        "sample_chunks": [
+          {
+            "id": 4402,
+            "sample": "Severity: Medium Description: This warning occurs when a variable or property is declared as non-nullable, but you assign it a null literal or a possibly null value. Example warning: c# Fix 1: Make th"
+          },
+          {
+            "id": 4401,
+            "sample": "Severity: Medium Warning: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.(external_roslyn:CS8632) Fix: Enable nullable context explici"
+          },
+          {
+            "id": 4400,
+            "sample": "none Overview To eliminate recurring code warnings across Milan projects, establish a maintainable standard for code quality and ensure all developers know how to handle similar warnings in the future"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Verify: Diagnostics",
+    "note": "Result stored",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "db": {
+          "ok": true
+        },
+        "extensions": [
+          {
+            "extname": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "extname": "vector",
+            "version": "0.8.1"
+          }
+        ],
+        "tables_present": [
+          "chunks",
+          "documents",
+          "ingest_jobs"
+        ],
+        "documents_count": 1134,
+        "chunks_count": 4402,
+        "avg_chunk_chars": 798.82,
+        "indexes": [
+          "chunks_pkey",
+          "chunks_chunk_tsv_idx",
+          "chunks_embedding_hnsw_idx",
+          "chunks_embedding_ivf_idx"
+        ],
+        "sample_documents": [
+          {
+            "id": 1134,
+            "title": "Warnings Resolution Guide",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534"
+          },
+          {
+            "id": 1133,
+            "title": "Milan Interactive Web Support",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3313041878"
+          },
+          {
+            "id": 1132,
+            "title": "New GDK into the MV system",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3308781679"
+          }
+        ],
+        "sample_chunks": [
+          {
+            "id": 4402,
+            "sample": "Severity: Medium Description: This warning occurs when a variable or property is declared as non-nullable, but you assign it a null literal or a possibly null value. Example warning: c# Fix 1: Make th"
+          },
+          {
+            "id": 4401,
+            "sample": "Severity: Medium Warning: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.(external_roslyn:CS8632) Fix: Enable nullable context explici"
+          },
+          {
+            "id": 4400,
+            "sample": "none Overview To eliminate recurring code warnings across Milan projects, establish a maintainable standard for code quality and ensure all developers know how to handle similar warnings in the future"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Verify: Diagnostics",
+    "note": "Result stored",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "db": {
+          "ok": true
+        },
+        "extensions": [
+          {
+            "extname": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "extname": "vector",
+            "version": "0.8.1"
+          }
+        ],
+        "tables_present": [
+          "chunks",
+          "documents",
+          "ingest_jobs"
+        ],
+        "documents_count": 1134,
+        "chunks_count": 4402,
+        "avg_chunk_chars": 798.82,
+        "indexes": [
+          "chunks_pkey",
+          "chunks_chunk_tsv_idx",
+          "chunks_embedding_hnsw_idx",
+          "chunks_embedding_ivf_idx"
+        ],
+        "sample_documents": [
+          {
+            "id": 1134,
+            "title": "Warnings Resolution Guide",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534"
+          },
+          {
+            "id": 1133,
+            "title": "Milan Interactive Web Support",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3313041878"
+          },
+          {
+            "id": 1132,
+            "title": "New GDK into the MV system",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3308781679"
+          }
+        ],
+        "sample_chunks": [
+          {
+            "id": 4402,
+            "sample": "Severity: Medium Description: This warning occurs when a variable or property is declared as non-nullable, but you assign it a null literal or a possibly null value. Example warning: c# Fix 1: Make th"
+          },
+          {
+            "id": 4401,
+            "sample": "Severity: Medium Warning: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.(external_roslyn:CS8632) Fix: Enable nullable context explici"
+          },
+          {
+            "id": 4400,
+            "sample": "none Overview To eliminate recurring code warnings across Milan projects, establish a maintainable standard for code quality and ensure all developers know how to handle similar warnings in the future"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Verify: Diagnostics",
+    "note": "Result stored",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "db": {
+          "ok": true
+        },
+        "extensions": [
+          {
+            "extname": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "extname": "vector",
+            "version": "0.8.1"
+          }
+        ],
+        "tables_present": [
+          "chunks",
+          "documents",
+          "ingest_jobs"
+        ],
+        "documents_count": 1134,
+        "chunks_count": 4402,
+        "avg_chunk_chars": 798.82,
+        "indexes": [
+          "chunks_pkey",
+          "chunks_chunk_tsv_idx",
+          "chunks_embedding_hnsw_idx",
+          "chunks_embedding_ivf_idx"
+        ],
+        "sample_documents": [
+          {
+            "id": 1134,
+            "title": "Warnings Resolution Guide",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534"
+          },
+          {
+            "id": 1133,
+            "title": "Milan Interactive Web Support",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3313041878"
+          },
+          {
+            "id": 1132,
+            "title": "New GDK into the MV system",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3308781679"
+          }
+        ],
+        "sample_chunks": [
+          {
+            "id": 4402,
+            "sample": "Severity: Medium Description: This warning occurs when a variable or property is declared as non-nullable, but you assign it a null literal or a possibly null value. Example warning: c# Fix 1: Make th"
+          },
+          {
+            "id": 4401,
+            "sample": "Severity: Medium Warning: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.(external_roslyn:CS8632) Fix: Enable nullable context explici"
+          },
+          {
+            "id": 4400,
+            "sample": "none Overview To eliminate recurring code warnings across Milan projects, establish a maintainable standard for code quality and ensure all developers know how to handle similar warnings in the future"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Verify: Diagnostics",
+    "note": "Result stored",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "db": {
+          "ok": true
+        },
+        "extensions": [
+          {
+            "extname": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "extname": "vector",
+            "version": "0.8.1"
+          }
+        ],
+        "tables_present": [
+          "chunks",
+          "documents",
+          "ingest_jobs"
+        ],
+        "documents_count": 1134,
+        "chunks_count": 4412,
+        "avg_chunk_chars": 798.77,
+        "indexes": [
+          "chunks_pkey",
+          "chunks_chunk_tsv_idx",
+          "chunks_embedding_hnsw_idx",
+          "chunks_embedding_ivf_idx"
+        ],
+        "sample_documents": [
+          {
+            "id": 1134,
+            "title": "Warnings Resolution Guide",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534"
+          },
+          {
+            "id": 1133,
+            "title": "Milan Interactive Web Support",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3313041878"
+          },
+          {
+            "id": 1132,
+            "title": "New GDK into the MV system",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3308781679"
+          }
+        ],
+        "sample_chunks": [
+          {
+            "id": 4414,
+            "sample": "Severity: Medium Description: This warning occurs when a variable or property is declared as non-nullable, but you assign it a null literal or a possibly null value. Example warning: c# Fix 1: Make th"
+          },
+          {
+            "id": 4413,
+            "sample": "Severity: Medium Warning: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.(external_roslyn:CS8632) Fix: Enable nullable context explici"
+          },
+          {
+            "id": 4412,
+            "sample": "none Overview To eliminate recurring code warnings across Milan projects, establish a maintainable standard for code quality and ensure all developers know how to handle similar warnings in the future"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Verify: API Health",
+    "note": "Automated run",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "status": "ok"
+      }
+    }
+  },
+  {
+    "title": "Verify: Diagnostics",
+    "note": "Automated run",
+    "done": false,
+    "side": false,
+    "result": {
+      "ok": true,
+      "status_code": 200,
+      "json": {
+        "db": {
+          "ok": true
+        },
+        "extensions": [
+          {
+            "extname": "plpgsql",
+            "version": "1.0"
+          },
+          {
+            "extname": "vector",
+            "version": "0.8.1"
+          }
+        ],
+        "tables_present": [
+          "chunks",
+          "documents",
+          "ingest_jobs"
+        ],
+        "documents_count": 1134,
+        "chunks_count": 4412,
+        "avg_chunk_chars": 798.77,
+        "indexes": [
+          "chunks_pkey",
+          "chunks_chunk_tsv_idx",
+          "chunks_embedding_hnsw_idx",
+          "chunks_embedding_ivf_idx"
+        ],
+        "sample_documents": [
+          {
+            "id": 1134,
+            "title": "Warnings Resolution Guide",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534"
+          },
+          {
+            "id": 1133,
+            "title": "Milan Interactive Web Support",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3313041878"
+          },
+          {
+            "id": 1132,
+            "title": "New GDK into the MV system",
+            "url": "https://aristocrat.atlassian.net/wiki/pages/3308781679"
+          }
+        ],
+        "sample_chunks": [
+          {
+            "id": 4414,
+            "sample": "Severity: Medium Description: This warning occurs when a variable or property is declared as non-nullable, but you assign it a null literal or a possibly null value. Example warning: c# Fix 1: Make th"
+          },
+          {
+            "id": 4413,
+            "sample": "Severity: Medium Warning: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.(external_roslyn:CS8632) Fix: Enable nullable context explici"
+          },
+          {
+            "id": 4412,
+            "sample": "none Overview To eliminate recurring code warnings across Milan projects, establish a maintainable standard for code quality and ensure all developers know how to handle similar warnings in the future"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "title": "Ingest space 2853110200",
+    "note": "Whole/limited ingest",
+    "done": false,
+    "side": false,
+    "result": {
+      "status": "ingested",
+      "documents": 0,
+      "chunks": 0
+    }
+  },
+  {
+    "title": "Ingest space 2853110200",
+    "note": "Whole/limited ingest",
+    "done": false,
+    "side": false,
+    "result": {
+      "status": "ingested",
+      "documents": 0,
+      "chunks": 0
+    }
+  },
+  {
+    "title": "Ingest space 2853110200",
+    "note": "Whole/limited ingest",
+    "done": false,
+    "side": false,
+    "result": {
+      "status": "ingested",
+      "documents": 0,
+      "chunks": 0
+    }
+  },
+  {
+    "title": "Ingest space 2853110200",
+    "note": "Whole/limited ingest",
+    "done": false,
+    "side": false,
+    "result": {
+      "status": "ingested",
+      "documents": 1,
+      "chunks": 0
+    }
+  },
+  {
+    "title": "Ingest space 2853110200",
+    "note": "Whole/limited ingest",
+    "done": false,
+    "side": false,
+    "result": {
+      "status": "ingested",
+      "documents_total": 1,
+      "documents_inserted": 0,
+      "documents_skipped": 1,
+      "documents_failed": 0,
+      "chunks_inserted": 0,
+      "skipped_reasons": {
+        "no_chunks": 1
+      },
+      "details": [
+        {
+          "external_id": "2853110200",
+          "document_id": 224,
+          "title": "Milan Learning Pathways",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110200",
+          "status": "skipped",
+          "reason": "no_chunks",
+          "chunks": 0
+        }
+      ]
+    }
+  },
+  {
+    "title": "Ingest space 2853110200",
+    "note": "Whole/limited ingest",
+    "done": false,
+    "side": false,
+    "result": {
+      "status": "ingested",
+      "documents_total": 26,
+      "documents_inserted": 25,
+      "documents_skipped": 1,
+      "documents_failed": 0,
+      "chunks_inserted": 194,
+      "skipped_reasons": {
+        "no_chunks": 1
+      },
+      "details": [
+        {
+          "external_id": "2853110200",
+          "document_id": 224,
+          "title": "Milan Learning Pathways",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110200",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 1
+        },
+        {
+          "external_id": "3413737475",
+          "document_id": 1135,
+          "title": "FE Brotli Web Server VM SetUp",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3413737475",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "3314155534",
+          "document_id": 1134,
+          "title": "Warnings Resolution Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "3226632205",
+          "document_id": 1122,
+          "title": "Milan FrontEnd AGENTS Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3226632205",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 12
+        },
+        {
+          "external_id": "2937421848",
+          "document_id": 1080,
+          "title": "DevExMachina",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2937421848",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 35
+        },
+        {
+          "external_id": "2934112439",
+          "document_id": 1077,
+          "title": "Create new repo",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2934112439",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2880439246",
+          "document_id": 1045,
+          "title": "[DevOps] TestHarness - Review security",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2880439246",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 4
+        },
+        {
+          "external_id": "2853114470",
+          "document_id": 853,
+          "title": "Cloud-based Jackpot Engine",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114470",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2853114075",
+          "document_id": 848,
+          "title": "Initial On Boarding Sessions",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114075",
+          "status": "skipped",
+          "reason": "no_chunks",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113976",
+          "document_id": 847,
+          "title": "Milan Logging (StackDriver in GCP)",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113976",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2853113335",
+          "document_id": 836,
+          "title": "Milan BackEnd Development",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113335",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 7
+        },
+        {
+          "external_id": "2853113088",
+          "document_id": 829,
+          "title": "Clearing Wildcat JFrog UPM Cache",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113088",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 1
+        },
+        {
+          "external_id": "2853112923",
+          "document_id": 816,
+          "title": "Recovery/Join Response",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112923",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2853112813",
+          "document_id": 807,
+          "title": "Text Editors and Debugging",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112813",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2853112733",
+          "document_id": 803,
+          "title": "Useful Slack Channels",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112733",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 4
+        },
+        {
+          "external_id": "2853112663",
+          "document_id": 798,
+          "title": "Integration tests configuration file",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112663",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 2
+        },
+        {
+          "external_id": "2853112653",
+          "document_id": 797,
+          "title": "Debugging an Ephemeral Shared Debug Environment using Visual Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112653",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "2853112629",
+          "document_id": 796,
+          "title": "Partner Onboarding Content",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112629",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "2853112627",
+          "document_id": 795,
+          "title": "Devops - Get Started",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112627",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "2853112501",
+          "document_id": 787,
+          "title": "Patch Release Process",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112501",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 11
+        },
+        {
+          "external_id": "2853112494",
+          "document_id": 786,
+          "title": "Adding New Features",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112494",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 36
+        },
+        {
+          "external_id": "2853112492",
+          "document_id": 785,
+          "title": "Major Release Checklist",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112492",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 5
+        },
+        {
+          "external_id": "2853112452",
+          "document_id": 778,
+          "title": "Local GDK Docker Image",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112452",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "2853112335",
+          "document_id": 766,
+          "title": "Milan(Frontend/Unity) Coding Standards",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112335",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 26
+        },
+        {
+          "external_id": "2853112285",
+          "document_id": 761,
+          "title": "DevOps Actions Library",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112285",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 1
+        },
+        {
+          "external_id": "2853112279",
+          "document_id": 759,
+          "title": "Overview / Onboarding",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112279",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 1
+        }
+      ]
+    }
+  },
+  {
+    "title": "Ingest space 2853110200",
+    "note": "Whole/limited ingest",
+    "done": false,
+    "side": false,
+    "result": {
+      "status": "ingested",
+      "documents_total": 26,
+      "documents_inserted": 25,
+      "documents_skipped": 1,
+      "documents_failed": 0,
+      "chunks_inserted": 202,
+      "skipped_reasons": {
+        "no_chunks": 1
+      },
+      "details": [
+        {
+          "external_id": "2853110200",
+          "document_id": 224,
+          "title": "Milan Learning Pathways",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110200",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 1
+        },
+        {
+          "external_id": "3420028939",
+          "document_id": 1136,
+          "title": "Release Cycle Workflow",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3420028939",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 9
+        },
+        {
+          "external_id": "3413737475",
+          "document_id": 1135,
+          "title": "FE Brotli Web Server VM SetUp",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3413737475",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "3314155534",
+          "document_id": 1134,
+          "title": "Warnings Resolution Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "3226632205",
+          "document_id": 1122,
+          "title": "Milan FrontEnd AGENTS Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3226632205",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 12
+        },
+        {
+          "external_id": "2937421848",
+          "document_id": 1080,
+          "title": "DevExMachina",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2937421848",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 35
+        },
+        {
+          "external_id": "2934112439",
+          "document_id": 1077,
+          "title": "Create new repo",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2934112439",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2880439246",
+          "document_id": 1045,
+          "title": "[DevOps] TestHarness - Review security",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2880439246",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 4
+        },
+        {
+          "external_id": "2853114470",
+          "document_id": 853,
+          "title": "Cloud-based Jackpot Engine",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114470",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2853114075",
+          "document_id": 848,
+          "title": "Initial On Boarding Sessions",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114075",
+          "status": "skipped",
+          "reason": "no_chunks",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113976",
+          "document_id": 847,
+          "title": "Milan Logging (StackDriver in GCP)",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113976",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2853113335",
+          "document_id": 836,
+          "title": "Milan BackEnd Development",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113335",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 7
+        },
+        {
+          "external_id": "2853113088",
+          "document_id": 829,
+          "title": "Clearing Wildcat JFrog UPM Cache",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113088",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 1
+        },
+        {
+          "external_id": "2853112923",
+          "document_id": 816,
+          "title": "Recovery/Join Response",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112923",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2853112813",
+          "document_id": 807,
+          "title": "Text Editors and Debugging",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112813",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 3
+        },
+        {
+          "external_id": "2853112733",
+          "document_id": 803,
+          "title": "Useful Slack Channels",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112733",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 4
+        },
+        {
+          "external_id": "2853112663",
+          "document_id": 798,
+          "title": "Integration tests configuration file",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112663",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 2
+        },
+        {
+          "external_id": "2853112653",
+          "document_id": 797,
+          "title": "Debugging an Ephemeral Shared Debug Environment using Visual Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112653",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "2853112629",
+          "document_id": 796,
+          "title": "Partner Onboarding Content",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112629",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "2853112627",
+          "document_id": 795,
+          "title": "Devops - Get Started",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112627",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "2853112501",
+          "document_id": 787,
+          "title": "Patch Release Process",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112501",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 11
+        },
+        {
+          "external_id": "2853112494",
+          "document_id": 786,
+          "title": "Adding New Features",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112494",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 36
+        },
+        {
+          "external_id": "2853112492",
+          "document_id": 785,
+          "title": "Major Release Checklist",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112492",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 5
+        },
+        {
+          "external_id": "2853112452",
+          "document_id": 778,
+          "title": "Local GDK Docker Image",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112452",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "2853112335",
+          "document_id": 766,
+          "title": "Milan(Frontend/Unity) Coding Standards",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112335",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 26
+        },
+        {
+          "external_id": "2853112285",
+          "document_id": 761,
+          "title": "DevOps Actions Library",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112285",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 1
+        }
+      ]
+    }
+  },
+  {
+    "title": "Ingested 26 pages",
+    "note": "Selected pages",
+    "done": false,
+    "side": false,
+    "result": {
+      "status": "ingested",
+      "documents_total": 61,
+      "documents_inserted": 19,
+      "documents_skipped": 42,
+      "documents_failed": 0,
+      "chunks_inserted": 275,
+      "skipped_reasons": {
+        "unchanged": 41,
+        "no_chunks": 1
+      },
+      "details": [
+        {
+          "external_id": "2853110200",
+          "document_id": 224,
+          "title": "Milan Learning Pathways",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110200",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3471868004",
+          "document_id": 1137,
+          "title": "DEPRECATED DEVOPS PAGES",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3471868004",
+          "status": "skipped",
+          "reason": "no_chunks",
+          "chunks": 0
+        },
+        {
+          "external_id": "3491921921",
+          "document_id": 1138,
+          "title": "Testharness - Troubleshooting",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3491921921",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 2
+        },
+        {
+          "external_id": "3489628161",
+          "document_id": 1139,
+          "title": "Testharness - Build And Deploy Workflow",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3489628161",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 2
+        },
+        {
+          "external_id": "3484319745",
+          "document_id": 1140,
+          "title": "MV - Build And Deploy - Update a MV Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3484319745",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 5
+        },
+        {
+          "external_id": "3474882561",
+          "document_id": 1141,
+          "title": "MV - Troubleshooting",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3474882561",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 5
+        },
+        {
+          "external_id": "3474423817",
+          "document_id": 1142,
+          "title": "MV - Create a New Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3474423817",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 16
+        },
+        {
+          "external_id": "3468656641",
+          "document_id": 1143,
+          "title": "GCP Infrastructure Onboarding Session",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3468656641",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 1
+        },
+        {
+          "external_id": "3443195905",
+          "document_id": 1144,
+          "title": "New repository - CI/CD SetUp",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3443195905",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 15
+        },
+        {
+          "external_id": "3420028939",
+          "document_id": 1136,
+          "title": "Release Cycle Workflow",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3420028939",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3413737475",
+          "document_id": 1135,
+          "title": "FE Brotli Web Server",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3413737475",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 14
+        },
+        {
+          "external_id": "3314155534",
+          "document_id": 1134,
+          "title": "Warnings Resolution Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "3226632205",
+          "document_id": 1122,
+          "title": "Milan FrontEnd AGENTS Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3226632205",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2937421848",
+          "document_id": 1080,
+          "title": "DevExMachina",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2937421848",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2934112439",
+          "document_id": 1077,
+          "title": "Create new repo",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2934112439",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2880439246",
+          "document_id": 1045,
+          "title": "TestHarness - Review security",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2880439246",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853114470",
+          "document_id": 853,
+          "title": "Cloud-based Jackpot Engine",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114470",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853114075",
+          "document_id": 848,
+          "title": "Initial On Boarding Sessions",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114075",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113976",
+          "document_id": 847,
+          "title": "Milan Logging (StackDriver in GCP)",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113976",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113335",
+          "document_id": 836,
+          "title": "Milan BackEnd Development",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113335",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113088",
+          "document_id": 829,
+          "title": "Clearing Wildcat JFrog UPM Cache",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113088",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112923",
+          "document_id": 816,
+          "title": "Recovery/Join Response",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112923",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112813",
+          "document_id": 807,
+          "title": "Text Editors and Debugging",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112813",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112733",
+          "document_id": 803,
+          "title": "Useful Slack Channels",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112733",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112663",
+          "document_id": 798,
+          "title": "Integration tests configuration file",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112663",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112653",
+          "document_id": 797,
+          "title": "Debugging an Ephemeral Shared Debug Environment using Visual Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112653",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3471868004",
+          "document_id": 1137,
+          "title": "DEPRECATED DEVOPS PAGES",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3471868004",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853111666",
+          "document_id": 680,
+          "title": "Git-submodule research",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853111666",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 9
+        },
+        {
+          "external_id": "2853111042",
+          "document_id": 534,
+          "title": "Script for Merging/Integrating Two Branches",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853111042",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 5
+        },
+        {
+          "external_id": "2853110322",
+          "document_id": 279,
+          "title": "Milan Logging Tester",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110322",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 128
+        },
+        {
+          "external_id": "2853110253",
+          "document_id": 248,
+          "title": "[Disabled] OpenVPN Workstation Client Installation and Configuration",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110253",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 2
+        },
+        {
+          "external_id": "2853110199",
+          "document_id": 223,
+          "title": "Aristocrat DNS Modifications",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110199",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 10
+        },
+        {
+          "external_id": "2853110176",
+          "document_id": 211,
+          "title": "Disaster Recovery Planning and Scenarios",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110176",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 19
+        },
+        {
+          "external_id": "2853110110",
+          "document_id": 183,
+          "title": "Jenkins automatic plugins CI pipeline creation",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110110",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 12
+        },
+        {
+          "external_id": "2853109961",
+          "document_id": 106,
+          "title": "Creating a local GDK environment for debugging [Deprecated]",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853109961",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "2853109810",
+          "document_id": 19,
+          "title": "Performance test data storage",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853109810",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 6
+        },
+        {
+          "external_id": "3491921921",
+          "document_id": 1138,
+          "title": "Testharness - Troubleshooting",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3491921921",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3489628161",
+          "document_id": 1139,
+          "title": "Testharness - Build And Deploy Workflow",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3489628161",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3484319745",
+          "document_id": 1140,
+          "title": "MV - Build And Deploy - Update a MV Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3484319745",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3474882561",
+          "document_id": 1141,
+          "title": "MV - Troubleshooting",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3474882561",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3474423817",
+          "document_id": 1142,
+          "title": "MV - Create a New Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3474423817",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3468656641",
+          "document_id": 1143,
+          "title": "GCP Infrastructure Onboarding Session",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3468656641",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3443195905",
+          "document_id": 1144,
+          "title": "New repository - CI/CD SetUp",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3443195905",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3420028939",
+          "document_id": 1136,
+          "title": "Release Cycle Workflow",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3420028939",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3413737475",
+          "document_id": 1135,
+          "title": "FE Brotli Web Server",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3413737475",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3314155534",
+          "document_id": 1134,
+          "title": "Warnings Resolution Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3226632205",
+          "document_id": 1122,
+          "title": "Milan FrontEnd AGENTS Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3226632205",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2937421848",
+          "document_id": 1080,
+          "title": "DevExMachina",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2937421848",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2934112439",
+          "document_id": 1077,
+          "title": "Create new repo",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2934112439",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2880439246",
+          "document_id": 1045,
+          "title": "TestHarness - Review security",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2880439246",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853114470",
+          "document_id": 853,
+          "title": "Cloud-based Jackpot Engine",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114470",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853114075",
+          "document_id": 848,
+          "title": "Initial On Boarding Sessions",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114075",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113976",
+          "document_id": 847,
+          "title": "Milan Logging (StackDriver in GCP)",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113976",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113335",
+          "document_id": 836,
+          "title": "Milan BackEnd Development",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113335",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113088",
+          "document_id": 829,
+          "title": "Clearing Wildcat JFrog UPM Cache",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113088",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112923",
+          "document_id": 816,
+          "title": "Recovery/Join Response",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112923",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112813",
+          "document_id": 807,
+          "title": "Text Editors and Debugging",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112813",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112733",
+          "document_id": 803,
+          "title": "Useful Slack Channels",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112733",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112663",
+          "document_id": 798,
+          "title": "Integration tests configuration file",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112663",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853110988",
+          "document_id": 517,
+          "title": "Kubernetes based Jackpot Engine deployment instructions [Deprecated]",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110988",
+          "status": "inserted",
+          "reason": null,
+          "chunks": 12
+        },
+        {
+          "external_id": "2853112653",
+          "document_id": 797,
+          "title": "Debugging an Ephemeral Shared Debug Environment using Visual Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112653",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        }
+      ]
+    }
+  },
+  {
+    "title": "Ingested 26 pages",
+    "note": "Selected pages",
+    "done": false,
+    "side": false,
+    "result": {
+      "status": "ingested",
+      "documents_total": 61,
+      "documents_inserted": 0,
+      "documents_skipped": 61,
+      "documents_failed": 0,
+      "chunks_inserted": 0,
+      "skipped_reasons": {
+        "unchanged": 61
+      },
+      "details": [
+        {
+          "external_id": "2853110200",
+          "document_id": 224,
+          "title": "Milan Learning Pathways",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110200",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3471868004",
+          "document_id": 1137,
+          "title": "DEPRECATED DEVOPS PAGES",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3471868004",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3491921921",
+          "document_id": 1138,
+          "title": "Testharness - Troubleshooting",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3491921921",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3489628161",
+          "document_id": 1139,
+          "title": "Testharness - Build And Deploy Workflow",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3489628161",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3484319745",
+          "document_id": 1140,
+          "title": "MV - Build And Deploy - Update a MV Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3484319745",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3474882561",
+          "document_id": 1141,
+          "title": "MV - Troubleshooting",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3474882561",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3474423817",
+          "document_id": 1142,
+          "title": "MV - Create a New Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3474423817",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3468656641",
+          "document_id": 1143,
+          "title": "GCP Infrastructure Onboarding Session",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3468656641",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3443195905",
+          "document_id": 1144,
+          "title": "New repository - CI/CD SetUp",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3443195905",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3420028939",
+          "document_id": 1136,
+          "title": "Release Cycle Workflow",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3420028939",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3413737475",
+          "document_id": 1135,
+          "title": "FE Brotli Web Server",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3413737475",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3314155534",
+          "document_id": 1134,
+          "title": "Warnings Resolution Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3226632205",
+          "document_id": 1122,
+          "title": "Milan FrontEnd AGENTS Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3226632205",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2937421848",
+          "document_id": 1080,
+          "title": "DevExMachina",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2937421848",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2934112439",
+          "document_id": 1077,
+          "title": "Create new repo",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2934112439",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2880439246",
+          "document_id": 1045,
+          "title": "TestHarness - Review security",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2880439246",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853114470",
+          "document_id": 853,
+          "title": "Cloud-based Jackpot Engine",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114470",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853114075",
+          "document_id": 848,
+          "title": "Initial On Boarding Sessions",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114075",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113976",
+          "document_id": 847,
+          "title": "Milan Logging (StackDriver in GCP)",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113976",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113335",
+          "document_id": 836,
+          "title": "Milan BackEnd Development",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113335",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113088",
+          "document_id": 829,
+          "title": "Clearing Wildcat JFrog UPM Cache",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113088",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112923",
+          "document_id": 816,
+          "title": "Recovery/Join Response",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112923",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112813",
+          "document_id": 807,
+          "title": "Text Editors and Debugging",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112813",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112733",
+          "document_id": 803,
+          "title": "Useful Slack Channels",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112733",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112663",
+          "document_id": 798,
+          "title": "Integration tests configuration file",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112663",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112653",
+          "document_id": 797,
+          "title": "Debugging an Ephemeral Shared Debug Environment using Visual Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112653",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3471868004",
+          "document_id": 1137,
+          "title": "DEPRECATED DEVOPS PAGES",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3471868004",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853111666",
+          "document_id": 680,
+          "title": "Git-submodule research",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853111666",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853111042",
+          "document_id": 534,
+          "title": "Script for Merging/Integrating Two Branches",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853111042",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853110322",
+          "document_id": 279,
+          "title": "Milan Logging Tester",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110322",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853110253",
+          "document_id": 248,
+          "title": "[Disabled] OpenVPN Workstation Client Installation and Configuration",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110253",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853110199",
+          "document_id": 223,
+          "title": "Aristocrat DNS Modifications",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110199",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853110176",
+          "document_id": 211,
+          "title": "Disaster Recovery Planning and Scenarios",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110176",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853110110",
+          "document_id": 183,
+          "title": "Jenkins automatic plugins CI pipeline creation",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110110",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853109961",
+          "document_id": 106,
+          "title": "Creating a local GDK environment for debugging [Deprecated]",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853109961",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853109810",
+          "document_id": 19,
+          "title": "Performance test data storage",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853109810",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3491921921",
+          "document_id": 1138,
+          "title": "Testharness - Troubleshooting",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3491921921",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3489628161",
+          "document_id": 1139,
+          "title": "Testharness - Build And Deploy Workflow",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3489628161",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3484319745",
+          "document_id": 1140,
+          "title": "MV - Build And Deploy - Update a MV Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3484319745",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3474882561",
+          "document_id": 1141,
+          "title": "MV - Troubleshooting",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3474882561",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3474423817",
+          "document_id": 1142,
+          "title": "MV - Create a New Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3474423817",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3468656641",
+          "document_id": 1143,
+          "title": "GCP Infrastructure Onboarding Session",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3468656641",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3443195905",
+          "document_id": 1144,
+          "title": "New repository - CI/CD SetUp",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3443195905",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3420028939",
+          "document_id": 1136,
+          "title": "Release Cycle Workflow",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3420028939",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3413737475",
+          "document_id": 1135,
+          "title": "FE Brotli Web Server",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3413737475",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3314155534",
+          "document_id": 1134,
+          "title": "Warnings Resolution Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3314155534",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "3226632205",
+          "document_id": 1122,
+          "title": "Milan FrontEnd AGENTS Guide",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/3226632205",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2937421848",
+          "document_id": 1080,
+          "title": "DevExMachina",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2937421848",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2934112439",
+          "document_id": 1077,
+          "title": "Create new repo",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2934112439",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2880439246",
+          "document_id": 1045,
+          "title": "TestHarness - Review security",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2880439246",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853114470",
+          "document_id": 853,
+          "title": "Cloud-based Jackpot Engine",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114470",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853114075",
+          "document_id": 848,
+          "title": "Initial On Boarding Sessions",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853114075",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113976",
+          "document_id": 847,
+          "title": "Milan Logging (StackDriver in GCP)",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113976",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113335",
+          "document_id": 836,
+          "title": "Milan BackEnd Development",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113335",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853113088",
+          "document_id": 829,
+          "title": "Clearing Wildcat JFrog UPM Cache",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853113088",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112923",
+          "document_id": 816,
+          "title": "Recovery/Join Response",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112923",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112813",
+          "document_id": 807,
+          "title": "Text Editors and Debugging",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112813",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112733",
+          "document_id": 803,
+          "title": "Useful Slack Channels",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112733",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112663",
+          "document_id": 798,
+          "title": "Integration tests configuration file",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112663",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853110988",
+          "document_id": 517,
+          "title": "Kubernetes based Jackpot Engine deployment instructions [Deprecated]",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853110988",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        },
+        {
+          "external_id": "2853112653",
+          "document_id": 797,
+          "title": "Debugging an Ephemeral Shared Debug Environment using Visual Studio",
+          "url": "https://aristocrat.atlassian.net/wiki/pages/2853112653",
+          "status": "skipped",
+          "reason": "unchanged",
+          "chunks": 0
+        }
+      ]
+    }
   }
 ]
